@@ -1,0 +1,47 @@
+# Dependências básicas
+playwright==1.40.0
+asyncio-throttle==1.0.2
+
+# Sistema de notificações
+aiohttp==3.9.1
+python-dotenv==1.0.0
+schedule==1.2.0
+
+# Banco de dados (futuro)
+sqlalchemy==2.0.23
+asyncpg==0.29.0
+redis==5.0.1
+
+# API REST (futuro)
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.2
+
+# Machine Learning (futuro)
+scikit-learn==1.3.2
+nltk==3.8.1
+spacy==3.7.2
+
+# Análise e visualização
+pandas==2.1.4
+matplotlib==3.8.2
+seaborn==0.13.0
+
+# Utilitários
+beautifulsoup4==4.12.2
+lxml==4.9.3
+python-dateutil==2.8.2
+
+# Segurança
+cryptography==41.0.7
+python-jose==3.3.0
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+
+# Linting e formatação
+black==23.12.0
+flake8==6.1.0
+mypy==1.7.1
