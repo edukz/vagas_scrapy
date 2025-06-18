@@ -1,0 +1,42 @@
+# Configuração de line endings para o projeto Catho Scraper
+
+# Configuração padrão: normalizar line endings
+* text=auto
+
+# Arquivos Python: sempre LF
+*.py text eol=lf
+
+# Arquivos de configuração: sempre LF  
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+
+# Arquivos de documentação: sempre LF
+*.md text eol=lf
+*.txt text eol=lf
+*.rst text eol=lf
+
+# Arquivos de projeto: sempre LF
+.gitignore text eol=lf
+.gitattributes text eol=lf
+requirements.txt text eol=lf
+README.md text eol=lf
+
+# Arquivos específicos do Windows: manter CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Arquivos binários: não processar
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary
+
+# Arquivos de cache: ignorar
+data/cache/*.json binary
+data/resultados/**/* binary

@@ -1,0 +1,24 @@
+# Catho Job Scraper - Dependências
+
+# Web scraping
+playwright>=1.40.0
+
+# Processamento assíncrono (já incluído no Python 3.7+)
+# asyncio - built-in
+
+# Manipulação de dados
+# json - built-in
+# csv - built-in
+# re - built-in
+# os - built-in
+# time - built-in
+# datetime - built-in
+# hashlib - built-in
+
+# Tipagem
+# typing - built-in (Python 3.5+)
+
+# Opcional: para desenvolvimento
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=5.0.0
