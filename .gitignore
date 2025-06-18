@@ -42,6 +42,10 @@ Thumbs.db
 # Logs
 *.log
 
+# Arquivos de teste temporários
+tests/*.log
+tests/__pycache__/
+
 # Arquivos temporários
 *.tmp
 *.temp

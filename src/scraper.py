@@ -6,15 +6,15 @@ from playwright.async_api import async_playwright
 from .cache import IntelligentCache
 from .utils import RateLimiter, PerformanceMonitor
 from .navigation import PageNavigator
+from .retry_system import RetrySystem, STRATEGIES
 
 
-async def extract_jobs_from_current_page(page, seen_urls: set) -> List[Dict]:
+async def extract_jobs_from_current_page(page, seen_urls: set, retry_system: RetrySystem = None) -> List[Dict]:
     """
-    Extrai vagas da página atual
+    Extrai vagas da página atual com retry automático
     """
-    jobs = []
-    
-    try:
+    async def _extract_jobs():
+        jobs = []
         job_elements = await page.query_selector_all('h2 a[href*="/vagas/"]')
         
         for element in job_elements:
@@ -53,10 +53,21 @@ async def extract_jobs_from_current_page(page, seen_urls: set) -> List[Dict]:
             except Exception as e:
                 continue
         
-    except Exception as e:
-        print(f"❌ Erro ao extrair vagas da página: {e}")
+        return jobs
     
-    return jobs
+    if retry_system:
+        result = await retry_system.execute_with_retry(
+            _extract_jobs, 
+            strategy=STRATEGIES['standard'],
+            operation_name="extract_jobs_from_page"
+        )
+        return result.result if result.success else []
+    else:
+        try:
+            return await _extract_jobs()
+        except Exception as e:
+            print(f"❌ Erro ao extrair vagas da página: {e}")
+            return []
 
 
 async def extract_basic_info_from_jobs(page, jobs: List[Dict]) -> List[Dict]:
@@ -149,11 +160,12 @@ async def extract_basic_info_from_jobs(page, jobs: List[Dict]) -> List[Dict]:
 
 async def scrape_job_details(page, job_url, cache: IntelligentCache = None, 
                             rate_limiter: RateLimiter = None, 
-                            monitor: PerformanceMonitor = None):
+                            monitor: PerformanceMonitor = None,
+                            retry_system: RetrySystem = None):
     """
-    Extrai informações detalhadas de uma vaga específica com cache e rate limiting
+    Extrai informações detalhadas de uma vaga específica com cache, rate limiting e retry automático
     """
-    try:
+    async def _scrape_with_retry():
         # Verificar cache primeiro
         if cache:
             cached_data = await cache.get(job_url)
@@ -168,201 +180,241 @@ async def scrape_job_details(page, job_url, cache: IntelligentCache = None,
         if rate_limiter:
             await rate_limiter.acquire()
         
-        # Fazer requisição
+        # Fazer requisição com retry automático para navegação
         await page.goto(job_url, wait_until='networkidle', timeout=30000)
         await page.wait_for_timeout(2000)
         
-        job_details = {}
+        return await _extract_job_details(page)
+    
+    if retry_system:
+        result = await retry_system.execute_with_retry(
+            _scrape_with_retry,
+            strategy=STRATEGIES['network_heavy'],
+            operation_name=f"scrape_job_details"
+        )
         
-        # Descrição completa
-        try:
-            desc_selectors = [
-                '[data-testid="job-description"]',
-                '.job-description',
-                '[class*="description"]',
-                '.sc-gEvEer',
-                'section:has-text("Descrição")',
-                'div:has-text("Descrição")'
-            ]
+        if result.success:
+            job_details = result.result
+            # Salvar no cache se bem-sucedido
+            if cache:
+                await cache.set(job_url, job_details)
             
-            for selector in desc_selectors:
-                desc_elem = await page.query_selector(selector)
-                if desc_elem:
-                    job_details['descricao'] = (await desc_elem.inner_text()).strip()
+            # Reportar sucesso
+            if rate_limiter:
+                rate_limiter.report_success()
+            if monitor:
+                monitor.record_request_success()
+            
+            return job_details
+        else:
+            # Reportar erro
+            if rate_limiter:
+                rate_limiter.report_error()
+            if monitor:
+                monitor.record_request_failure()
+            
+            return {
+                'descricao': 'Erro ao carregar',
+                'salario': 'Erro ao carregar',
+                'requisitos': 'Erro ao carregar',
+                'beneficios': 'Erro ao carregar',
+                'nivel_experiencia': 'Erro ao carregar',
+                'modalidade': 'Erro ao carregar',
+                'data_publicacao': 'Erro ao carregar'
+            }
+    else:
+        # Método original sem retry
+        try:
+            return await _scrape_with_retry()
+        except Exception as e:
+            print(f"Erro ao extrair detalhes da vaga: {e}")
+            
+            # Reportar erro
+            if rate_limiter:
+                rate_limiter.report_error()
+            if monitor:
+                monitor.record_request_failure()
+            
+            return {
+                'descricao': 'Erro ao carregar',
+                'salario': 'Erro ao carregar',
+                'requisitos': 'Erro ao carregar',
+                'beneficios': 'Erro ao carregar',
+                'nivel_experiencia': 'Erro ao carregar',
+                'modalidade': 'Erro ao carregar',
+                'data_publicacao': 'Erro ao carregar'
+            }
+
+
+async def _extract_job_details(page):
+    """
+    Extrai detalhes específicos da página de vaga
+    """
+    job_details = {}
+    
+    # Descrição completa
+    try:
+        desc_selectors = [
+            '[data-testid="job-description"]',
+            '.job-description',
+            '[class*="description"]',
+            '.sc-gEvEer',
+            'section:has-text("Descrição")',
+            'div:has-text("Descrição")'
+        ]
+        
+        for selector in desc_selectors:
+            desc_elem = await page.query_selector(selector)
+            if desc_elem:
+                job_details['descricao'] = (await desc_elem.inner_text()).strip()
+                break
+    except:
+        job_details['descricao'] = 'Não encontrada'
+    
+    # Salário/faixa salarial
+    try:
+        salary_selectors = [
+            '[data-testid="salary"]',
+            '.salary',
+            '[class*="salario"]',
+            '[class*="remuneracao"]',
+            'span:has-text("R$")',
+            'div:has-text("Salário")'
+        ]
+        
+        for selector in salary_selectors:
+            salary_elem = await page.query_selector(selector)
+            if salary_elem:
+                salary_text = await salary_elem.inner_text()
+                if 'R$' in salary_text or 'salário' in salary_text.lower():
+                    job_details['salario'] = salary_text.strip()
                     break
-        except:
-            job_details['descricao'] = 'Não encontrada'
+    except:
+        pass
+    
+    if 'salario' not in job_details:
+        job_details['salario'] = 'A combinar'
         
-        # Salário/faixa salarial
-        try:
-            salary_selectors = [
-                '[data-testid="salary"]',
-                '.salary',
-                '[class*="salario"]',
-                '[class*="remuneracao"]',
-                'span:has-text("R$")',
-                'div:has-text("Salário")'
-            ]
-            
-            for selector in salary_selectors:
-                salary_elem = await page.query_selector(selector)
-                if salary_elem:
-                    salary_text = await salary_elem.inner_text()
-                    if 'R$' in salary_text or 'salário' in salary_text.lower():
-                        job_details['salario'] = salary_text.strip()
-                        break
-        except:
-            pass
+    # Requisitos técnicos
+    try:
+        req_selectors = [
+            'section:has-text("Requisitos")',
+            'div:has-text("Requisitos")',
+            '[class*="requirements"]',
+            '[class*="requisitos"]',
+            'section:has-text("Qualificações")',
+            'div:has-text("Qualificações")'
+        ]
         
-        if 'salario' not in job_details:
-            job_details['salario'] = 'A combinar'
+        for selector in req_selectors:
+            req_elem = await page.query_selector(selector)
+            if req_elem:
+                job_details['requisitos'] = (await req_elem.inner_text()).strip()
+                break
+    except:
+        job_details['requisitos'] = 'Não especificados'
+    
+    # Benefícios
+    try:
+        ben_selectors = [
+            'section:has-text("Benefícios")',
+            'div:has-text("Benefícios")',
+            '[class*="benefits"]',
+            '[class*="beneficios"]',
+            'section:has-text("Oferecemos")',
+            'ul li'
+        ]
         
-        # Requisitos técnicos
-        try:
-            req_selectors = [
-                'section:has-text("Requisitos")',
-                'div:has-text("Requisitos")',
-                '[class*="requirements"]',
-                '[class*="requisitos"]',
-                'section:has-text("Qualificações")',
-                'div:has-text("Qualificações")'
-            ]
-            
-            for selector in req_selectors:
-                req_elem = await page.query_selector(selector)
-                if req_elem:
-                    job_details['requisitos'] = (await req_elem.inner_text()).strip()
+        for selector in ben_selectors:
+            ben_elem = await page.query_selector(selector)
+            if ben_elem:
+                ben_text = await ben_elem.inner_text()
+                if any(word in ben_text.lower() for word in ['benefício', 'vale', 'plano', 'convênio', 'auxílio']):
+                    job_details['beneficios'] = ben_text.strip()
                     break
-        except:
-            job_details['requisitos'] = 'Não especificados'
+    except:
+        job_details['beneficios'] = 'Não informados'
+    
+    # Nível de experiência
+    try:
+        exp_selectors = [
+            '[class*="experience"]',
+            '[class*="nivel"]',
+            'span:has-text("anos")',
+            'div:has-text("Experiência")',
+            'section:has-text("Experiência")'
+        ]
         
-        # Benefícios
-        try:
-            ben_selectors = [
-                'section:has-text("Benefícios")',
-                'div:has-text("Benefícios")',
-                '[class*="benefits"]',
-                '[class*="beneficios"]',
-                'section:has-text("Oferecemos")',
-                'ul li'
-            ]
-            
-            for selector in ben_selectors:
-                ben_elem = await page.query_selector(selector)
-                if ben_elem:
-                    ben_text = await ben_elem.inner_text()
-                    if any(word in ben_text.lower() for word in ['benefício', 'vale', 'plano', 'convênio', 'auxílio']):
-                        job_details['beneficios'] = ben_text.strip()
-                        break
-        except:
-            job_details['beneficios'] = 'Não informados'
+        for selector in exp_selectors:
+            exp_elem = await page.query_selector(selector)
+            if exp_elem:
+                exp_text = await exp_elem.inner_text()
+                if any(word in exp_text.lower() for word in ['júnior', 'pleno', 'sênior', 'anos', 'experiência']):
+                    job_details['nivel_experiencia'] = exp_text.strip()
+                    break
+    except:
+        job_details['nivel_experiencia'] = 'Não especificado'
+    
+    # Modalidade de trabalho
+    try:
+        mode_selectors = [
+            '[class*="work-mode"]',
+            '[class*="modalidade"]',
+            'span:has-text("Home")',
+            'span:has-text("Remoto")',
+            'span:has-text("Presencial")',
+            'div:has-text("Modalidade")'
+        ]
         
-        # Nível de experiência
-        try:
-            exp_selectors = [
-                '[class*="experience"]',
-                '[class*="nivel"]',
-                'span:has-text("anos")',
-                'div:has-text("Experiência")',
-                'section:has-text("Experiência")'
-            ]
-            
-            for selector in exp_selectors:
-                exp_elem = await page.query_selector(selector)
-                if exp_elem:
-                    exp_text = await exp_elem.inner_text()
-                    if any(word in exp_text.lower() for word in ['júnior', 'pleno', 'sênior', 'anos', 'experiência']):
-                        job_details['nivel_experiencia'] = exp_text.strip()
-                        break
-        except:
-            job_details['nivel_experiencia'] = 'Não especificado'
+        for selector in mode_selectors:
+            mode_elem = await page.query_selector(selector)
+            if mode_elem:
+                mode_text = await mode_elem.inner_text()
+                if any(word in mode_text.lower() for word in ['home', 'remoto', 'presencial', 'híbrido']):
+                    job_details['modalidade'] = mode_text.strip()
+                    break
+    except:
+        job_details['modalidade'] = 'Home Office'
+    
+    # Data de publicação
+    try:
+        date_selectors = [
+            '[class*="date"]',
+            '[class*="publicada"]',
+            'time',
+            'span:has-text("dia")',
+            'span:has-text("publicada")',
+            'div:has-text("Publicada")'
+        ]
         
-        # Modalidade de trabalho
-        try:
-            mode_selectors = [
-                '[class*="work-mode"]',
-                '[class*="modalidade"]',
-                'span:has-text("Home")',
-                'span:has-text("Remoto")',
-                'span:has-text("Presencial")',
-                'div:has-text("Modalidade")'
-            ]
-            
-            for selector in mode_selectors:
-                mode_elem = await page.query_selector(selector)
-                if mode_elem:
-                    mode_text = await mode_elem.inner_text()
-                    if any(word in mode_text.lower() for word in ['home', 'remoto', 'presencial', 'híbrido']):
-                        job_details['modalidade'] = mode_text.strip()
-                        break
-        except:
-            job_details['modalidade'] = 'Home Office'
-        
-        # Data de publicação
-        try:
-            date_selectors = [
-                '[class*="date"]',
-                '[class*="publicada"]',
-                'time',
-                'span:has-text("dia")',
-                'span:has-text("publicada")',
-                'div:has-text("Publicada")'
-            ]
-            
-            for selector in date_selectors:
-                date_elem = await page.query_selector(selector)
-                if date_elem:
-                    date_text = await date_elem.inner_text()
-                    if any(word in date_text.lower() for word in ['dia', 'publicada', 'há', 'ontem', 'hoje']):
-                        job_details['data_publicacao'] = date_text.strip()
-                        break
-        except:
-            job_details['data_publicacao'] = 'Não informada'
-        
-        # Salvar no cache se bem-sucedido
-        if cache:
-            await cache.set(job_url, job_details)
-        
-        # Reportar sucesso
-        if rate_limiter:
-            rate_limiter.report_success()
-        if monitor:
-            monitor.record_request_success()
-        
-        return job_details
-        
-    except Exception as e:
-        print(f"Erro ao extrair detalhes da vaga: {e}")
-        
-        # Reportar erro
-        if rate_limiter:
-            rate_limiter.report_error()
-        if monitor:
-            monitor.record_request_failure()
-        
-        return {
-            'descricao': 'Erro ao carregar',
-            'salario': 'Erro ao carregar',
-            'requisitos': 'Erro ao carregar',
-            'beneficios': 'Erro ao carregar',
-            'nivel_experiencia': 'Erro ao carregar',
-            'modalidade': 'Erro ao carregar',
-            'data_publicacao': 'Erro ao carregar'
-        }
+        for selector in date_selectors:
+            date_elem = await page.query_selector(selector)
+            if date_elem:
+                date_text = await date_elem.inner_text()
+                if any(word in date_text.lower() for word in ['dia', 'publicada', 'há', 'ontem', 'hoje']):
+                    job_details['data_publicacao'] = date_text.strip()
+                    break
+    except:
+        job_details['data_publicacao'] = 'Não informada'
+    
+    return job_details
 
 
 async def scrape_catho_jobs(max_concurrent_jobs: int = 3, max_pages: int = 5):
     """
-    Faz o scraping das vagas home office no site da Catho com navegação por múltiplas páginas
+    Faz o scraping das vagas home office no site da Catho com navegação por múltiplas páginas e retry automático
     """
     base_url = "https://www.catho.com.br/vagas/home-office/"
     
-    # Inicializar sistemas de performance
+    # Inicializar sistemas de performance e robustez
     cache = IntelligentCache(max_age_hours=6)
     rate_limiter = RateLimiter(requests_per_second=1.5, burst_limit=3, adaptive=True)
     monitor = PerformanceMonitor()
     navigator = PageNavigator(max_pages=max_pages)
+    retry_system = RetrySystem(default_strategy=STRATEGIES['standard'])
     monitor.start_monitoring()
+    
+    print("🛡️ Sistema de retry ativado para maior robustez")
     
     try:
         async with async_playwright() as p:
@@ -407,7 +459,7 @@ async def scrape_catho_jobs(max_concurrent_jobs: int = 3, max_pages: int = 5):
                 print(f"🔍 Tipo de paginação detectado: {pagination_type}")
                 
                 # Processar primeira página
-                page_jobs = await extract_jobs_from_current_page(page, seen_urls)
+                page_jobs = await extract_jobs_from_current_page(page, seen_urls, retry_system)
                 all_jobs.extend(page_jobs)
                 print(f"✅ Página {current_page}: {len(page_jobs)} vagas coletadas")
                 
@@ -430,7 +482,7 @@ async def scrape_catho_jobs(max_concurrent_jobs: int = 3, max_pages: int = 5):
                             success = await navigator.navigate_to_page(page, page_num, base_url)
                             
                             if success:
-                                page_jobs = await extract_jobs_from_current_page(page, seen_urls)
+                                page_jobs = await extract_jobs_from_current_page(page, seen_urls, retry_system)
                                 all_jobs.extend(page_jobs)
                                 print(f"✅ Página {page_num}: {len(page_jobs)} vagas coletadas")
                                 
@@ -451,7 +503,7 @@ async def scrape_catho_jobs(max_concurrent_jobs: int = 3, max_pages: int = 5):
                             success = await navigator.try_next_page_button(page)
                             
                             if success:
-                                page_jobs = await extract_jobs_from_current_page(page, seen_urls)
+                                page_jobs = await extract_jobs_from_current_page(page, seen_urls, retry_system)
                                 all_jobs.extend(page_jobs)
                                 print(f"✅ Página {page_num}: {len(page_jobs)} vagas coletadas")
                                 
@@ -472,7 +524,7 @@ async def scrape_catho_jobs(max_concurrent_jobs: int = 3, max_pages: int = 5):
                             
                             success = await navigator.try_infinite_scroll(page)
                             if success:
-                                page_jobs = await extract_jobs_from_current_page(page, seen_urls)
+                                page_jobs = await extract_jobs_from_current_page(page, seen_urls, retry_system)
                                 new_jobs = [job for job in page_jobs if job not in all_jobs]
                                 all_jobs.extend(new_jobs)
                                 
@@ -506,7 +558,7 @@ async def scrape_catho_jobs(max_concurrent_jobs: int = 3, max_pages: int = 5):
                             # Extrair informações detalhadas
                             details = await scrape_job_details(
                                 page_to_use, job['link'], 
-                                cache, rate_limiter, monitor
+                                cache, rate_limiter, monitor, retry_system
                             )
                             
                             # Adicionar informações detalhadas ao job
@@ -553,8 +605,9 @@ async def scrape_catho_jobs(max_concurrent_jobs: int = 3, max_pages: int = 5):
                 # Filtrar jobs válidos (não exceções)
                 valid_jobs = [job for job in processed_jobs if not isinstance(job, Exception)]
                 
-                # Mostrar estatísticas de performance
+                # Mostrar estatísticas de performance e retry
                 monitor.print_stats()
+                retry_system.print_metrics()
                 
                 jobs = valid_jobs
                 
