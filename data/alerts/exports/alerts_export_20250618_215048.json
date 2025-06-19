@@ -1,0 +1,17 @@
+{
+  "timestamp": "20250618_215048",
+  "active_alerts": [],
+  "alert_history": [],
+  "statistics": {
+    "active_alerts": 0,
+    "total_in_history": 0,
+    "active_by_severity": {},
+    "notification_stats": {},
+    "configured_channels": [
+      "console",
+      "file"
+    ],
+    "configured_rules": 0
+  },
+  "rules": {}
+}

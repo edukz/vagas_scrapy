@@ -209,6 +209,34 @@ def save_results(jobs, filters_applied=None, ask_user_preference=True):
         print("Nenhuma vaga para salvar")
         return
     
+    # Filtrar apenas dados válidos se houver validação
+    valid_jobs = []
+    invalid_jobs = []
+    
+    for job in jobs:
+        if '_validation' in job:
+            if job['_validation']['is_valid']:
+                # Remover metadados de validação antes de salvar
+                clean_job = {k: v for k, v in job.items() if k != '_validation'}
+                valid_jobs.append(clean_job)
+            else:
+                invalid_jobs.append(job)
+        else:
+            # Dados não validados, incluir mesmo assim
+            valid_jobs.append(job)
+    
+    if invalid_jobs:
+        print(f"⚠️  {len(invalid_jobs)} vagas com dados inválidos foram filtradas")
+    
+    # Usar apenas vagas válidas
+    jobs = valid_jobs
+    
+    if not jobs:
+        print("⚠ Nenhuma vaga válida encontrada para salvar")
+        return
+    
+    print(f"💾 Salvando {len(jobs)} vagas válidas...")
+    
     # Perguntar preferência do usuário
     if ask_user_preference:
         print("\n💾 OPÇÕES DE SALVAMENTO:")

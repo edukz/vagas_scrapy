@@ -15,6 +15,16 @@ from typing import Any, Callable, Dict, List, Optional, Type, Union
 from dataclasses import dataclass
 from enum import Enum
 
+try:
+    from .structured_logger import structured_logger, Component, LogLevel
+    from .metrics_tracker import metrics_tracker
+except ImportError:
+    # Fallback se os módulos não estiverem disponíveis
+    structured_logger = None
+    Component = None
+    LogLevel = None
+    metrics_tracker = None
+
 
 class RetryReason(Enum):
     """Razões para retry"""
@@ -201,9 +211,23 @@ class RetrySystem:
         
         self.metrics['total_operations'] += 1
         
+        # Registrar início da operação
+        if metrics_tracker:
+            metrics_tracker.increment_counter("retry.total_operations")
+        
         for attempt in range(1, strategy.max_attempts + 1):
             try:
                 print(f"🔄 [{operation_name}] Tentativa {attempt}/{strategy.max_attempts}")
+                
+                # Log tentativa
+                if structured_logger:
+                    structured_logger.retry_log(
+                        f"Executing operation attempt {attempt}",
+                        operation=operation_name,
+                        attempt=attempt,
+                        max_attempts=strategy.max_attempts,
+                        context={'strategy': strategy.__dict__}
+                    )
                 
                 # Executar a operação
                 if asyncio.iscoroutinefunction(operation):
@@ -215,11 +239,40 @@ class RetrySystem:
                 total_time = time.time() - start_time
                 self.metrics['successful_operations'] += 1
                 
+                # Registrar métricas de sucesso
+                if metrics_tracker:
+                    if attempts:  # Houve retries
+                        metrics_tracker.increment_counter("retry.success_after_retry")
+                        metrics_tracker.increment_counter("retry.retry_count", len(attempts))
+                    
+                    metrics_tracker.record_timer("retry.operation_duration", total_time)
+                
                 if attempts:  # Houve retries anteriores
                     self.metrics['total_retries'] += len(attempts)
                     print(f"✅ [{operation_name}] Sucesso após {attempt} tentativas em {total_time:.2f}s")
+                    
+                    # Log sucesso após retry
+                    if structured_logger:
+                        structured_logger.retry_log(
+                            f"Operation succeeded after {attempt} attempts",
+                            LogLevel.INFO,
+                            operation=operation_name,
+                            attempt=attempt,
+                            duration_ms=total_time * 1000,
+                            success=True,
+                            context={'retry_count': len(attempts)}
+                        )
                 else:
                     print(f"✅ [{operation_name}] Sucesso na primeira tentativa")
+                    
+                    # Log sucesso primeira tentativa
+                    if structured_logger:
+                        structured_logger.retry_log(
+                            "Operation succeeded on first attempt",
+                            operation=operation_name,
+                            duration_ms=total_time * 1000,
+                            success=True
+                        )
                 
                 return RetryResult(
                     success=True,
@@ -243,6 +296,12 @@ class RetrySystem:
                     self.metrics['failed_operations'] += 1
                     self.metrics['total_retries'] += len(attempts)
                     
+                    # Registrar métricas de falha
+                    if metrics_tracker:
+                        metrics_tracker.increment_counter("retry.failed_operations")
+                        metrics_tracker.increment_counter("retry.retry_count", len(attempts))
+                        metrics_tracker.record_timer("retry.operation_duration", total_time)
+                    
                     print(f"❌ [{operation_name}] Falha final após {attempt} tentativas: {e}")
                     
                     return RetryResult(
@@ -265,6 +324,19 @@ class RetrySystem:
                 attempts.append(attempt_info)
                 
                 print(f"⚠️ [{operation_name}] Tentativa {attempt} falhou ({retry_reason.value}): {e}")
+                
+                # Log tentativa que falhou
+                if structured_logger:
+                    structured_logger.retry_log(
+                        f"Operation attempt {attempt} failed",
+                        LogLevel.WARN,
+                        operation=operation_name,
+                        attempt=attempt,
+                        retry_reason=retry_reason.value,
+                        error=str(e),
+                        delay_seconds=delay,
+                        success=False
+                    )
                 
                 if attempt < strategy.max_attempts:
                     print(f"⏳ Aguardando {delay:.2f}s antes da próxima tentativa...")

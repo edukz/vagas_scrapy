@@ -8,18 +8,34 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 from src.scraper import scrape_catho_jobs
 from src.filters import JobFilter, get_filter_configuration
 from src.utils import save_results
+from src.structured_logger import structured_logger, Component
 
 
 async def main():
     """
     Função principal - versão modularizada e organizada
     """
+    # Inicializar sistema de logs
+    structured_logger.log_system_info()
+    structured_logger.info(
+        "Application started",
+        component=Component.MAIN,
+        context={'version': '3.0', 'features': ['retry', 'fallback', 'validation', 'logging', 'circuit_breaker', 'metrics', 'alerts']}
+    )
+    
     print("=== WEB SCRAPER CATHO (VERSÃO MODULARIZADA) ===\n")
     print("✨ Projeto reorganizado com arquitetura modular:")
     print("   📦 cache.py - Sistema de cache inteligente")
     print("   📦 scraper.py - Lógica de scraping e extração")
     print("   📦 filters.py - Sistema de filtros avançados")
     print("   📦 navigation.py - Navegação multi-página")
+    print("   🛡️ retry_system.py - Sistema de retry automático")
+    print("   🎯 selector_fallback.py - Fallback de seletores")
+    print("   📋 data_validator.py - Validação robusta de dados")
+    print("   📝 structured_logger.py - Logs estruturados")
+    print("   🔧 circuit_breaker.py - Proteção contra sobrecarga")
+    print("   📊 metrics_tracker.py - Monitoramento em tempo real")
+    print("   🚨 alert_system.py - Alertas automáticos")
     print("   📦 utils.py - Utilitários e performance")
     print("   📦 main.py - Interface principal (este arquivo)")
     
