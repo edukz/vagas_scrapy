@@ -1,0 +1,119 @@
+JOÃO SILVA SANTOS
+Desenvolvedor Full Stack Sênior
+
+CONTATO
+Email: joao.silva@email.com
+Telefone: (11) 99999-9999
+LinkedIn: linkedin.com/in/joao-silva-dev
+GitHub: github.com/joaosilva
+Localização: São Paulo - SP
+
+RESUMO PROFISSIONAL
+Desenvolvedor Full Stack com mais de 7 anos de experiência em desenvolvimento de aplicações web e mobile.
+Especialista em JavaScript, Python e tecnologias modernas. Experiência em liderança técnica e mentoria.
+Apaixonado por código limpo, arquiteturas escaláveis e boas práticas de desenvolvimento.
+
+EXPERIÊNCIA PROFISSIONAL
+
+Arquiteto de Software Sênior | TechCorp Brasil
+Março 2021 - Atual (3 anos)
+• Liderança técnica de equipe com 8 desenvolvedores
+• Arquitetura e desenvolvimento de microserviços com Node.js e Python
+• Implementação de CI/CD com Docker, Kubernetes e AWS
+• Mentoria de desenvolvedores júnior e pleno
+• Tecnologias: React, Node.js, Python, PostgreSQL, MongoDB, Redis, AWS, Docker, Kubernetes
+
+Desenvolvedor Full Stack Pleno | StartupXYZ
+Janeiro 2019 - Fevereiro 2021 (2 anos, 2 meses)
+• Desenvolvimento de aplicação SaaS do zero até 10k usuários
+• Stack completa: React, Node.js, Express, PostgreSQL
+• Implementação de testes automatizados e deploy contínuo
+• Colaboração direta com product managers e designers
+• Tecnologias: React, TypeScript, Node.js, Express, PostgreSQL, Jest, Docker
+
+Desenvolvedor JavaScript | WebSolutions
+Junho 2017 - Dezembro 2018 (1 ano, 7 meses)
+• Desenvolvimento de sites e aplicações web responsivas
+• Integração com APIs REST e desenvolvimento de componentes reutilizáveis
+• Otimização de performance e SEO
+• Tecnologias: JavaScript, HTML5, CSS3, jQuery, PHP, MySQL
+
+FORMAÇÃO ACADÊMICA
+
+Bacharelado em Ciência da Computação
+Universidade de São Paulo (USP)
+Formado em 2017
+
+CERTIFICAÇÕES E CURSOS
+• AWS Certified Solutions Architect (2022)
+• Certified Kubernetes Administrator (2021)
+• Curso Advanced React Patterns (2020)
+• Certificação Scrum Master (2019)
+
+HABILIDADES TÉCNICAS
+
+Linguagens de Programação:
+• JavaScript/TypeScript (Avançado)
+• Python (Avançado) 
+• Java (Intermediário)
+• Go (Básico)
+
+Frontend:
+• React (Avançado)
+• Vue.js (Intermediário)
+• Angular (Básico)
+• HTML5/CSS3/SASS (Avançado)
+
+Backend:
+• Node.js/Express (Avançado)
+• Django/Flask (Avançado)
+• Spring Boot (Intermediário)
+• FastAPI (Intermediário)
+
+Bancos de Dados:
+• PostgreSQL (Avançado)
+• MongoDB (Avançado)
+• Redis (Intermediário)
+• MySQL (Intermediário)
+
+DevOps e Cloud:
+• AWS (Avançado)
+• Docker (Avançado)
+• Kubernetes (Avançado)
+• Terraform (Intermediário)
+• Jenkins/GitHub Actions (Avançado)
+
+SOFT SKILLS
+• Liderança técnica
+• Comunicação eficaz
+• Trabalho em equipe
+• Resolução de problemas
+• Mentoria e coaching
+• Gestão de projetos
+• Pensamento crítico
+• Adaptabilidade
+
+PROJETOS DESTACADOS
+
+E-commerce Platform (2022)
+• Plataforma completa de e-commerce com microserviços
+• React + Node.js + PostgreSQL + Redis
+• Processamento de 1M+ transações/mês
+• CI/CD completo com AWS EKS
+
+Task Management SaaS (2020)
+• Aplicação de gestão de tarefas para equipes
+• Vue.js + Python Django + PostgreSQL
+• Real-time com WebSockets
+• 5k+ usuários ativos
+
+PREFERÊNCIAS DE TRABALHO
+• Modalidade: Híbrido ou Remoto
+• Expectativa salarial: R$ 15.000 - R$ 20.000 (CLT)
+• Disponibilidade: Integral
+• Interesse em: Liderança técnica, Arquitetura de software, Startups
+
+IDIOMAS
+• Português: Nativo
+• Inglês: Avançado (fluente)
+• Espanhol: Intermediário

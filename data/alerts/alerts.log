@@ -1,0 +1,1 @@
+{"timestamp": "2025-06-18T21:50:35.702558", "alert_id": "a756084214a76f71", "title": "Alerta de Teste", "description": "Este é um alerta de teste para verificar o funcionamento do sistema", "severity": "medium", "status": "active", "trigger_count": 1, "context": {"test_value": 15, "source": "test_function", "timestamp": 1750294235.702477}}

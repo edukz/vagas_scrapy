@@ -1,0 +1,200 @@
+# Docker Compose para Catho Job Scraper API
+# Inclui API, Redis, PostgreSQL e monitoramento
+
+version: '3.8'
+
+services:
+  # ==================== API Principal ====================
+  api:
+    build:
+      context: ../
+      dockerfile: deployments/Dockerfile
+    container_name: catho-scraper-api
+    restart: unless-stopped
+    environment:
+      # Configurações da API
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - DEBUG=false
+      
+      # Segurança
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-change-this-in-production}
+      - TOKEN_EXPIRE_MINUTES=30
+      
+      # CORS
+      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost:8080,https://yourdomain.com
+      
+      # Rate Limiting
+      - RATE_LIMIT_PER_MINUTE=60
+      - RATE_LIMIT_BURST=10
+      
+      # Banco de dados
+      - DATABASE_URL=postgresql://catho_user:catho_pass@db:5432/catho_scraper
+      
+      # Redis
+      - REDIS_URL=redis://redis:6379/0
+      
+      # Configurações de scraping
+      - MAX_CONCURRENT_SCRAPERS=3
+      - DEFAULT_MAX_PAGES=5
+      - DEFAULT_CONCURRENT_JOBS=3
+      
+      # Cache
+      - CACHE_MAX_AGE_HOURS=6
+      
+      # Logs
+      - LOG_LEVEL=INFO
+      
+      # Email (opcional)
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../data:/app/data
+      - ../logs:/app/logs
+      - ../exports:/app/exports
+    depends_on:
+      - db
+      - redis
+    networks:
+      - catho-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ==================== Banco de Dados ====================
+  db:
+    image: postgres:15-alpine
+    container_name: catho-scraper-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=catho_scraper
+      - POSTGRES_USER=catho_user
+      - POSTGRES_PASSWORD=catho_pass
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"
+    networks:
+      - catho-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U catho_user -d catho_scraper"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  # ==================== Redis ====================
+  redis:
+    image: redis:7-alpine
+    container_name: catho-scraper-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - catho-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  # ==================== Nginx (Reverse Proxy) ====================
+  nginx:
+    image: nginx:alpine
+    container_name: catho-scraper-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
+    depends_on:
+      - api
+    networks:
+      - catho-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ==================== Monitoramento - Prometheus ====================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: catho-scraper-prometheus
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - catho-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  # ==================== Monitoramento - Grafana ====================
+  grafana:
+    image: grafana/grafana:latest
+    container_name: catho-scraper-grafana
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin123}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - prometheus
+    networks:
+      - catho-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+# ==================== Volumes ====================
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+  nginx_logs:
+    driver: local
+
+# ==================== Networks ====================
+networks:
+  catho-network:
+    driver: bridge

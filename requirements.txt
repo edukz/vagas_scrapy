@@ -1,24 +1,37 @@
 # Catho Job Scraper - Dependências
 
-# Web scraping
+# Core - Web scraping
 playwright>=1.40.0
+requests>=2.31.0
+
+# API REST - FastAPI
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+pydantic>=2.5.0
+python-multipart>=0.0.6
+
+# API Security
+python-jose[cryptography]>=3.3.0  # JWT tokens
+passlib[bcrypt]>=1.7.4  # Password hashing
+python-dotenv>=1.0.0  # Environment variables
+
+# API Extras
+httpx>=0.25.0  # Async HTTP client
+redis>=5.0.0  # Caching and background tasks (optional)
+celery>=5.3.0  # Background tasks (optional)
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+
+# Development
+black>=23.0.0  # Code formatting
+flake8>=6.0.0  # Linting
+mypy>=1.7.0  # Type checking
 
 # Processamento assíncrono (já incluído no Python 3.7+)
 # asyncio - built-in
 
-# Manipulação de dados
-# json - built-in
-# csv - built-in
-# re - built-in
-# os - built-in
-# time - built-in
-# datetime - built-in
-# hashlib - built-in
-
-# Tipagem
-# typing - built-in (Python 3.5+)
-
-# Opcional: para desenvolvimento
-# pytest>=7.0.0
-# black>=22.0.0
-# flake8>=5.0.0
+# Manipulação de dados - built-in
+# json, csv, re, os, time, datetime, hashlib, typing

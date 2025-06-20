@@ -1,8 +1,4 @@
-# Arquivos de dados e cache
-data/cache/*.json
-data/resultados/**/*
-
-# Arquivos Python
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -23,43 +19,72 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Virtual environments
-venv/
+# PyInstaller
+*.manifest
+*.spec
+
+# Environment
+.env
+.venv
 env/
+venv/
 ENV/
+env.bak/
+venv.bak/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
-# OS
+# Cache e dados temporários
+data/cache/*.gz
+data/checkpoints/
+*.tmp
+*.temp
+
+# Logs específicos (manter estrutura)
+logs/*.log
+!logs/.gitkeep
+
+# Resultados de scraping (manter estrutura mas não versionar dados)
+data/resultados/json/*.json
+data/resultados/csv/*.csv
+data/resultados/txt/*.txt
+data/resultados/relatorios/*.txt
+!data/resultados/*/.gitkeep
+
+# Backups de configurações
+config/backups/*.json
+
+# Arquivos de sistema
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
+# Arquivos de diagnóstico
+*_diagnostic_report_*.json
+diagnose_*.py
 
-# Arquivos de teste temporários
-tests/*.log
-tests/__pycache__/
+# Arquivos temporários de testes
+test_*.tmp
+*.test
 
-# Arquivos temporários
-*.tmp
-*.temp
-catho_error.html
-catho_debug.png
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
 
-# Certificados e chaves
-*.pem
-*.key
-*.crt
+# Docker
+.dockerignore
 
-# Configurações locais
-config/local_settings.py
+# Métricas temporárias
+data/metrics/*.json
+data/metrics/*.csv
 
-# Claude Code configurações
-.claude/
-*.claude
+# Alertas temporários
+data/alerts/exports/*.json
+!data/alerts/exports/.gitkeep

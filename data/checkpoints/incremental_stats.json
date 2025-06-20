@@ -1,15 +1,15 @@
 {
   "total_runs": 1,
   "total_time_saved_minutes": 0.0,
-  "average_jobs_per_run": 95.0,
+  "average_jobs_per_run": 272.0,
   "average_time_saved_per_run": 0.0,
   "history": [
     {
-      "date": "2025-06-19T02:33:17.137824",
-      "duration_seconds": 43.139264,
-      "jobs_processed": 95,
+      "date": "2025-06-19T22:52:02.611186",
+      "duration_seconds": 98.260624,
+      "jobs_processed": 272,
       "jobs_skipped": 0,
-      "pages_processed": 10,
+      "pages_processed": 30,
       "time_saved_seconds": 0
     }
   ]
