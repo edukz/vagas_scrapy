@@ -83,7 +83,10 @@ async def main():
             menu.print_error_message(f"Erro inesperado: {e}")
             import traceback
             traceback.print_exc()
-            input(f"\n{Colors.DIM}Pressione Enter para continuar...{Colors.RESET}")
+            try:
+                input(f"\n{Colors.DIM}Pressione Enter para continuar...{Colors.RESET}")
+            except (KeyboardInterrupt, EOFError):
+                break
 
 
 if __name__ == "__main__":

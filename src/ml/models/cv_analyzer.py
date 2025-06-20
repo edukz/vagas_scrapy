@@ -26,14 +26,18 @@ try:
     HAS_PDF_SUPPORT = True
 except ImportError:
     HAS_PDF_SUPPORT = False
-    print("⚠️ PyPDF2 não instalado. Suporte a PDF limitado.")
+
+try:
+    import pdfplumber
+    HAS_PDFPLUMBER = True
+except ImportError:
+    HAS_PDFPLUMBER = False
 
 try:
     import docx
     HAS_DOCX_SUPPORT = True
 except ImportError:
     HAS_DOCX_SUPPORT = False
-    print("⚠️ python-docx não instalado. Suporte a DOCX limitado.")
 
 try:
     import spacy
@@ -257,20 +261,48 @@ class CVAnalyzer:
         return text
     
     def _extract_from_pdf(self, file_path: Path) -> str:
-        """Extrai texto de PDF"""
-        if not HAS_PDF_SUPPORT:
-            return ""
+        """Extrai texto de PDF com múltiplas bibliotecas para melhor qualidade"""
+        text = ""
         
-        try:
-            with open(file_path, 'rb') as file:
-                reader = PyPDF2.PdfReader(file)
-                text = ""
-                for page in reader.pages:
-                    text += page.extract_text() + "\n"
-                return text
-        except Exception as e:
-            print(f"Erro ao ler PDF: {e}")
-            return ""
+        # Método 1: Tentar pdfplumber primeiro (melhor qualidade)
+        if HAS_PDFPLUMBER:
+            try:
+                import pdfplumber
+                with pdfplumber.open(file_path) as pdf:
+                    for page in pdf.pages:
+                        page_text = page.extract_text()
+                        if page_text:
+                            text += page_text + "\n"
+                if text.strip():
+                    print("✅ PDF extraído com pdfplumber")
+                    return text
+            except Exception as e:
+                print(f"⚠️ pdfplumber falhou: {e}")
+        
+        # Método 2: Fallback para PyPDF2
+        if HAS_PDF_SUPPORT and not text.strip():
+            try:
+                with open(file_path, 'rb') as file:
+                    reader = PyPDF2.PdfReader(file)
+                    text = ""
+                    for page in reader.pages:
+                        page_text = page.extract_text()
+                        if page_text:
+                            text += page_text + "\n"
+                if text.strip():
+                    print("✅ PDF extraído com PyPDF2")
+                    return text
+            except Exception as e:
+                print(f"⚠️ PyPDF2 falhou: {e}")
+        
+        # Método 3: Último recurso - informar limitações
+        if not text.strip():
+            if not HAS_PDF_SUPPORT and not HAS_PDFPLUMBER:
+                raise ValueError("❌ Nenhuma biblioteca PDF instalada. Execute: pip install PyPDF2 pdfplumber")
+            else:
+                raise ValueError("❌ Não foi possível extrair texto do PDF. Tente converter para TXT.")
+        
+        return text
     
     def _extract_from_docx(self, file_path: Path) -> str:
         """Extrai texto de DOCX"""

@@ -35,3 +35,20 @@ mypy>=1.7.0  # Type checking
 
 # Manipulação de dados - built-in
 # json, csv, re, os, time, datetime, hashlib, typing
+
+# CV Analysis - PDF and document processing
+PyPDF2>=3.0.0  # PDF reading
+python-docx>=0.8.11  # DOCX reading
+pdfplumber>=0.9.0  # Advanced PDF parsing (alternative to PyPDF2)
+
+# OCR for scanned PDFs (optional)
+easyocr>=1.7.0  # Modern OCR engine (recommended)
+PyMuPDF>=1.23.0  # PDF to image conversion (fitz)
+pytesseract>=0.3.10  # Alternative OCR engine
+Pillow>=9.0.0  # Image processing
+pdf2image>=1.16.0  # Convert PDF to images for OCR (backup)
+
+# Machine Learning for CV Analysis
+scikit-learn>=1.3.0  # ML algorithms
+pandas>=2.0.0  # Data processing
+numpy>=1.24.0  # Numerical computing

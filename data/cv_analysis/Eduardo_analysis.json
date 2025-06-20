@@ -1,0 +1,126 @@
+{
+  "personal_info": {
+    "phone": "(18) 98199-5533",
+    "linkedin": "Eduardo-",
+    "github": "edukz",
+    "name": "EDUARDO K. INAGAKI",
+    "location": "São Paulo, Brasil"
+  },
+  "skills": {
+    "technical": [
+      "plotly",
+      "postgresql",
+      "sql",
+      ".net",
+      "c++",
+      "api",
+      "streamlit",
+      "c#",
+      "r",
+      "opencv",
+      "tkinter",
+      "python",
+      "tensorflow",
+      "yolo",
+      "pyautogui",
+      "web scraping",
+      "scala",
+      "go",
+      "ios",
+      "rpa",
+      "matplotlib",
+      "cnn",
+      "pandas",
+      "bot",
+      "etl",
+      "mysql",
+      "selenium",
+      "beautiful soup"
+    ],
+    "soft": [
+      "resolução de problemas",
+      "comunicação",
+      "adaptabilidade"
+    ],
+    "by_category": {
+      "linguagens": [
+        "scala",
+        "sql",
+        "go",
+        "python",
+        "c++",
+        "c#",
+        "r"
+      ],
+      "frontend": [
+        "tkinter"
+      ],
+      "backend": [
+        ".net"
+      ],
+      "mobile": [
+        "ios"
+      ],
+      "databases": [
+        "postgresql",
+        "mysql"
+      ],
+      "data_science": [
+        "plotly",
+        "pandas",
+        "tensorflow",
+        "matplotlib"
+      ],
+      "tools_libs": [
+        "cnn",
+        "opencv",
+        "pyautogui",
+        "etl",
+        "api",
+        "streamlit",
+        "selenium",
+        "beautiful soup",
+        "yolo"
+      ],
+      "web_scraping": [
+        "web scraping",
+        "selenium",
+        "beautiful soup"
+      ],
+      "automation": [
+        "rpa",
+        "bot",
+        "pyautogui"
+      ]
+    }
+  },
+  "experience": {
+    "total_years": 0,
+    "companies": [
+      "Foco em processa",
+      "o\n\ne Processa",
+      "os para processa"
+    ],
+    "positions": [
+      "DESENVOLVEDOR BACK-END & CIENTISTA DE DADOS",
+      "Desenvolvedor de Bots para Jogos"
+    ],
+    "current_position": "Desenvolvedor de Bots para Jogos"
+  },
+  "education": {
+    "degree": "ciência em 40%",
+    "institution": "EDUARDO",
+    "courses": []
+  },
+  "preferences": {
+    "work_mode": "hibrido",
+    "salary_expectation": null
+  },
+  "seniority_level": "estagiario",
+  "estimated_salary_range": {
+    "min": 3800.0,
+    "max": 5200.0,
+    "median": 4500.0
+  },
+  "confidence_score": 0.7500000000000001
+}
