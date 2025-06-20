@@ -21,6 +21,7 @@ class Colors:
     YELLOW = '\033[93m'
     BLUE = '\033[94m'
     MAGENTA = '\033[95m'
+    PURPLE = '\033[95m'  # Alias para MAGENTA
     CYAN = '\033[96m'
     WHITE = '\033[97m'
     GRAY = '\033[90m'

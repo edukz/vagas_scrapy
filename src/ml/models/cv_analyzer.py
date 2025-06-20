@@ -17,11 +17,30 @@ import pandas as pd
 from typing import Dict, List, Tuple, Optional, Union
 from dataclasses import dataclass, asdict
 from pathlib import Path
-import PyPDF2
-import docx
 from collections import Counter, defaultdict
-import spacy
 from datetime import datetime, timedelta
+
+# Imports opcionais com fallbacks
+try:
+    import PyPDF2
+    HAS_PDF_SUPPORT = True
+except ImportError:
+    HAS_PDF_SUPPORT = False
+    print("⚠️ PyPDF2 não instalado. Suporte a PDF limitado.")
+
+try:
+    import docx
+    HAS_DOCX_SUPPORT = True
+except ImportError:
+    HAS_DOCX_SUPPORT = False
+    print("⚠️ python-docx não instalado. Suporte a DOCX limitado.")
+
+try:
+    import spacy
+    HAS_SPACY = True
+except ImportError:
+    HAS_SPACY = False
+    print("⚠️ spaCy não instalado. Funcionalidade de NER limitada.")
 
 from .job_recommender import UserProfile
 
@@ -140,11 +159,13 @@ class CVAnalyzer:
         }
         
         # Carregar spaCy se disponível
-        try:
-            self.nlp = spacy.load("pt_core_news_sm")
-        except:
-            print("⚠️ spaCy português não encontrado. Funcionalidade de NER limitada.")
-            self.nlp = None
+        self.nlp = None
+        if HAS_SPACY:
+            try:
+                self.nlp = spacy.load("pt_core_news_sm")
+            except:
+                print("⚠️ spaCy português não encontrado. Funcionalidade de NER limitada.")
+                self.nlp = None
     
     def analyze_cv(self, file_path: str, user_id: str = None) -> CVAnalysisResult:
         """
@@ -214,9 +235,15 @@ class CVAnalyzer:
         
         try:
             if file_path.suffix.lower() == '.pdf':
-                text = self._extract_from_pdf(file_path)
+                if HAS_PDF_SUPPORT:
+                    text = self._extract_from_pdf(file_path)
+                else:
+                    raise ValueError("PyPDF2 não instalado. Use arquivos TXT ou DOCX.")
             elif file_path.suffix.lower() in ['.docx', '.doc']:
-                text = self._extract_from_docx(file_path)
+                if HAS_DOCX_SUPPORT:
+                    text = self._extract_from_docx(file_path)
+                else:
+                    raise ValueError("python-docx não instalado. Use arquivos TXT.")
             elif file_path.suffix.lower() == '.txt':
                 with open(file_path, 'r', encoding='utf-8') as f:
                     text = f.read()
@@ -231,6 +258,9 @@ class CVAnalyzer:
     
     def _extract_from_pdf(self, file_path: Path) -> str:
         """Extrai texto de PDF"""
+        if not HAS_PDF_SUPPORT:
+            return ""
+        
         try:
             with open(file_path, 'rb') as file:
                 reader = PyPDF2.PdfReader(file)
@@ -244,6 +274,9 @@ class CVAnalyzer:
     
     def _extract_from_docx(self, file_path: Path) -> str:
         """Extrai texto de DOCX"""
+        if not HAS_DOCX_SUPPORT:
+            return ""
+        
         try:
             doc = docx.Document(file_path)
             text = ""

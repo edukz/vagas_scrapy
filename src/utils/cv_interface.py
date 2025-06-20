@@ -10,9 +10,18 @@ import os
 import json
 from pathlib import Path
 from typing import List, Dict, Optional
-from ..ml.models.cv_analyzer import CVAnalyzer, CVAnalysisResult
-from ..ml.models.job_recommender import JobRecommender
-from .colors import Colors
+# Usar apenas o analisador simplificado por enquanto
+import sys
+sys.path.append('src/ml/models')
+from simple_cv_analyzer import SimpleCVAnalyzer, SimpleCVResult
+
+CVAnalyzer = SimpleCVAnalyzer
+CVAnalysisResult = SimpleCVResult
+USE_FULL_ANALYZER = False
+HAS_RECOMMENDER = False
+
+print("🔧 Usando analisador simplificado (sem dependências ML pesadas)")
+from .menu_system import Colors
 
 
 class CVInterface:
@@ -23,6 +32,23 @@ class CVInterface:
         self.colors = Colors()
         self.results_dir = Path("data/cv_analysis")
         self.results_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Verificar dependências disponíveis
+        self._check_dependencies()
+    
+    def _check_dependencies(self):
+        """Verifica quais dependências estão disponíveis"""
+        try:
+            import PyPDF2
+            self.has_pdf = True
+        except ImportError:
+            self.has_pdf = False
+        
+        try:
+            import docx
+            self.has_docx = True
+        except ImportError:
+            self.has_docx = False
     
     def show_main_menu(self):
         """Exibe menu principal da análise de CV"""
@@ -74,7 +100,14 @@ class CVInterface:
    • Determinação de nível de senioridade
    • Estimativa de faixa salarial
    • Geração de perfil para recomendações
-   • Suporte a PDF, DOCX e TXT
+
+{self.colors.CYAN}📁 Formatos Suportados:{self.colors.RESET}
+   • {self.colors.GREEN}TXT{self.colors.RESET} (sempre disponível)
+   {'• ' + self.colors.GREEN + 'PDF' + self.colors.RESET + ' ✅' if self.has_pdf else '• ' + self.colors.RED + 'PDF' + self.colors.RESET + ' ❌ PyPDF2 não instalado' if USE_FULL_ANALYZER else ''}
+   {'• ' + self.colors.GREEN + 'DOCX' + self.colors.RESET + ' ✅' if self.has_docx else '• ' + self.colors.RED + 'DOCX' + self.colors.RESET + ' ❌ python-docx não instalado' if USE_FULL_ANALYZER else ''}
+
+{self.colors.YELLOW}🔧 Modo de Análise:{self.colors.RESET}
+   {'📊 Completo (com Machine Learning)' if USE_FULL_ANALYZER else '⚡ Simplificado (sem dependências ML)'}
 
 """)
     
@@ -84,13 +117,47 @@ class CVInterface:
         print(f"{self.colors.CYAN}📄 ANÁLISE DE NOVO CURRÍCULO{self.colors.RESET}")
         print("═" * 50)
         
-        # Solicitar arquivo
-        file_path = input(f"\n{self.colors.BLUE}Caminho do arquivo (PDF/DOCX/TXT): {self.colors.RESET}")
+        # Mostrar formatos disponíveis
+        available_formats = ["TXT"]
+        if USE_FULL_ANALYZER:
+            if self.has_pdf:
+                available_formats.append("PDF")
+            if self.has_docx:
+                available_formats.append("DOCX")
+        else:
+            print(f"\n{self.colors.YELLOW}📝 Modo simplificado ativo - apenas arquivos TXT suportados{self.colors.RESET}")
         
-        if not file_path or not Path(file_path).exists():
-            print(f"{self.colors.RED}❌ Arquivo não encontrado!{self.colors.RESET}")
+        print(f"\n{self.colors.GREEN}📁 Formatos disponíveis: {', '.join(available_formats)}{self.colors.RESET}")
+        
+        # Solicitar arquivo
+        file_path = input(f"\n{self.colors.BLUE}Caminho do arquivo: {self.colors.RESET}")
+        
+        if not file_path:
+            print(f"{self.colors.YELLOW}❌ Nenhum arquivo fornecido!{self.colors.RESET}")
             input("Pressione Enter para continuar...")
             return
+        
+        file_path_obj = Path(file_path)
+        if not file_path_obj.exists():
+            print(f"{self.colors.RED}❌ Arquivo não encontrado: {file_path}!{self.colors.RESET}")
+            input("Pressione Enter para continuar...")
+            return
+        
+        # Verificar se o formato é suportado
+        ext = file_path_obj.suffix.lower()
+        if not USE_FULL_ANALYZER and ext != '.txt':
+            print(f"{self.colors.RED}❌ Modo simplificado: apenas arquivos TXT suportados!{self.colors.RESET}")
+            input("Pressione Enter para continuar...")
+            return
+        elif USE_FULL_ANALYZER:
+            if ext == '.pdf' and not self.has_pdf:
+                print(f"{self.colors.RED}❌ Arquivos PDF não suportados. Instale PyPDF2 ou use TXT!{self.colors.RESET}")
+                input("Pressione Enter para continuar...")
+                return
+            elif ext in ['.docx', '.doc'] and not self.has_docx:
+                print(f"{self.colors.RED}❌ Arquivos DOCX não suportados. Instale python-docx ou use TXT!{self.colors.RESET}")
+                input("Pressione Enter para continuar...")
+                return
         
         # Solicitar ID do usuário
         user_id = input(f"{self.colors.BLUE}ID do usuário (opcional): {self.colors.RESET}").strip()
@@ -320,6 +387,10 @@ class CVInterface:
             with open(analysis_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
             
+            if not HAS_RECOMMENDER:
+                print(f"\n{self.colors.YELLOW}⚠️ Sistema de recomendações ML indisponível{self.colors.RESET}")
+                print(f"{self.colors.CYAN}📊 Gerando recomendações simplificadas...{self.colors.RESET}")
+            
             # Simular algumas vagas para demonstração
             sample_jobs = self._get_sample_jobs()
             
@@ -357,6 +428,8 @@ class CVInterface:
                         print(f"      ✅ Skills em comum: {', '.join(common_skills[:3])}")
             
             print(f"\n{self.colors.GREEN}✨ Recomendações geradas com base no seu perfil!{self.colors.RESET}")
+            if not HAS_RECOMMENDER:
+                print(f"{self.colors.DIM}💡 Para recomendações avançadas, instale as dependências ML{self.colors.RESET}")
             
         except Exception as e:
             print(f"{self.colors.RED}❌ Erro ao gerar recomendações: {e}{self.colors.RESET}")
@@ -470,9 +543,9 @@ class CVInterface:
         print(f"   Análises salvas: {self.results_dir}")
         
         print(f"\n{self.colors.YELLOW}🔧 Formatos suportados:{self.colors.RESET}")
-        print("   • PDF (.pdf)")
-        print("   • Word (.docx, .doc)")
-        print("   • Texto (.txt)")
+        print(f"   • {'✅' if True else '❌'} Texto (.txt) - sempre disponível")
+        print(f"   • {'✅' if self.has_pdf else '❌'} PDF (.pdf) - {('disponível' if self.has_pdf else 'PyPDF2 não instalado')}")
+        print(f"   • {'✅' if self.has_docx else '❌'} Word (.docx, .doc) - {('disponível' if self.has_docx else 'python-docx não instalado')}")
         
         print(f"\n{self.colors.YELLOW}🧠 Tecnologias detectadas:{self.colors.RESET}")
         total_techs = len(self.analyzer.all_technologies)
