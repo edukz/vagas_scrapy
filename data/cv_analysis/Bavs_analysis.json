@@ -1,0 +1,90 @@
+{
+  "personal_info": {
+    "email": "gtrpiazza@gmail.com",
+    "phone": "(11) 95590-9505",
+    "name": "GUSTAVO PIAZZA",
+    "location": "CO"
+  },
+  "skills": {
+    "technical": [
+      "go",
+      "power bi",
+      "rpa",
+      "r",
+      "ios",
+      "c#",
+      "c++",
+      "bot"
+    ],
+    "soft": [
+      "gestão de projetos",
+      "organização",
+      "liderança",
+      "resolução de problemas",
+      "comunicação"
+    ],
+    "by_category": {
+      "linguagens": [
+        "go",
+        "r",
+        "c#",
+        "c++"
+      ],
+      "mobile": [
+        "ios"
+      ],
+      "data_science": [
+        "power bi"
+      ],
+      "automation": [
+        "rpa",
+        "bot"
+      ]
+    }
+  },
+  "experience": {
+    "total_years": 0,
+    "companies": [
+      "em empresa",
+      "Atrial Sa",
+      "Startup\nSa",
+      "Mapeamento de processos da empresa",
+      "Desenhos AS IS e TO BE dos princ",
+      "o das empresa",
+      "Startup\nEmpresa",
+      "o dessa",
+      "o\nprecisa",
+      "o do website da empresa",
+      "o da empresa",
+      "Empresa",
+      "o e Template de\nCadastros em empresa de Sa"
+    ],
+    "positions": [
+      "GERENTE DE DADOS E INOVAÇÃO",
+      "Gerente de Negócios e Projetos",
+      "Gerente de Projetos 2021",
+      "desenvolvedores full stack)",
+      "Gerente de Analytics",
+      "Gerente de Integração e Projetos Estratégicos",
+      "diretoria e acionistas",
+      "Diretores e Sócios"
+    ],
+    "current_position": "Diretores e Sócios"
+  },
+  "education": {
+    "degree": "Engenharia Metalúrgica",
+    "institution": "GUSTAVO PIAZZA",
+    "courses": []
+  },
+  "preferences": {
+    "work_mode": "presencial",
+    "salary_expectation": null
+  },
+  "seniority_level": "pleno",
+  "estimated_salary_range": {
+    "min": 8300.0,
+    "max": 11300.0,
+    "median": 9800.0
+  },
+  "confidence_score": 0.8500000000000001
+}

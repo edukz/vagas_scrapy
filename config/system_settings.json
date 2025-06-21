@@ -1,6 +1,44 @@
 {
   "scraping": {
-    "base_url": "https://www.catho.com.br/vagas/home-office/",
+    "base_urls": [
+      "https://www.catho.com.br/vagas/home-office/",
+      "https://www.catho.com.br/vagas/presencial/",
+      "https://www.catho.com.br/vagas/hibrido/",
+      "https://www.catho.com.br/vagas/",
+      "https://www.catho.com.br/vagas/sao-paulo-sp/",
+      "https://www.catho.com.br/vagas/rio-de-janeiro-rj/",
+      "https://www.catho.com.br/vagas/belo-horizonte-mg/",
+      "https://www.catho.com.br/vagas/brasilia-df/",
+      "https://www.catho.com.br/vagas/curitiba-pr/",
+      "https://www.catho.com.br/vagas/porto-alegre-rs/",
+      "https://www.catho.com.br/vagas/recife-pe/",
+      "https://www.catho.com.br/vagas/salvador-ba/",
+      "https://www.catho.com.br/vagas/tecnologia-da-informacao/",
+      "https://www.catho.com.br/vagas/administracao/",
+      "https://www.catho.com.br/vagas/vendas/",
+      "https://www.catho.com.br/vagas/marketing/",
+      "https://www.catho.com.br/vagas/financas/",
+      "https://www.catho.com.br/vagas/recursos-humanos/",
+      "https://www.catho.com.br/vagas/engenharia/",
+      "https://www.catho.com.br/vagas/saude/",
+      "https://www.catho.com.br/vagas/educacao/",
+      "https://www.catho.com.br/vagas/juridico/",
+      "https://www.catho.com.br/vagas/estagio/",
+      "https://www.catho.com.br/vagas/trainee/",
+      "https://www.catho.com.br/vagas/junior/",
+      "https://www.catho.com.br/vagas/pleno/",
+      "https://www.catho.com.br/vagas/senior/",
+      "https://www.catho.com.br/vagas/especialista/",
+      "https://www.catho.com.br/vagas/coordenador/",
+      "https://www.catho.com.br/vagas/gerente/",
+      "https://www.catho.com.br/vagas/diretor/"
+    ],
+    "diversity_mode": "complete",
+    "urls_per_session": 6,
+    "enable_url_rotation": true,
+    "active_urls": [
+      "https://www.catho.com.br/vagas/home-office/"
+    ],
     "max_concurrent_jobs": 3,
     "max_pages": 5,
     "requests_per_second": 1.5,
@@ -69,7 +107,7 @@
     ]
   },
   "version": "4.0.0",
-  "created_at": "2025-06-19T23:39:00.443040",
-  "updated_at": "2025-06-19T23:39:00.443049",
+  "created_at": "2025-06-20T19:57:16.873866",
+  "updated_at": "2025-06-20T19:57:33.276357",
   "profile_name": "default"
 }

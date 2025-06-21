@@ -1,0 +1,99 @@
+{
+  "urls": {
+    "https://www.catho.com.br/vagas/tecnologia-da-informacao/": {
+      "total_runs": 1,
+      "total_new_jobs": 15,
+      "total_jobs_seen": 20,
+      "total_time": 8.0,
+      "total_errors": 0,
+      "hourly_performance": {
+        "20": {
+          "runs": 1,
+          "new_jobs": 15,
+          "avg_new_jobs": 15.0
+        }
+      },
+      "daily_performance": {
+        "Friday": {
+          "runs": 1,
+          "new_jobs": 15,
+          "avg_new_jobs": 15.0
+        }
+      },
+      "last_run": "2025-06-20T20:13:57.124955",
+      "performance_score": 0.618
+    },
+    "https://www.catho.com.br/vagas/sao-paulo-sp/": {
+      "total_runs": 1,
+      "total_new_jobs": 12,
+      "total_jobs_seen": 20,
+      "total_time": 10.0,
+      "total_errors": 1,
+      "hourly_performance": {
+        "20": {
+          "runs": 1,
+          "new_jobs": 12,
+          "avg_new_jobs": 12.0
+        }
+      },
+      "daily_performance": {
+        "Friday": {
+          "runs": 1,
+          "new_jobs": 12,
+          "avg_new_jobs": 12.0
+        }
+      },
+      "last_run": "2025-06-20T20:13:57.127697",
+      "performance_score": 0.443
+    },
+    "https://www.catho.com.br/vagas/senior/": {
+      "total_runs": 1,
+      "total_new_jobs": 9,
+      "total_jobs_seen": 20,
+      "total_time": 12.0,
+      "total_errors": 0,
+      "hourly_performance": {
+        "20": {
+          "runs": 1,
+          "new_jobs": 9,
+          "avg_new_jobs": 9.0
+        }
+      },
+      "daily_performance": {
+        "Friday": {
+          "runs": 1,
+          "new_jobs": 9,
+          "avg_new_jobs": 9.0
+        }
+      },
+      "last_run": "2025-06-20T20:13:57.137162",
+      "performance_score": 0.467
+    },
+    "https://www.catho.com.br/vagas/home-office/": {
+      "total_runs": 1,
+      "total_new_jobs": 6,
+      "total_jobs_seen": 20,
+      "total_time": 14.0,
+      "total_errors": 1,
+      "hourly_performance": {
+        "20": {
+          "runs": 1,
+          "new_jobs": 6,
+          "avg_new_jobs": 6.0
+        }
+      },
+      "daily_performance": {
+        "Friday": {
+          "runs": 1,
+          "new_jobs": 6,
+          "avg_new_jobs": 6.0
+        }
+      },
+      "last_run": "2025-06-20T20:13:57.145514",
+      "performance_score": 0.291
+    }
+  },
+  "sessions": [],
+  "patterns": {},
+  "last_optimization": null
+}

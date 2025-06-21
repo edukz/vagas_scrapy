@@ -1,0 +1,105 @@
+{
+  "time_series": {},
+  "comparisons": [
+    {
+      "timestamp": "2025-06-20T21:02:20.436541",
+      "period_name": "test_period",
+      "comparisons": {
+        "job_count": {
+          "metric": "job_count",
+          "current_value": 2.0,
+          "previous_value": 1.0,
+          "change_percentage": 100.0,
+          "trend": "up",
+          "significance": "high"
+        },
+        "avg_salary": {
+          "metric": "avg_salary",
+          "current_value": 7250.0,
+          "previous_value": 8000.0,
+          "change_percentage": -9.375,
+          "trend": "down",
+          "significance": "low"
+        },
+        "remote_percentage": {
+          "metric": "remote_percentage",
+          "current_value": 0.0,
+          "previous_value": 0.0,
+          "change_percentage": 0,
+          "trend": "stable",
+          "significance": "low"
+        },
+        "top_skills_frequency": {
+          "metric": "top_skills_frequency",
+          "current_value": 1,
+          "previous_value": 1,
+          "change_percentage": 0.0,
+          "trend": "stable",
+          "significance": "low"
+        },
+        "regional_distribution": {
+          "metric": "regional_distribution",
+          "current_value": -0.7071067811865476,
+          "previous_value": -1.0,
+          "change_percentage": -29.28932188134524,
+          "trend": "down",
+          "significance": "high"
+        }
+      }
+    },
+    {
+      "timestamp": "2025-06-20T21:02:34.688277",
+      "period_name": "test",
+      "comparisons": {
+        "job_count": {
+          "metric": "job_count",
+          "current_value": 3.0,
+          "previous_value": 2.0,
+          "change_percentage": 50.0,
+          "trend": "up",
+          "significance": "high"
+        },
+        "avg_salary": {
+          "metric": "avg_salary",
+          "current_value": 7833.333333333333,
+          "previous_value": 7250.0,
+          "change_percentage": 8.045977011494248,
+          "trend": "up",
+          "significance": "low"
+        },
+        "remote_percentage": {
+          "metric": "remote_percentage",
+          "current_value": 33.33333333333333,
+          "previous_value": 0.0,
+          "change_percentage": 100,
+          "trend": "up",
+          "significance": "high"
+        },
+        "top_skills_frequency": {
+          "metric": "top_skills_frequency",
+          "current_value": 1,
+          "previous_value": 1,
+          "change_percentage": 0.0,
+          "trend": "stable",
+          "significance": "low"
+        },
+        "regional_distribution": {
+          "metric": "regional_distribution",
+          "current_value": -0.5773502691896257,
+          "previous_value": -0.7071067811865476,
+          "change_percentage": -18.350341907227406,
+          "trend": "down",
+          "significance": "medium"
+        }
+      }
+    }
+  ],
+  "seasonal_patterns": {},
+  "benchmarks": {},
+  "projections": {},
+  "last_update": null,
+  "statistics": {
+    "periods_analyzed": 0,
+    "comparisons_made": 0
+  }
+}

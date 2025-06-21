@@ -14,7 +14,7 @@ import json
 import os
 import shutil
 from datetime import datetime
-from typing import Dict, Any, List, Optional, Union
+from typing import Dict, Any, List, Optional, Union, Tuple
 from pathlib import Path
 from dataclasses import dataclass, asdict, field
 import copy
@@ -25,7 +25,57 @@ from ..utils.menu_system import Colors
 @dataclass
 class ScrapingConfig:
     """Configurações de scraping"""
-    base_url: str = "https://www.catho.com.br/vagas/home-office/"
+    # URLs para diversidade geográfica, modalidades e áreas profissionais
+    base_urls: List[str] = field(default_factory=lambda: [
+        # === MODALIDADES ===
+        "https://www.catho.com.br/vagas/home-office/",           # Home office
+        "https://www.catho.com.br/vagas/presencial/",            # Presencial
+        "https://www.catho.com.br/vagas/hibrido/",               # Híbrido
+        
+        # === GEOGRAFIA ===
+        "https://www.catho.com.br/vagas/",                       # Todas as vagas
+        "https://www.catho.com.br/vagas/sao-paulo-sp/",          # São Paulo
+        "https://www.catho.com.br/vagas/rio-de-janeiro-rj/",     # Rio de Janeiro
+        "https://www.catho.com.br/vagas/belo-horizonte-mg/",     # Belo Horizonte
+        "https://www.catho.com.br/vagas/brasilia-df/",           # Brasília
+        "https://www.catho.com.br/vagas/curitiba-pr/",           # Curitiba
+        "https://www.catho.com.br/vagas/porto-alegre-rs/",       # Porto Alegre
+        "https://www.catho.com.br/vagas/recife-pe/",             # Recife
+        "https://www.catho.com.br/vagas/salvador-ba/",           # Salvador
+        
+        # === ÁREAS PROFISSIONAIS ===
+        "https://www.catho.com.br/vagas/tecnologia-da-informacao/",    # TI
+        "https://www.catho.com.br/vagas/administracao/",               # Administração
+        "https://www.catho.com.br/vagas/vendas/",                      # Vendas
+        "https://www.catho.com.br/vagas/marketing/",                   # Marketing
+        "https://www.catho.com.br/vagas/financas/",                    # Finanças
+        "https://www.catho.com.br/vagas/recursos-humanos/",            # RH
+        "https://www.catho.com.br/vagas/engenharia/",                  # Engenharia
+        "https://www.catho.com.br/vagas/saude/",                       # Saúde
+        "https://www.catho.com.br/vagas/educacao/",                    # Educação
+        "https://www.catho.com.br/vagas/juridico/",                    # Jurídico
+        
+        # === NÍVEIS DE SENIORIDADE ===
+        "https://www.catho.com.br/vagas/estagio/",                     # Estágio
+        "https://www.catho.com.br/vagas/trainee/",                     # Trainee
+        "https://www.catho.com.br/vagas/junior/",                      # Júnior
+        "https://www.catho.com.br/vagas/pleno/",                       # Pleno
+        "https://www.catho.com.br/vagas/senior/",                      # Sênior
+        "https://www.catho.com.br/vagas/especialista/",                # Especialista
+        "https://www.catho.com.br/vagas/coordenador/",                 # Coordenador
+        "https://www.catho.com.br/vagas/gerente/",                     # Gerente
+        "https://www.catho.com.br/vagas/diretor/"                      # Diretor
+    ])
+    
+    # Configuração de diversidade
+    diversity_mode: str = "balanced"  # Modos: "balanced", "geographic", "remote_only", "professional", "seniority", "complete", "custom"
+    urls_per_session: int = 3  # Quantas URLs usar por sessão
+    enable_url_rotation: bool = True
+    
+    # URLs ativas (selecionadas da lista base_urls)
+    active_urls: List[str] = field(default_factory=lambda: ["https://www.catho.com.br/vagas/home-office/"])
+    
+    # Configurações existentes
     max_concurrent_jobs: int = 3
     max_pages: int = 5
     requests_per_second: float = 1.5
@@ -257,9 +307,16 @@ class SettingsManager:
         """Converte dicionário para SystemSettings"""
         settings = SystemSettings()
         
-        # Mapear cada seção
+        # Mapear cada seção com compatibilidade para versões antigas
         if 'scraping' in data:
-            settings.scraping = ScrapingConfig(**data['scraping'])
+            scraping_data = data['scraping'].copy()
+            
+            # Converter campo antigo base_url para novo formato
+            if 'base_url' in scraping_data and 'base_urls' not in scraping_data:
+                old_url = scraping_data.pop('base_url')
+                scraping_data['active_urls'] = [old_url]
+            
+            settings.scraping = ScrapingConfig(**scraping_data)
         if 'cache' in data:
             settings.cache = CacheConfig(**data['cache'])
         if 'performance' in data:
@@ -409,6 +466,280 @@ class SettingsManager:
         except Exception as e:
             print(f"{Colors.RED}❌ Erro ao resetar configurações: {e}{Colors.RESET}")
             return False
+    
+    def get_active_urls(self) -> List[str]:
+        """Retorna lista de URLs ativas baseada no modo de diversidade"""
+        import random
+        
+        scraping = self.settings.scraping
+        
+        if not scraping.enable_url_rotation:
+            return scraping.active_urls or [scraping.base_urls[0]]
+        
+        if scraping.diversity_mode == "remote_only":
+            # Apenas URLs remotas/home office
+            remote_urls = [url for url in scraping.base_urls 
+                          if any(keyword in url for keyword in ["home-office", "remoto"])]
+            return random.sample(remote_urls, min(scraping.urls_per_session, len(remote_urls)))
+        
+        elif scraping.diversity_mode == "geographic":
+            # Foco em diversidade geográfica
+            geo_urls = [url for url in scraping.base_urls 
+                       if any(state in url for state in ["-sp/", "-rj/", "-mg/", "-df/", "-pr/", "-rs/", "-pe/", "-ba/"])]
+            # Adicionar URL geral se disponível
+            general_url = [url for url in scraping.base_urls if url == "https://www.catho.com.br/vagas/"]
+            geo_urls.extend(general_url)
+            return random.sample(geo_urls, min(scraping.urls_per_session, len(geo_urls)))
+        
+        elif scraping.diversity_mode == "professional":
+            # Foco em áreas profissionais
+            prof_urls = [url for url in scraping.base_urls 
+                        if any(area in url for area in ["tecnologia", "administracao", "vendas", "marketing", 
+                                                        "financas", "recursos-humanos", "engenharia", 
+                                                        "saude", "educacao", "juridico"])]
+            return random.sample(prof_urls, min(scraping.urls_per_session, len(prof_urls)))
+        
+        elif scraping.diversity_mode == "seniority":
+            # Foco em níveis de senioridade
+            senior_urls = [url for url in scraping.base_urls 
+                          if any(level in url for level in ["estagio", "trainee", "junior", "pleno", 
+                                                            "senior", "especialista", "coordenador", 
+                                                            "gerente", "diretor"])]
+            return random.sample(senior_urls, min(scraping.urls_per_session, len(senior_urls)))
+        
+        elif scraping.diversity_mode == "complete":
+            # Mix completo: uma de cada categoria
+            selected_urls = []
+            
+            # Categorias com pesos
+            categories = {
+                "modalidade": ([url for url in scraping.base_urls 
+                               if any(m in url for m in ["home-office", "presencial", "hibrido"])], 1),
+                "geografia": ([url for url in scraping.base_urls 
+                             if any(g in url for g in ["-sp/", "-rj/", "-mg/", "-df/", "-pr/", "-rs/", "-pe/", "-ba/"])], 1),
+                "profissional": ([url for url in scraping.base_urls 
+                                if any(p in url for p in ["tecnologia", "administracao", "vendas", "marketing"])], 1),
+                "senioridade": ([url for url in scraping.base_urls 
+                               if any(s in url for s in ["junior", "pleno", "senior", "coordenador"])], 1)
+            }
+            
+            # Selecionar URLs proporcionalmente
+            for category, (urls, weight) in categories.items():
+                if urls:
+                    num_urls = max(1, int(scraping.urls_per_session * weight / len(categories)))
+                    selected = random.sample(urls, min(num_urls, len(urls)))
+                    selected_urls.extend(selected)
+            
+            # Limitar ao número configurado e remover duplicatas
+            selected_urls = list(dict.fromkeys(selected_urls))[:scraping.urls_per_session]
+            
+            # Preencher com URLs aleatórias se necessário
+            if len(selected_urls) < scraping.urls_per_session:
+                remaining = [url for url in scraping.base_urls if url not in selected_urls]
+                if remaining:
+                    additional = random.sample(remaining, 
+                                             min(scraping.urls_per_session - len(selected_urls), len(remaining)))
+                    selected_urls.extend(additional)
+            
+            return selected_urls
+        
+        elif scraping.diversity_mode == "balanced":
+            # Mix balanceado de modalidades e localizações
+            selected_urls = []
+            
+            # Garantir pelo menos uma URL de cada categoria
+            categories = {
+                "remote": [url for url in scraping.base_urls 
+                          if "home-office" in url or "remoto" in url],
+                "presential": [url for url in scraping.base_urls 
+                              if "presencial" in url],
+                "hybrid": [url for url in scraping.base_urls 
+                          if "hibrido" in url],
+                "geographic": [url for url in scraping.base_urls 
+                              if any(state in url for state in ["-sp/", "-rj/", "-mg/", "-df/"])],
+                "general": [url for url in scraping.base_urls 
+                           if url == "https://www.catho.com.br/vagas/"]
+            }
+            
+            # Selecionar uma URL de cada categoria disponível
+            for category, urls in categories.items():
+                if urls and len(selected_urls) < scraping.urls_per_session:
+                    selected_urls.append(random.choice(urls))
+            
+            # Preencher com URLs aleatórias se necessário
+            remaining_slots = scraping.urls_per_session - len(selected_urls)
+            if remaining_slots > 0:
+                available_urls = [url for url in scraping.base_urls if url not in selected_urls]
+                if available_urls:
+                    additional_urls = random.sample(available_urls, 
+                                                   min(remaining_slots, len(available_urls)))
+                    selected_urls.extend(additional_urls)
+            
+            return selected_urls
+        
+        elif scraping.diversity_mode == "custom":
+            # Usar URLs personalizadas
+            return scraping.active_urls or [scraping.base_urls[0]]
+        
+        # Fallback: retornar URLs aleatórias
+        return random.sample(scraping.base_urls, 
+                           min(scraping.urls_per_session, len(scraping.base_urls)))
+    
+    def set_diversity_mode(self, mode: str, urls_per_session: int = None) -> bool:
+        """
+        Define o modo de diversidade de URLs
+        
+        Args:
+            mode: "balanced", "geographic", "remote_only", "professional", "seniority", "complete", "custom"
+            urls_per_session: Número de URLs por sessão (opcional)
+        """
+        valid_modes = ["balanced", "geographic", "remote_only", "professional", "seniority", "complete", "custom"]
+        
+        if mode not in valid_modes:
+            print(f"{Colors.RED}❌ Modo inválido. Use: {', '.join(valid_modes)}{Colors.RESET}")
+            return False
+        
+        self.settings.scraping.diversity_mode = mode
+        
+        if urls_per_session is not None:
+            self.settings.scraping.urls_per_session = urls_per_session
+        
+        self.save_settings()
+        print(f"{Colors.GREEN}✅ Modo de diversidade alterado para: {mode}{Colors.RESET}")
+        return True
+    
+    def add_custom_url(self, url: str) -> bool:
+        """Adiciona URL personalizada à lista base"""
+        if url not in self.settings.scraping.base_urls:
+            self.settings.scraping.base_urls.append(url)
+            self.save_settings()
+            print(f"{Colors.GREEN}✅ URL adicionada: {url}{Colors.RESET}")
+            return True
+        else:
+            print(f"{Colors.YELLOW}⚠️ URL já existe na lista{Colors.RESET}")
+            return False
+    
+    def remove_url(self, url: str) -> bool:
+        """Remove URL da lista base"""
+        if url in self.settings.scraping.base_urls:
+            self.settings.scraping.base_urls.remove(url)
+            # Remover também das URLs ativas se existir
+            if url in self.settings.scraping.active_urls:
+                self.settings.scraping.active_urls.remove(url)
+            self.save_settings()
+            print(f"{Colors.GREEN}✅ URL removida: {url}{Colors.RESET}")
+            return True
+        else:
+            print(f"{Colors.YELLOW}⚠️ URL não encontrada na lista{Colors.RESET}")
+            return False
+    
+    def preview_active_urls(self) -> None:
+        """Mostra prévia das URLs que serão usadas na próxima sessão"""
+        urls = self.get_active_urls()
+        print(f"\n{Colors.CYAN}🎯 URLs que serão usadas na próxima sessão:{Colors.RESET}")
+        print(f"{Colors.DIM}Modo: {self.settings.scraping.diversity_mode} | URLs por sessão: {self.settings.scraping.urls_per_session}{Colors.RESET}")
+        print()
+        
+        # Categorizar URLs
+        categorias = {"modalidade": [], "geografia": [], "profissional": [], "senioridade": []}
+        
+        for i, url in enumerate(urls, 1):
+            # Extrair descrição e categoria da URL
+            desc, categoria = self._categorize_url(url)
+            
+            print(f"  {Colors.GREEN}{i}.{Colors.RESET} {desc} {Colors.DIM}[{categoria}]{Colors.RESET}")
+            print(f"     {Colors.DIM}{url}{Colors.RESET}")
+            
+            if categoria in categorias:
+                categorias[categoria].append(desc)
+        
+        # Estatísticas de diversidade
+        print(f"\n{Colors.YELLOW}📊 Análise de Diversidade:{Colors.RESET}")
+        total_categorias = sum(1 for cat, items in categorias.items() if items)
+        print(f"  • Categorias cobertas: {total_categorias}/4")
+        print(f"  • Estimativa de aumento: +{len(urls) * 200}% vagas")
+        
+        # Mostrar distribuição
+        print(f"\n{Colors.CYAN}📈 Distribuição:{Colors.RESET}")
+        for cat, items in categorias.items():
+            if items:
+                print(f"  • {cat.capitalize()}: {len(items)} URL(s) - {', '.join(items)}")
+    
+    def _categorize_url(self, url: str) -> Tuple[str, str]:
+        """Categoriza uma URL e retorna descrição e categoria"""
+        # Modalidades
+        if "home-office" in url:
+            return ("Home Office", "modalidade")
+        elif "presencial" in url:
+            return ("Presencial", "modalidade")
+        elif "hibrido" in url:
+            return ("Híbrido", "modalidade")
+        
+        # Geografia
+        elif "-sp/" in url:
+            return ("São Paulo", "geografia")
+        elif "-rj/" in url:
+            return ("Rio de Janeiro", "geografia")
+        elif "-mg/" in url:
+            return ("Belo Horizonte", "geografia")
+        elif "-df/" in url:
+            return ("Brasília", "geografia")
+        elif "-pr/" in url:
+            return ("Curitiba", "geografia")
+        elif "-rs/" in url:
+            return ("Porto Alegre", "geografia")
+        elif "-pe/" in url:
+            return ("Recife", "geografia")
+        elif "-ba/" in url:
+            return ("Salvador", "geografia")
+        
+        # Áreas profissionais
+        elif "tecnologia" in url:
+            return ("Tecnologia/TI", "profissional")
+        elif "administracao" in url:
+            return ("Administração", "profissional")
+        elif "vendas" in url:
+            return ("Vendas", "profissional")
+        elif "marketing" in url:
+            return ("Marketing", "profissional")
+        elif "financas" in url:
+            return ("Finanças", "profissional")
+        elif "recursos-humanos" in url:
+            return ("RH", "profissional")
+        elif "engenharia" in url:
+            return ("Engenharia", "profissional")
+        elif "saude" in url:
+            return ("Saúde", "profissional")
+        elif "educacao" in url:
+            return ("Educação", "profissional")
+        elif "juridico" in url:
+            return ("Jurídico", "profissional")
+        
+        # Senioridade
+        elif "estagio" in url:
+            return ("Estágio", "senioridade")
+        elif "trainee" in url:
+            return ("Trainee", "senioridade")
+        elif "junior" in url:
+            return ("Júnior", "senioridade")
+        elif "pleno" in url:
+            return ("Pleno", "senioridade")
+        elif "senior" in url:
+            return ("Sênior", "senioridade")
+        elif "especialista" in url:
+            return ("Especialista", "senioridade")
+        elif "coordenador" in url:
+            return ("Coordenador", "senioridade")
+        elif "gerente" in url:
+            return ("Gerente", "senioridade")
+        elif "diretor" in url:
+            return ("Diretor", "senioridade")
+        
+        # Geral
+        elif url == "https://www.catho.com.br/vagas/":
+            return ("Todas as vagas", "geral")
+        else:
+            return ("Personalizada", "outro")
 
 
 # Instância global do gerenciador

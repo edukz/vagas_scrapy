@@ -1,0 +1,122 @@
+{
+  "interactions": [
+    {
+      "user_id": "test_eduardo_integration",
+      "job_id": "test_job_001",
+      "job_title": "Python Developer",
+      "interaction_type": "like",
+      "timestamp": "2025-06-20T21:18:55.854391",
+      "match_score": 0.85,
+      "skills_overlap": [
+        "python"
+      ],
+      "metadata": {
+        "company": "TechCorp",
+        "location": "",
+        "seniority": "",
+        "salary_info": {},
+        "job_skills": [
+          "python",
+          "django"
+        ]
+      }
+    },
+    {
+      "user_id": "test_integration_user",
+      "job_id": "-6411621910216626679",
+      "job_title": "Python Data Scientist",
+      "interaction_type": "like",
+      "timestamp": "2025-06-20T21:19:52.492705",
+      "match_score": 0.37111702350667897,
+      "skills_overlap": [
+        "python",
+        "postgresql",
+        "pandas"
+      ],
+      "metadata": {
+        "company": "DataCorp",
+        "location": "São Paulo - SP",
+        "seniority": "",
+        "salary_info": {},
+        "job_skills": []
+      }
+    },
+    {
+      "user_id": "user_-488589880690929331_20250620_2259",
+      "job_id": "job_002",
+      "job_title": "Analista de Dados Pleno",
+      "interaction_type": "dislike",
+      "timestamp": "2025-06-20T23:00:26.742491",
+      "match_score": 0.4457551020408163,
+      "skills_overlap": [],
+      "metadata": {
+        "company": "DataCorp Analytics",
+        "location": "Rio de Janeiro - RJ",
+        "seniority": "pleno",
+        "salary_info": {
+          "min": 6000,
+          "max": 12000,
+          "median": 9000
+        },
+        "job_skills": [
+          "python",
+          "pandas"
+        ]
+      }
+    }
+  ],
+  "user_preferences": {
+    "test_eduardo_integration": {
+      "preferred_skills": {
+        "python": 0.3
+      },
+      "preferred_companies": {
+        "TechCorp": 0.3
+      },
+      "preferred_locations": {},
+      "preferred_salary_ranges": {},
+      "interaction_patterns": {
+        "like": 1
+      },
+      "total_interactions": 1,
+      "learning_confidence": 0.05
+    },
+    "test_integration_user": {
+      "preferred_skills": {
+        "python": 0.3,
+        "postgresql": 0.3,
+        "pandas": 0.3
+      },
+      "preferred_companies": {
+        "DataCorp": 0.3
+      },
+      "preferred_locations": {
+        "São Paulo - SP": 0.3
+      },
+      "preferred_salary_ranges": {},
+      "interaction_patterns": {
+        "like": 1
+      },
+      "total_interactions": 1,
+      "learning_confidence": 0.05
+    },
+    "user_-488589880690929331_20250620_2259": {
+      "preferred_skills": {},
+      "preferred_companies": {
+        "DataCorp Analytics": -0.2
+      },
+      "preferred_locations": {
+        "Rio de Janeiro - RJ": -0.2
+      },
+      "preferred_salary_ranges": {},
+      "interaction_patterns": {
+        "dislike": 1
+      },
+      "total_interactions": 1,
+      "learning_confidence": 0.05
+    }
+  },
+  "learning_stats": {},
+  "model_adjustments": [],
+  "last_update": "2025-06-20T23:00:26.742491"
+}

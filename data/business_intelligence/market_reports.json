@@ -1,0 +1,117 @@
+{
+  "reports_history": [],
+  "insights_cache": {},
+  "dashboards": {
+    "executive": {
+      "generation_date": "2025-06-20T21:02:34.667169",
+      "total_jobs_analyzed": 3,
+      "market_overview": {
+        "market_size": 3,
+        "job_posting_velocity": 0,
+        "market_temperature": "cool",
+        "dominant_sectors": [
+          {
+            "sector": "tecnologia",
+            "job_count": 1,
+            "percentage": 33.33333333333333
+          }
+        ],
+        "geographic_distribution": {
+          "Outras": 1,
+          "Rio de Janeiro": 1,
+          "Remoto": 1
+        },
+        "remote_work_percentage": 33.33333333333333
+      },
+      "key_metrics": {
+        "avg_salary": 0,
+        "salary_range": {
+          "min": 0,
+          "max": 0
+        },
+        "top_skills": [
+          {
+            "skill": "python",
+            "frequency": 1
+          },
+          {
+            "skill": "java",
+            "frequency": 1
+          },
+          {
+            "skill": "react",
+            "frequency": 1
+          },
+          {
+            "skill": "aws",
+            "frequency": 1
+          },
+          {
+            "skill": "devops",
+            "frequency": 1
+          }
+        ],
+        "top_companies": [
+          {
+            "company": "Tech Corp",
+            "job_count": 1
+          },
+          {
+            "company": "Code Inc",
+            "job_count": 1
+          },
+          {
+            "company": "Cloud Corp",
+            "job_count": 1
+          }
+        ],
+        "job_types": {},
+        "experience_levels": {}
+      },
+      "trends": {
+        "growth_sectors": [],
+        "declining_sectors": [],
+        "emerging_skills": [],
+        "salary_trends": {},
+        "regional_trends": {
+          "emerging_markets": [],
+          "hottest_regions": [
+            {
+              "region": "Outras",
+              "job_count": 1,
+              "avg_salary": 8000.0
+            },
+            {
+              "region": "Rio de Janeiro",
+              "job_count": 1,
+              "avg_salary": 6500.0
+            },
+            {
+              "region": "Remoto",
+              "job_count": 1,
+              "avg_salary": 9000.0
+            }
+          ]
+        }
+      },
+      "alerts": [
+        {
+          "type": "trend",
+          "severity": "medium",
+          "message": "Alto índice de trabalho remoto: 33.3%",
+          "action": "Considere políticas de trabalho flexível"
+        }
+      ],
+      "recommendations": [
+        "Mercado desaquecido: Momento ideal para atrair talentos com ofertas competitivas",
+        "Considere expandir opções de trabalho remoto para competir melhor"
+      ]
+    }
+  },
+  "alerts": [],
+  "last_update": null,
+  "statistics": {
+    "total_reports_generated": 0,
+    "total_insights": 0
+  }
+}

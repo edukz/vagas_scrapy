@@ -182,7 +182,7 @@ async def scrape_catho_jobs_pooled(
                             # Processamento incremental
                             if incremental_processor:
                                 should_continue, new_jobs = incremental_processor.should_continue_processing(
-                                    page_jobs, threshold=0.3
+                                    page_jobs, threshold=0.3, page_number=current_page
                                 )
                                 
                                 if should_continue:
@@ -239,7 +239,7 @@ async def scrape_catho_jobs_pooled(
                                             # Processamento incremental
                                             if incremental_processor:
                                                 should_continue, new_jobs = incremental_processor.should_continue_processing(
-                                                    page_jobs, threshold=0.3
+                                                    page_jobs, threshold=0.3, page_number=page_num
                                                 )
                                                 
                                                 if should_continue:

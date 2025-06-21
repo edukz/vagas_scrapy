@@ -170,42 +170,50 @@ class SettingsUI:
             print(f"{Colors.BOLD}📋 CONFIGURAÇÕES DE SCRAPING ATUAIS{Colors.RESET}")
             print()
             print(f"{Colors.DIM}┌─ Parâmetros de Coleta ──────────────────────────────────────────────────────┐{Colors.RESET}")
-            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[1]{Colors.RESET} 🌐 URL Base                │ {Colors.CYAN}{settings.base_url:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
-            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[2]{Colors.RESET} ⚡ Jobs Simultâneos         │ {Colors.YELLOW}{settings.max_concurrent_jobs:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
-            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[3]{Colors.RESET} 📄 Máximo de Páginas       │ {Colors.YELLOW}{settings.max_pages:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
-            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[4]{Colors.RESET} 🚦 Requisições/Segundo     │ {Colors.YELLOW}{settings.requests_per_second:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
-            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[5]{Colors.RESET} 💥 Limite de Burst         │ {Colors.YELLOW}{settings.burst_limit:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[1]{Colors.RESET} 🌐 Modo de Diversidade     │ {Colors.CYAN}{settings.diversity_mode:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[2]{Colors.RESET} 🎯 URLs por Sessão         │ {Colors.YELLOW}{settings.urls_per_session:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[3]{Colors.RESET} 🔄 Rotação de URLs         │ {('✅ Ativada' if settings.enable_url_rotation else '❌ Desativada'):<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[4]{Colors.RESET} ⚡ Jobs Simultâneos         │ {Colors.YELLOW}{settings.max_concurrent_jobs:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[5]{Colors.RESET} 📄 Máximo de Páginas       │ {Colors.YELLOW}{settings.max_pages:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[6]{Colors.RESET} 🚦 Requisições/Segundo     │ {Colors.YELLOW}{settings.requests_per_second:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[7]{Colors.RESET} 💥 Limite de Burst         │ {Colors.YELLOW}{settings.burst_limit:<45}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
             print(f"{Colors.DIM}└─────────────────────────────────────────────────────────────────────────────┘{Colors.RESET}")
             print()
             print(f"{Colors.DIM}┌─ Otimizações ───────────────────────────────────────────────────────────────┐{Colors.RESET}")
             incremental_status = f"{Colors.GREEN}✅ Ativado{Colors.RESET}" if settings.enable_incremental else f"{Colors.RED}❌ Desativado{Colors.RESET}"
             dedup_status = f"{Colors.GREEN}✅ Ativada{Colors.RESET}" if settings.enable_deduplication else f"{Colors.RED}❌ Desativada{Colors.RESET}"
-            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[6]{Colors.RESET} 🔄 Processamento Incremental│ {incremental_status:<55} {Colors.DIM}│{Colors.RESET}")
-            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[7]{Colors.RESET} 🧹 Deduplicação           │ {dedup_status:<55} {Colors.DIM}│{Colors.RESET}")
-            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[8]{Colors.RESET} 🗜️  Nível de Compressão    │ {Colors.YELLOW}{settings.compression_level} (1-9, padrão 6){' ' * 15}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[8]{Colors.RESET} 🔄 Processamento Incremental│ {incremental_status:<55} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[9]{Colors.RESET} 🧹 Deduplicação           │ {dedup_status:<55} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[10]{Colors.RESET} 🗜️  Nível de Compressão   │ {Colors.YELLOW}{settings.compression_level} (1-9, padrão 6){' ' * 15}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
+            print(f"{Colors.DIM}│{Colors.RESET} {Colors.BOLD}[11]{Colors.RESET} 🎯 Prévia URLs Ativas     │ {Colors.DIM}Visualizar URLs que serão usadas{' ' * 9}{Colors.RESET} {Colors.DIM}│{Colors.RESET}")
             print(f"{Colors.DIM}└─────────────────────────────────────────────────────────────────────────────┘{Colors.RESET}")
             print()
             
             # Menu de opções
             choice = self.menu.get_user_choice("Editar configuração (0 para voltar)", "0", 
-                                             ["0", "1", "2", "3", "4", "5", "6", "7", "8"])
+                                             ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"])
             
             if choice == "0":
                 break
             elif choice == "1":
-                new_url = input(f"{Colors.BOLD}Nova URL base: {Colors.RESET}").strip()
-                if new_url:
-                    settings.base_url = new_url
-                    self._save_settings_with_feedback()
+                # Configurar modo de diversidade
+                self._configure_diversity_mode(settings)
             elif choice == "2":
+                new_value = self.menu.get_user_number("URLs por sessão", settings.urls_per_session, 1, 8)
+                settings.urls_per_session = new_value
+                self._save_settings_with_feedback()
+            elif choice == "3":
+                settings.enable_url_rotation = not settings.enable_url_rotation
+                self._save_settings_with_feedback()
+            elif choice == "4":
                 new_value = self.menu.get_user_number("Jobs simultâneos", settings.max_concurrent_jobs, 1, 10)
                 settings.max_concurrent_jobs = new_value
                 self._save_settings_with_feedback()
-            elif choice == "3":
+            elif choice == "5":
                 new_value = self.menu.get_user_number("Máximo de páginas", settings.max_pages, 1, 100)
                 settings.max_pages = new_value
                 self._save_settings_with_feedback()
-            elif choice == "4":
+            elif choice == "6":
                 response = input(f"{Colors.BOLD}Requisições por segundo [{settings.requests_per_second}]: {Colors.RESET}").strip()
                 if response:
                     try:
@@ -219,20 +227,24 @@ class SettingsUI:
                     except ValueError:
                         self.menu.print_error_message("Valor inválido")
                         input("Pressione Enter...")
-            elif choice == "5":
+            elif choice == "7":
                 new_value = self.menu.get_user_number("Limite de burst", settings.burst_limit, 1, 20)
                 settings.burst_limit = new_value
                 self._save_settings_with_feedback()
-            elif choice == "6":
+            elif choice == "8":
                 settings.enable_incremental = not settings.enable_incremental
                 self._save_settings_with_feedback()
-            elif choice == "7":
+            elif choice == "9":
                 settings.enable_deduplication = not settings.enable_deduplication
                 self._save_settings_with_feedback()
-            elif choice == "8":
+            elif choice == "10":
                 new_value = self.menu.get_user_number("Nível de compressão", settings.compression_level, 1, 9)
                 settings.compression_level = new_value
                 self._save_settings_with_feedback()
+            elif choice == "11":
+                # Prévia das URLs ativas
+                self.settings_manager.preview_active_urls()
+                input(f"\n{Colors.DIM}Pressione Enter para continuar...{Colors.RESET}")
     
     def _handle_cache_settings(self):
         """Gerencia configurações de cache"""
@@ -1347,6 +1359,55 @@ class SettingsUI:
         from datetime import datetime
         dt = datetime.fromtimestamp(timestamp)
         return dt.strftime("%Y-%m-%d %H:%M:%S")
+    
+    def _configure_diversity_mode(self, settings):
+        """Configura modo de diversidade de URLs"""
+        self.menu.clear_screen()
+        self._print_settings_header()
+        
+        print(f"{Colors.BOLD}{Colors.GREEN}🌍 CONFIGURAÇÃO DE DIVERSIDADE DE URLs{Colors.RESET}")
+        print()
+        
+        modes = {
+            "1": ("balanced", "🔄 Balanceado", "Mix equilibrado de todas as categorias"),
+            "2": ("geographic", "🌍 Geográfico", "Foco em diversidade geográfica"),
+            "3": ("professional", "💼 Profissional", "Foco em áreas profissionais"),
+            "4": ("seniority", "📊 Senioridade", "Foco em níveis de experiência"),
+            "5": ("complete", "🎯 Completo", "Máxima diversidade possível"),
+            "6": ("remote_only", "🏠 Remoto", "Apenas vagas home office"),
+            "7": ("custom", "⚙️ Personalizado", "URLs customizadas pelo usuário")
+        }
+        
+        print(f"{Colors.BOLD}Modos disponíveis:{Colors.RESET}")
+        print()
+        
+        for key, (mode_id, title, desc) in modes.items():
+            status = f"{Colors.GREEN}✅ Ativo{Colors.RESET}" if settings.diversity_mode == mode_id else ""
+            print(f"  {Colors.BOLD}[{key}]{Colors.RESET} {title:<12} │ {Colors.DIM}{desc}{Colors.RESET} {status}")
+        
+        print()
+        print(f"{Colors.CYAN}📊 Estimativa de impacto:{Colors.RESET}")
+        print(f"  • {Colors.GREEN}Balanceado{Colors.RESET}: +400% diversidade geral")
+        print(f"  • {Colors.GREEN}Geográfico{Colors.RESET}: +500% cobertura nacional") 
+        print(f"  • {Colors.GREEN}Profissional{Colors.RESET}: +600% áreas de atuação")
+        print(f"  • {Colors.GREEN}Senioridade{Colors.RESET}: +800% níveis de experiência")
+        print(f"  • {Colors.GREEN}Completo{Colors.RESET}: +1000% máxima diversidade")
+        print(f"  • {Colors.GREEN}Remoto{Colors.RESET}: Foco em home office")
+        print(f"  • {Colors.GREEN}Personalizado{Colors.RESET}: Configuração manual")
+        print()
+        
+        choice = self.menu.get_user_choice("Escolha o modo de diversidade", "1", ["1", "2", "3", "4", "5", "6", "7"])
+        
+        if choice in modes:
+            mode_id, title, desc = modes[choice]
+            if self.settings_manager.set_diversity_mode(mode_id):
+                print(f"\n{Colors.GREEN}✅ Modo alterado para: {title}{Colors.RESET}")
+                
+                # Mostrar prévia das URLs que serão usadas
+                print(f"\n{Colors.CYAN}🎯 URLs que serão usadas com este modo:{Colors.RESET}")
+                self.settings_manager.preview_active_urls()
+            
+            input(f"\n{Colors.DIM}Pressione Enter para continuar...{Colors.RESET}")
 
 
 # Instância global da UI

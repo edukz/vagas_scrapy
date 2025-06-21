@@ -1,0 +1,82 @@
+{
+  "user_id": "user_-488589880690929331_20250620_2259",
+  "timestamp": "2025-06-20T23:00:28.462634",
+  "cv_summary": {
+    "name": "GUSTAVO PIAZZA",
+    "seniority": "pleno",
+    "skills_count": 8,
+    "confidence": 0.8500000000000001
+  },
+  "recommendations": [
+    {
+      "job_id": "job_002",
+      "job_title": "Analista de Dados Pleno",
+      "company": "DataCorp Analytics",
+      "overall_score": 0.4457551020408163,
+      "matched_skills": [],
+      "missing_skills": [
+        "pandas",
+        "python"
+      ],
+      "recommendation_reason": "Excelente compatibilidade salarial; Nível de senioridade compatível; Oportunidade de aprender: pandas, python"
+    },
+    {
+      "job_id": "job_001",
+      "job_title": "Desenvolvedor Python Sênior",
+      "company": "TechCorp Brasil",
+      "overall_score": 0.44399999999999995,
+      "matched_skills": [],
+      "missing_skills": [
+        "python",
+        "fastapi",
+        "aws",
+        "django",
+        "postgresql"
+      ],
+      "recommendation_reason": "Oportunidade de aprender: python, fastapi"
+    },
+    {
+      "job_id": "job_004",
+      "job_title": "Desenvolvedor Full Stack Júnior",
+      "company": "StartupBR",
+      "overall_score": 0.41487755102040813,
+      "matched_skills": [],
+      "missing_skills": [
+        "javascript",
+        "react",
+        "mongodb"
+      ],
+      "recommendation_reason": "Oportunidade de aprender: javascript, react"
+    },
+    {
+      "job_id": "job_003",
+      "job_title": "Engenheiro DevOps",
+      "company": "CloudTech Solutions",
+      "overall_score": 0.41,
+      "matched_skills": [],
+      "missing_skills": [
+        "terraform",
+        "kubernetes",
+        "jenkins",
+        "docker",
+        "aws"
+      ],
+      "recommendation_reason": "Oportunidade de aprender: terraform, kubernetes"
+    },
+    {
+      "job_id": "job_005",
+      "job_title": "Cientista de Dados",
+      "company": "AI Research Lab",
+      "overall_score": 0.37599999999999995,
+      "matched_skills": [],
+      "missing_skills": [
+        "pandas",
+        "tensorflow",
+        "python",
+        "machine learning",
+        "scikit-learn"
+      ],
+      "recommendation_reason": "Oportunidade de aprender: pandas, tensorflow"
+    }
+  ]
+}

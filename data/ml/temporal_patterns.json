@@ -1,0 +1,78 @@
+{
+  "hourly_patterns": {
+    "9": [
+      {
+        "timestamp": "2025-06-20T09:13:57.154625",
+        "new_jobs": 25,
+        "efficiency": 0.20833333333333334
+      }
+    ],
+    "14": [
+      {
+        "timestamp": "2025-06-20T14:13:57.154630",
+        "new_jobs": 18,
+        "efficiency": 0.18
+      }
+    ],
+    "20": [
+      {
+        "timestamp": "2025-06-20T20:13:57.154631",
+        "new_jobs": 12,
+        "efficiency": 0.15
+      }
+    ]
+  },
+  "daily_patterns": {
+    "Friday": [
+      {
+        "timestamp": "2025-06-20T09:13:57.154625",
+        "hour": 9,
+        "new_jobs": 25
+      },
+      {
+        "timestamp": "2025-06-20T14:13:57.154630",
+        "hour": 14,
+        "new_jobs": 18
+      },
+      {
+        "timestamp": "2025-06-20T20:13:57.154631",
+        "hour": 20,
+        "new_jobs": 12
+      }
+    ]
+  },
+  "weekly_patterns": {
+    "25": [
+      {
+        "timestamp": "2025-06-20T09:13:57.154625",
+        "new_jobs": 25
+      },
+      {
+        "timestamp": "2025-06-20T14:13:57.154630",
+        "new_jobs": 18
+      },
+      {
+        "timestamp": "2025-06-20T20:13:57.154631",
+        "new_jobs": 12
+      }
+    ]
+  },
+  "monthly_patterns": {
+    "20": [
+      {
+        "timestamp": "2025-06-20T09:13:57.154625",
+        "new_jobs": 25
+      },
+      {
+        "timestamp": "2025-06-20T14:13:57.154630",
+        "new_jobs": 18
+      },
+      {
+        "timestamp": "2025-06-20T20:13:57.154631",
+        "new_jobs": 12
+      }
+    ]
+  },
+  "special_events": [],
+  "last_analysis": "2025-06-20T20:13:57.166686"
+}

@@ -8,6 +8,9 @@ Este módulo contém implementações de ML para:
 - Predição de salários
 - Sistema de recomendação
 - Detecção de duplicatas
+- Otimização automática de URLs (Fase 3)
+- Análise temporal e padrões (Fase 3)
+- Auto-ajuste de configurações (Fase 3)
 """
 
 from .models.seniority_classifier import SeniorityClassifier
@@ -16,12 +19,20 @@ from .models.salary_predictor import SalaryPredictor
 from .models.job_recommender import JobRecommender
 from .models.duplicate_detector import DuplicateDetector
 
+# Novos sistemas da Fase 3
+from .url_optimizer import url_optimizer
+from .temporal_analyzer import temporal_analyzer
+from .auto_tuner import auto_tuner
+
 __all__ = [
     'SeniorityClassifier',
     'SentimentAnalyzer',
     'SalaryPredictor',
     'JobRecommender',
-    'DuplicateDetector'
+    'DuplicateDetector',
+    'url_optimizer',
+    'temporal_analyzer',
+    'auto_tuner'
 ]
 
 __version__ = '1.0.0'

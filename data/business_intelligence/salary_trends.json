@@ -1,0 +1,72 @@
+{
+  "historical_data": [
+    {
+      "timestamp": "2025-06-20T21:02:11.254385",
+      "job_id": "",
+      "position": "Desenvolvedor Python",
+      "region": "Outras",
+      "seniority": "Não especificado",
+      "salary_min": 8000.0,
+      "salary_max": 8000.0,
+      "salary_avg": 8000.0,
+      "source_url": "",
+      "company": "Tech Corp"
+    },
+    {
+      "timestamp": "2025-06-20T21:02:11.254402",
+      "job_id": "",
+      "position": "Analista Java",
+      "region": "Rio de Janeiro",
+      "seniority": "Não especificado",
+      "salary_min": 6500.0,
+      "salary_max": 6500.0,
+      "salary_avg": 6500.0,
+      "source_url": "",
+      "company": "Code Inc"
+    },
+    {
+      "timestamp": "2025-06-20T21:02:34.678589",
+      "job_id": "",
+      "position": "Desenvolvedor Python",
+      "region": "Outras",
+      "seniority": "Não especificado",
+      "salary_min": 8000.0,
+      "salary_max": 8000.0,
+      "salary_avg": 8000.0,
+      "source_url": "",
+      "company": "Tech Corp"
+    },
+    {
+      "timestamp": "2025-06-20T21:02:34.678616",
+      "job_id": "",
+      "position": "Analista Java React",
+      "region": "Rio de Janeiro",
+      "seniority": "Não especificado",
+      "salary_min": 6500.0,
+      "salary_max": 6500.0,
+      "salary_avg": 6500.0,
+      "source_url": "",
+      "company": "Code Inc"
+    },
+    {
+      "timestamp": "2025-06-20T21:02:34.678626",
+      "job_id": "",
+      "position": "DevOps AWS",
+      "region": "Remoto",
+      "seniority": "Não especificado",
+      "salary_min": 9000.0,
+      "salary_max": 9000.0,
+      "salary_avg": 9000.0,
+      "source_url": "",
+      "company": "Cloud Corp"
+    }
+  ],
+  "trends": {},
+  "predictions": {},
+  "last_analysis": null,
+  "statistics": {
+    "total_samples": 5,
+    "positions_tracked": 0,
+    "regions_covered": 0
+  }
+}

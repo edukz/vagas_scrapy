@@ -4,11 +4,34 @@
       "cache_key": "0119465468d57f922b353ab0d4163e1b",
       "file_path": "data\\cache\\0119465468d57f922b353ab0d4163e1b.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=3",
-      "timestamp": "2025-06-20T03:46:59.912577",
-      "file_size": 3695,
+      "timestamp": "2025-06-20T22:13:05.553280",
+      "file_size": 3696,
       "compressed_size": 597,
-      "compression_ratio": 83.84303112313938,
+      "compression_ratio": 83.84740259740259,
       "job_count": 10,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "029e4d1065698edfda595987699a423a": {
+      "cache_key": "029e4d1065698edfda595987699a423a",
+      "file_path": "data\\cache\\029e4d1065698edfda595987699a423a.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=18",
+      "timestamp": "2025-06-20T22:13:05.555281",
+      "file_size": 4402,
+      "compressed_size": 786,
+      "compression_ratio": 82.14447978191731,
+      "job_count": 9,
       "companies": [
         "Empresa não identificada"
       ],
@@ -27,10 +50,102 @@
       "cache_key": "0690ecd9dbe599ab8a2641e11bd113d3",
       "file_path": "data\\cache\\0690ecd9dbe599ab8a2641e11bd113d3.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=21",
-      "timestamp": "2025-06-20T03:46:59.914082",
-      "file_size": 3657,
-      "compressed_size": 857,
-      "compression_ratio": 76.56549083948592,
+      "timestamp": "2025-06-20T22:13:05.557278",
+      "file_size": 3651,
+      "compressed_size": 849,
+      "compression_ratio": 76.74609695973706,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "0a9cc32fff3f00a84667c0583119d25e": {
+      "cache_key": "0a9cc32fff3f00a84667c0583119d25e",
+      "file_path": "data\\cache\\0a9cc32fff3f00a84667c0583119d25e.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=38",
+      "timestamp": "2025-06-20T22:13:05.558785",
+      "file_size": 4306,
+      "compressed_size": 764,
+      "compression_ratio": 82.25731537389689,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "0b477088cd28d03ed688ca562bf38afa": {
+      "cache_key": "0b477088cd28d03ed688ca562bf38afa",
+      "file_path": "data\\cache\\0b477088cd28d03ed688ca562bf38afa.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=4",
+      "timestamp": "2025-06-20T22:13:05.559791",
+      "file_size": 4778,
+      "compressed_size": 864,
+      "compression_ratio": 81.91712013394726,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "0d837704d78915184c37e2347b000849": {
+      "cache_key": "0d837704d78915184c37e2347b000849",
+      "file_path": "data\\cache\\0d837704d78915184c37e2347b000849.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=41",
+      "timestamp": "2025-06-20T22:13:05.561791",
+      "file_size": 4378,
+      "compressed_size": 784,
+      "compression_ratio": 82.09227957971676,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "113d74ccfcc44f2c0680eaa0b3eb6dfe": {
+      "cache_key": "113d74ccfcc44f2c0680eaa0b3eb6dfe",
+      "file_path": "data\\cache\\113d74ccfcc44f2c0680eaa0b3eb6dfe.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=17",
+      "timestamp": "2025-06-20T22:13:05.563793",
+      "file_size": 4377,
+      "compressed_size": 820,
+      "compression_ratio": 81.26570710532329,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -50,7 +165,7 @@
       "cache_key": "1221bf09a5a65f9636b150c83c80bb2f",
       "file_path": "data\\cache\\1221bf09a5a65f9636b150c83c80bb2f.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=30",
-      "timestamp": "2025-06-20T03:46:59.915090",
+      "timestamp": "2025-06-20T22:13:05.566790",
       "file_size": 3135,
       "compressed_size": 741,
       "compression_ratio": 76.36363636363637,
@@ -73,7 +188,7 @@
       "cache_key": "149f41eb0d3c49fe9895fa3c84fb463f",
       "file_path": "data\\cache\\149f41eb0d3c49fe9895fa3c84fb463f.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=24",
-      "timestamp": "2025-06-20T03:46:59.917089",
+      "timestamp": "2025-06-20T22:13:05.568793",
       "file_size": 4136,
       "compressed_size": 955,
       "compression_ratio": 76.91005802707932,
@@ -96,10 +211,33 @@
       "cache_key": "163459313fae4411168044d2137efdf8",
       "file_path": "data\\cache\\163459313fae4411168044d2137efdf8.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=6",
-      "timestamp": "2025-06-20T03:46:59.919088",
-      "file_size": 3391,
-      "compressed_size": 531,
-      "compression_ratio": 84.34090238867591,
+      "timestamp": "2025-06-20T22:13:05.570826",
+      "file_size": 3429,
+      "compressed_size": 565,
+      "compression_ratio": 83.52289297171187,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "22c0a58d51948f05935c24ddbf390a69": {
+      "cache_key": "22c0a58d51948f05935c24ddbf390a69",
+      "file_path": "data\\cache\\22c0a58d51948f05935c24ddbf390a69.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=27",
+      "timestamp": "2025-06-20T22:13:05.572824",
+      "file_size": 4370,
+      "compressed_size": 820,
+      "compression_ratio": 81.23569794050344,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -119,11 +257,11 @@
       "cache_key": "2377adcfc31b18d9b254ba39129b4888",
       "file_path": "data\\cache\\2377adcfc31b18d9b254ba39129b4888.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=23",
-      "timestamp": "2025-06-20T03:46:59.920089",
-      "file_size": 3931,
-      "compressed_size": 786,
-      "compression_ratio": 80.00508776392775,
-      "job_count": 9,
+      "timestamp": "2025-06-20T22:13:05.575825",
+      "file_size": 3502,
+      "compressed_size": 721,
+      "compression_ratio": 79.41176470588235,
+      "job_count": 8,
       "companies": [
         "Empresa não identificada"
       ],
@@ -142,10 +280,102 @@
       "cache_key": "28b082f308190363f69d4616175cd46f",
       "file_path": "data\\cache\\28b082f308190363f69d4616175cd46f.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=17",
-      "timestamp": "2025-06-20T03:46:59.922088",
-      "file_size": 3645,
-      "compressed_size": 753,
-      "compression_ratio": 79.34156378600822,
+      "timestamp": "2025-06-20T22:13:05.577825",
+      "file_size": 3635,
+      "compressed_size": 737,
+      "compression_ratio": 79.72489683631362,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "2d0c0175d7dc1661a81659270d33414c": {
+      "cache_key": "2d0c0175d7dc1661a81659270d33414c",
+      "file_path": "data\\cache\\2d0c0175d7dc1661a81659270d33414c.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=45",
+      "timestamp": "2025-06-20T22:13:05.579986",
+      "file_size": 4393,
+      "compressed_size": 825,
+      "compression_ratio": 81.22012292283178,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "2ea4201a51857203c73e5fc66bd644b4": {
+      "cache_key": "2ea4201a51857203c73e5fc66bd644b4",
+      "file_path": "data\\cache\\2ea4201a51857203c73e5fc66bd644b4.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=50",
+      "timestamp": "2025-06-20T22:13:05.582991",
+      "file_size": 4389,
+      "compressed_size": 814,
+      "compression_ratio": 81.45363408521304,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "2f9f7c4d1397dc064b78e89746eff81b": {
+      "cache_key": "2f9f7c4d1397dc064b78e89746eff81b",
+      "file_path": "data\\cache\\2f9f7c4d1397dc064b78e89746eff81b.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=19",
+      "timestamp": "2025-06-20T22:13:05.586993",
+      "file_size": 4243,
+      "compressed_size": 724,
+      "compression_ratio": 82.93660146123027,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "342397da2f05b66c27c318b153bc5bb6": {
+      "cache_key": "342397da2f05b66c27c318b153bc5bb6",
+      "file_path": "data\\cache\\342397da2f05b66c27c318b153bc5bb6.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=31",
+      "timestamp": "2025-06-20T22:13:05.588995",
+      "file_size": 4493,
+      "compressed_size": 910,
+      "compression_ratio": 79.74627197863343,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -165,10 +395,125 @@
       "cache_key": "36fbe836d1a057bb6a5c5718dc4178bd",
       "file_path": "data\\cache\\36fbe836d1a057bb6a5c5718dc4178bd.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=9",
-      "timestamp": "2025-06-20T03:46:59.924088",
-      "file_size": 3558,
-      "compressed_size": 679,
-      "compression_ratio": 80.91624508150646,
+      "timestamp": "2025-06-20T22:13:05.592219",
+      "file_size": 3588,
+      "compressed_size": 650,
+      "compression_ratio": 81.88405797101449,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "3b0f87ae836940dc2e938245bc20f87e": {
+      "cache_key": "3b0f87ae836940dc2e938245bc20f87e",
+      "file_path": "data\\cache\\3b0f87ae836940dc2e938245bc20f87e.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=14",
+      "timestamp": "2025-06-20T22:13:05.594218",
+      "file_size": 4490,
+      "compressed_size": 848,
+      "compression_ratio": 81.11358574610244,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "3e99c8f8c66dea6304c6664e294a9513": {
+      "cache_key": "3e99c8f8c66dea6304c6664e294a9513",
+      "file_path": "data\\cache\\3e99c8f8c66dea6304c6664e294a9513.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=13",
+      "timestamp": "2025-06-20T22:13:05.597219",
+      "file_size": 4525,
+      "compressed_size": 872,
+      "compression_ratio": 80.7292817679558,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "405d9650c67d9c25d0486ae6d6ba588c": {
+      "cache_key": "405d9650c67d9c25d0486ae6d6ba588c",
+      "file_path": "data\\cache\\405d9650c67d9c25d0486ae6d6ba588c.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=39",
+      "timestamp": "2025-06-20T22:13:05.600732",
+      "file_size": 4374,
+      "compressed_size": 760,
+      "compression_ratio": 82.62459990855052,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "41bb0bc987cc6305cf55a966faca996d": {
+      "cache_key": "41bb0bc987cc6305cf55a966faca996d",
+      "file_path": "data\\cache\\41bb0bc987cc6305cf55a966faca996d.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=21",
+      "timestamp": "2025-06-20T22:13:05.602738",
+      "file_size": 4340,
+      "compressed_size": 812,
+      "compression_ratio": 81.29032258064515,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "44ba8981a53b5c2d29db433b6e5e5fb2": {
+      "cache_key": "44ba8981a53b5c2d29db433b6e5e5fb2",
+      "file_path": "data\\cache\\44ba8981a53b5c2d29db433b6e5e5fb2.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=5",
+      "timestamp": "2025-06-20T22:13:05.605732",
+      "file_size": 4974,
+      "compressed_size": 999,
+      "compression_ratio": 79.91556091676719,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -188,10 +533,102 @@
       "cache_key": "493a07603cf7e54f5518bdb4392bca58",
       "file_path": "data\\cache\\493a07603cf7e54f5518bdb4392bca58.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=25",
-      "timestamp": "2025-06-20T03:46:59.927159",
+      "timestamp": "2025-06-20T22:13:05.609237",
       "file_size": 4091,
       "compressed_size": 707,
       "compression_ratio": 82.71816181862626,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "4d41bf52afceb398a50f384c3669dd29": {
+      "cache_key": "4d41bf52afceb398a50f384c3669dd29",
+      "file_path": "data\\cache\\4d41bf52afceb398a50f384c3669dd29.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=26",
+      "timestamp": "2025-06-20T22:13:05.612242",
+      "file_size": 4426,
+      "compressed_size": 854,
+      "compression_ratio": 80.7049254405784,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "51433fed18c0a4264be35ce9941db6ef": {
+      "cache_key": "51433fed18c0a4264be35ce9941db6ef",
+      "file_path": "data\\cache\\51433fed18c0a4264be35ce9941db6ef.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=32",
+      "timestamp": "2025-06-20T22:13:05.615296",
+      "file_size": 4371,
+      "compressed_size": 855,
+      "compression_ratio": 80.43925875085792,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "54f3e21ba73cbdc22bfcac4a58405fc5": {
+      "cache_key": "54f3e21ba73cbdc22bfcac4a58405fc5",
+      "file_path": "data\\cache\\54f3e21ba73cbdc22bfcac4a58405fc5.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=30",
+      "timestamp": "2025-06-20T22:13:05.618804",
+      "file_size": 4519,
+      "compressed_size": 893,
+      "compression_ratio": 80.23899092719628,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "55c0df30fde7ce6e8f62ece586780b5b": {
+      "cache_key": "55c0df30fde7ce6e8f62ece586780b5b",
+      "file_path": "data\\cache\\55c0df30fde7ce6e8f62ece586780b5b.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=28",
+      "timestamp": "2025-06-20T22:13:05.621809",
+      "file_size": 4418,
+      "compressed_size": 819,
+      "compression_ratio": 81.4622000905387,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -211,7 +648,7 @@
       "cache_key": "6263bd58b0bf3ab0cacd9383430c0474",
       "file_path": "data\\cache\\6263bd58b0bf3ab0cacd9383430c0474.json.gz",
       "url": "https://test.com/page1",
-      "timestamp": "2025-06-20T03:46:59.929160",
+      "timestamp": "2025-06-20T22:13:05.625815",
       "file_size": 331,
       "compressed_size": 335,
       "compression_ratio": -1.2084592145015105,
@@ -237,10 +674,33 @@
       "cache_key": "6c855283b9b60b45919db770e4230703",
       "file_path": "data\\cache\\6c855283b9b60b45919db770e4230703.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=11",
-      "timestamp": "2025-06-20T03:46:59.931160",
-      "file_size": 3660,
-      "compressed_size": 778,
-      "compression_ratio": 78.74316939890711,
+      "timestamp": "2025-06-20T22:13:05.629313",
+      "file_size": 3633,
+      "compressed_size": 775,
+      "compression_ratio": 78.66776768510873,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "6d5c9bc84bc6efbac41071502f754243": {
+      "cache_key": "6d5c9bc84bc6efbac41071502f754243",
+      "file_path": "data\\cache\\6d5c9bc84bc6efbac41071502f754243.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=43",
+      "timestamp": "2025-06-20T22:13:05.633321",
+      "file_size": 4381,
+      "compressed_size": 741,
+      "compression_ratio": 83.08605341246292,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -260,10 +720,33 @@
       "cache_key": "6e57c7060eb0d12028421515fbcc5b76",
       "file_path": "data\\cache\\6e57c7060eb0d12028421515fbcc5b76.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=4",
-      "timestamp": "2025-06-20T03:46:59.933159",
-      "file_size": 3523,
-      "compressed_size": 681,
-      "compression_ratio": 80.66988362191314,
+      "timestamp": "2025-06-20T22:13:05.636320",
+      "file_size": 3510,
+      "compressed_size": 638,
+      "compression_ratio": 81.82336182336184,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "72d988181780d2c865b1de23b19260e8": {
+      "cache_key": "72d988181780d2c865b1de23b19260e8",
+      "file_path": "data\\cache\\72d988181780d2c865b1de23b19260e8.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=25",
+      "timestamp": "2025-06-20T22:13:05.640841",
+      "file_size": 4390,
+      "compressed_size": 792,
+      "compression_ratio": 81.95899772209567,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -283,10 +766,33 @@
       "cache_key": "73f8f2663a5629564b10a56fce04f3f9",
       "file_path": "data\\cache\\73f8f2663a5629564b10a56fce04f3f9.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=13",
-      "timestamp": "2025-06-20T03:46:59.935672",
+      "timestamp": "2025-06-20T22:13:05.643840",
       "file_size": 3518,
-      "compressed_size": 523,
-      "compression_ratio": 85.1335986355884,
+      "compressed_size": 516,
+      "compression_ratio": 85.33257532689028,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "75ac4e445789e57cfb9579fa8a2fdd42": {
+      "cache_key": "75ac4e445789e57cfb9579fa8a2fdd42",
+      "file_path": "data\\cache\\75ac4e445789e57cfb9579fa8a2fdd42.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=23",
+      "timestamp": "2025-06-20T22:13:05.647840",
+      "file_size": 4292,
+      "compressed_size": 737,
+      "compression_ratio": 82.82851817334576,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -306,10 +812,10 @@
       "cache_key": "79f2db95f4dd3a9a45f02ea6108ddc73",
       "file_path": "data\\cache\\79f2db95f4dd3a9a45f02ea6108ddc73.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=7",
-      "timestamp": "2025-06-20T03:46:59.938677",
-      "file_size": 3660,
-      "compressed_size": 692,
-      "compression_ratio": 81.09289617486338,
+      "timestamp": "2025-06-20T22:13:05.652355",
+      "file_size": 3626,
+      "compressed_size": 711,
+      "compression_ratio": 80.39161610590182,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -329,10 +835,79 @@
       "cache_key": "7c855c3dd5a4419e3546096976e0a9e6",
       "file_path": "data\\cache\\7c855c3dd5a4419e3546096976e0a9e6.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=27",
-      "timestamp": "2025-06-20T03:46:59.940678",
+      "timestamp": "2025-06-20T22:13:05.655351",
       "file_size": 4216,
       "compressed_size": 721,
       "compression_ratio": 82.89848197343453,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "7f084aedfda8bfe29d1ea0db9d8a9cdb": {
+      "cache_key": "7f084aedfda8bfe29d1ea0db9d8a9cdb",
+      "file_path": "data\\cache\\7f084aedfda8bfe29d1ea0db9d8a9cdb.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=42",
+      "timestamp": "2025-06-20T22:13:05.659866",
+      "file_size": 4540,
+      "compressed_size": 893,
+      "compression_ratio": 80.33039647577093,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "83210a4aa495a3a832571d34afd1945e": {
+      "cache_key": "83210a4aa495a3a832571d34afd1945e",
+      "file_path": "data\\cache\\83210a4aa495a3a832571d34afd1945e.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=33",
+      "timestamp": "2025-06-20T22:13:05.663870",
+      "file_size": 4352,
+      "compressed_size": 810,
+      "compression_ratio": 81.38786764705883,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "84ade524975c3cbf747367f0e79fad2a": {
+      "cache_key": "84ade524975c3cbf747367f0e79fad2a",
+      "file_path": "data\\cache\\84ade524975c3cbf747367f0e79fad2a.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=34",
+      "timestamp": "2025-06-20T22:13:05.667864",
+      "file_size": 4430,
+      "compressed_size": 821,
+      "compression_ratio": 81.46726862302484,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -352,10 +927,125 @@
       "cache_key": "8561b0b23bf3b8c51e75627179b1d1d3",
       "file_path": "data\\cache\\8561b0b23bf3b8c51e75627179b1d1d3.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=14",
-      "timestamp": "2025-06-20T03:46:59.944184",
-      "file_size": 3532,
-      "compressed_size": 561,
-      "compression_ratio": 84.11664779161949,
+      "timestamp": "2025-06-20T22:13:05.672083",
+      "file_size": 3518,
+      "compressed_size": 520,
+      "compression_ratio": 85.21887436043207,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "8868171a356be108957b0128ed3e812f": {
+      "cache_key": "8868171a356be108957b0128ed3e812f",
+      "file_path": "data\\cache\\8868171a356be108957b0128ed3e812f.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=8",
+      "timestamp": "2025-06-20T22:13:05.676081",
+      "file_size": 4322,
+      "compressed_size": 806,
+      "compression_ratio": 81.35122628412772,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "894d56784ec1048e162a9c392333c4ba": {
+      "cache_key": "894d56784ec1048e162a9c392333c4ba",
+      "file_path": "data\\cache\\894d56784ec1048e162a9c392333c4ba.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=36",
+      "timestamp": "2025-06-20T22:13:05.680600",
+      "file_size": 4273,
+      "compressed_size": 759,
+      "compression_ratio": 82.23730400187222,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "8d8c6a1abeceb73dc27ac1a53c7272d4": {
+      "cache_key": "8d8c6a1abeceb73dc27ac1a53c7272d4",
+      "file_path": "data\\cache\\8d8c6a1abeceb73dc27ac1a53c7272d4.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=24",
+      "timestamp": "2025-06-20T22:13:05.684599",
+      "file_size": 4364,
+      "compressed_size": 682,
+      "compression_ratio": 84.37213565536206,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "8f4a89785897a820568e69b2ee469c5e": {
+      "cache_key": "8f4a89785897a820568e69b2ee469c5e",
+      "file_path": "data\\cache\\8f4a89785897a820568e69b2ee469c5e.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=16",
+      "timestamp": "2025-06-20T22:13:05.689108",
+      "file_size": 3944,
+      "compressed_size": 794,
+      "compression_ratio": 79.868154158215,
+      "job_count": 8,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "91412b4f4fd1172cf0192454908a2403": {
+      "cache_key": "91412b4f4fd1172cf0192454908a2403",
+      "file_path": "data\\cache\\91412b4f4fd1172cf0192454908a2403.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=29",
+      "timestamp": "2025-06-20T22:13:05.694114",
+      "file_size": 4493,
+      "compressed_size": 867,
+      "compression_ratio": 80.70331626975295,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -375,7 +1065,7 @@
       "cache_key": "93f157879246fc6fb146867b5a5d33af",
       "file_path": "data\\cache\\93f157879246fc6fb146867b5a5d33af.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=26",
-      "timestamp": "2025-06-20T03:46:59.946190",
+      "timestamp": "2025-06-20T22:13:05.699115",
       "file_size": 4173,
       "compressed_size": 716,
       "compression_ratio": 82.84208003834172,
@@ -398,11 +1088,34 @@
       "cache_key": "9673e381dbea49492b95a7b7f8cafb13",
       "file_path": "data\\cache\\9673e381dbea49492b95a7b7f8cafb13.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=5",
-      "timestamp": "2025-06-20T03:46:59.949197",
-      "file_size": 4029,
-      "compressed_size": 795,
-      "compression_ratio": 80.2680565897245,
+      "timestamp": "2025-06-20T22:13:05.703627",
+      "file_size": 4014,
+      "compressed_size": 774,
+      "compression_ratio": 80.71748878923766,
       "job_count": 10,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "983ff7856987a149bbe14430e68079ab": {
+      "cache_key": "983ff7856987a149bbe14430e68079ab",
+      "file_path": "data\\cache\\983ff7856987a149bbe14430e68079ab.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=15",
+      "timestamp": "2025-06-20T22:13:05.707626",
+      "file_size": 4401,
+      "compressed_size": 831,
+      "compression_ratio": 81.11792774369462,
+      "job_count": 9,
       "companies": [
         "Empresa não identificada"
       ],
@@ -421,11 +1134,34 @@
       "cache_key": "99cf589c097c7df64755dcae1c963646",
       "file_path": "data\\cache\\99cf589c097c7df64755dcae1c963646.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/",
-      "timestamp": "2025-06-20T03:46:59.951196",
-      "file_size": 3791,
-      "compressed_size": 580,
-      "compression_ratio": 84.70060670007913,
+      "timestamp": "2025-06-20T22:13:05.712643",
+      "file_size": 3850,
+      "compressed_size": 604,
+      "compression_ratio": 84.31168831168831,
       "job_count": 10,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "9d41b9e6b8dc979531fc4e248ffdcc9c": {
+      "cache_key": "9d41b9e6b8dc979531fc4e248ffdcc9c",
+      "file_path": "data\\cache\\9d41b9e6b8dc979531fc4e248ffdcc9c.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=37",
+      "timestamp": "2025-06-20T22:13:05.717650",
+      "file_size": 4352,
+      "compressed_size": 786,
+      "compression_ratio": 81.93933823529412,
+      "job_count": 9,
       "companies": [
         "Empresa não identificada"
       ],
@@ -444,10 +1180,79 @@
       "cache_key": "9f61c49b1ee0b2161696e424961ef9a1",
       "file_path": "data\\cache\\9f61c49b1ee0b2161696e424961ef9a1.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=20",
-      "timestamp": "2025-06-20T03:46:59.954701",
-      "file_size": 3846,
-      "compressed_size": 683,
-      "compression_ratio": 82.24128965158606,
+      "timestamp": "2025-06-20T22:13:05.723017",
+      "file_size": 3874,
+      "compressed_size": 641,
+      "compression_ratio": 83.45379452762003,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "a62221e934ea2f6391f0dd154920eda2": {
+      "cache_key": "a62221e934ea2f6391f0dd154920eda2",
+      "file_path": "data\\cache\\a62221e934ea2f6391f0dd154920eda2.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=11",
+      "timestamp": "2025-06-20T22:13:05.727018",
+      "file_size": 4081,
+      "compressed_size": 863,
+      "compression_ratio": 78.85322224944866,
+      "job_count": 8,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "a8a75dfe02c4ce2b8688e7498ad2d0ed": {
+      "cache_key": "a8a75dfe02c4ce2b8688e7498ad2d0ed",
+      "file_path": "data\\cache\\a8a75dfe02c4ce2b8688e7498ad2d0ed.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=20",
+      "timestamp": "2025-06-20T22:13:05.732310",
+      "file_size": 4257,
+      "compressed_size": 709,
+      "compression_ratio": 83.34507869391591,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "a93f77d8996251737fcc682eb4837f80": {
+      "cache_key": "a93f77d8996251737fcc682eb4837f80",
+      "file_path": "data\\cache\\a93f77d8996251737fcc682eb4837f80.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=44",
+      "timestamp": "2025-06-20T22:13:05.737307",
+      "file_size": 4262,
+      "compressed_size": 745,
+      "compression_ratio": 82.5199436884092,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -467,7 +1272,7 @@
       "cache_key": "af46820ed0005109c581ecfd3bca39a7",
       "file_path": "data\\cache\\af46820ed0005109c581ecfd3bca39a7.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=15",
-      "timestamp": "2025-06-20T03:46:59.957707",
+      "timestamp": "2025-06-20T22:13:05.742824",
       "file_size": 3546,
       "compressed_size": 550,
       "compression_ratio": 84.48956570783982,
@@ -490,7 +1295,7 @@
       "cache_key": "b2cc7a54f26ebd7cce0d457b3ccdb9d3",
       "file_path": "data\\cache\\b2cc7a54f26ebd7cce0d457b3ccdb9d3.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=28",
-      "timestamp": "2025-06-20T03:46:59.960707",
+      "timestamp": "2025-06-20T22:13:05.747825",
       "file_size": 4510,
       "compressed_size": 1092,
       "compression_ratio": 75.78713968957871,
@@ -513,10 +1318,33 @@
       "cache_key": "b3ac524b3682e53d65debbdab6f025f3",
       "file_path": "data\\cache\\b3ac524b3682e53d65debbdab6f025f3.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=29",
-      "timestamp": "2025-06-20T03:46:59.962707",
+      "timestamp": "2025-06-20T22:13:05.753336",
       "file_size": 3540,
       "compressed_size": 785,
       "compression_ratio": 77.82485875706215,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "b6d9006330f0cb38cb25511ca7f9bd16": {
+      "cache_key": "b6d9006330f0cb38cb25511ca7f9bd16",
+      "file_path": "data\\cache\\b6d9006330f0cb38cb25511ca7f9bd16.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=9",
+      "timestamp": "2025-06-20T22:13:05.758842",
+      "file_size": 4368,
+      "compressed_size": 754,
+      "compression_ratio": 82.73809523809523,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -536,10 +1364,56 @@
       "cache_key": "b97349f020d6f2c1ac504dfad29baa3e",
       "file_path": "data\\cache\\b97349f020d6f2c1ac504dfad29baa3e.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=8",
-      "timestamp": "2025-06-20T03:46:59.966219",
-      "file_size": 3735,
-      "compressed_size": 600,
-      "compression_ratio": 83.93574297188755,
+      "timestamp": "2025-06-20T22:13:05.763849",
+      "file_size": 3732,
+      "compressed_size": 596,
+      "compression_ratio": 84.03001071811362,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "bb17ad5e4dc517f314d3845c073831b0": {
+      "cache_key": "bb17ad5e4dc517f314d3845c073831b0",
+      "file_path": "data\\cache\\bb17ad5e4dc517f314d3845c073831b0.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=6",
+      "timestamp": "2025-06-20T22:13:05.769353",
+      "file_size": 5606,
+      "compressed_size": 1088,
+      "compression_ratio": 80.5922226186229,
+      "job_count": 10,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "c2a3cae7def572cb2ad245f310035c7b": {
+      "cache_key": "c2a3cae7def572cb2ad245f310035c7b",
+      "file_path": "data\\cache\\c2a3cae7def572cb2ad245f310035c7b.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=46",
+      "timestamp": "2025-06-20T22:13:05.775360",
+      "file_size": 4454,
+      "compressed_size": 849,
+      "compression_ratio": 80.93848226313426,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -559,10 +1433,125 @@
       "cache_key": "c52dd96f87b00c0b7d6d7d30b5bda98e",
       "file_path": "data\\cache\\c52dd96f87b00c0b7d6d7d30b5bda98e.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=22",
-      "timestamp": "2025-06-20T03:46:59.969224",
-      "file_size": 3939,
-      "compressed_size": 836,
-      "compression_ratio": 78.77633917237877,
+      "timestamp": "2025-06-20T22:13:05.780869",
+      "file_size": 3938,
+      "compressed_size": 835,
+      "compression_ratio": 78.796343321483,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "c6d8318809541412b3da5f49654542c1": {
+      "cache_key": "c6d8318809541412b3da5f49654542c1",
+      "file_path": "data\\cache\\c6d8318809541412b3da5f49654542c1.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=48",
+      "timestamp": "2025-06-20T22:13:05.786872",
+      "file_size": 4615,
+      "compressed_size": 813,
+      "compression_ratio": 82.38353196099675,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "c903352e271bb8c0f651cc9a6fbb04a8": {
+      "cache_key": "c903352e271bb8c0f651cc9a6fbb04a8",
+      "file_path": "data\\cache\\c903352e271bb8c0f651cc9a6fbb04a8.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=40",
+      "timestamp": "2025-06-20T22:13:05.792385",
+      "file_size": 4295,
+      "compressed_size": 781,
+      "compression_ratio": 81.81606519208383,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "c94a5f36f93a50579ed0066547e2d207": {
+      "cache_key": "c94a5f36f93a50579ed0066547e2d207",
+      "file_path": "data\\cache\\c94a5f36f93a50579ed0066547e2d207.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=47",
+      "timestamp": "2025-06-20T22:13:05.797386",
+      "file_size": 4555,
+      "compressed_size": 774,
+      "compression_ratio": 83.00768386388584,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "d02aeb40a0691e9c344431ec9f0ab547": {
+      "cache_key": "d02aeb40a0691e9c344431ec9f0ab547",
+      "file_path": "data\\cache\\d02aeb40a0691e9c344431ec9f0ab547.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/",
+      "timestamp": "2025-06-20T22:13:05.803898",
+      "file_size": 5260,
+      "compressed_size": 1014,
+      "compression_ratio": 80.72243346007605,
+      "job_count": 10,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "d324e7ac011b493f8a5cf4fd0b86a80f": {
+      "cache_key": "d324e7ac011b493f8a5cf4fd0b86a80f",
+      "file_path": "data\\cache\\d324e7ac011b493f8a5cf4fd0b86a80f.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=12",
+      "timestamp": "2025-06-20T22:13:05.811057",
+      "file_size": 4394,
+      "compressed_size": 822,
+      "compression_ratio": 81.2926718252162,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -582,10 +1571,33 @@
       "cache_key": "d526869e371c016884eef804547f586c",
       "file_path": "data\\cache\\d526869e371c016884eef804547f586c.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=16",
-      "timestamp": "2025-06-20T03:46:59.973226",
+      "timestamp": "2025-06-20T22:13:05.817566",
       "file_size": 3630,
-      "compressed_size": 554,
-      "compression_ratio": 84.73829201101928,
+      "compressed_size": 556,
+      "compression_ratio": 84.6831955922865,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "d678a65332d5e4c2c7a7a7ab9fd05a1d": {
+      "cache_key": "d678a65332d5e4c2c7a7a7ab9fd05a1d",
+      "file_path": "data\\cache\\d678a65332d5e4c2c7a7a7ab9fd05a1d.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=22",
+      "timestamp": "2025-06-20T22:13:05.823077",
+      "file_size": 4181,
+      "compressed_size": 645,
+      "compression_ratio": 84.5730686438651,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -605,10 +1617,10 @@
       "cache_key": "d757098d4ee4ba7ac09e303974013544",
       "file_path": "data\\cache\\d757098d4ee4ba7ac09e303974013544.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=10",
-      "timestamp": "2025-06-20T03:46:59.975739",
-      "file_size": 3510,
-      "compressed_size": 689,
-      "compression_ratio": 80.37037037037037,
+      "timestamp": "2025-06-20T22:13:05.829077",
+      "file_size": 3518,
+      "compressed_size": 702,
+      "compression_ratio": 80.0454803865833,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -628,10 +1640,102 @@
       "cache_key": "d8aea1fd01e4e70ce733648dc940f372",
       "file_path": "data\\cache\\d8aea1fd01e4e70ce733648dc940f372.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=2",
-      "timestamp": "2025-06-20T03:46:59.979736",
-      "file_size": 4025,
-      "compressed_size": 964,
-      "compression_ratio": 76.04968944099379,
+      "timestamp": "2025-06-20T22:13:05.835246",
+      "file_size": 4380,
+      "compressed_size": 1022,
+      "compression_ratio": 76.66666666666667,
+      "job_count": 10,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "e62473aaaad37393d0ccd46e2194c152": {
+      "cache_key": "e62473aaaad37393d0ccd46e2194c152",
+      "file_path": "data\\cache\\e62473aaaad37393d0ccd46e2194c152.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=3",
+      "timestamp": "2025-06-20T22:13:05.841761",
+      "file_size": 5123,
+      "compressed_size": 904,
+      "compression_ratio": 82.35408940074174,
+      "job_count": 10,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "e65fbc2acab8601ef244224fe051d99d": {
+      "cache_key": "e65fbc2acab8601ef244224fe051d99d",
+      "file_path": "data\\cache\\e65fbc2acab8601ef244224fe051d99d.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=49",
+      "timestamp": "2025-06-20T22:13:05.848760",
+      "file_size": 4434,
+      "compressed_size": 795,
+      "compression_ratio": 82.0703653585927,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "e668fbbe2fc94b354e6fd3ccdd4dbf3c": {
+      "cache_key": "e668fbbe2fc94b354e6fd3ccdd4dbf3c",
+      "file_path": "data\\cache\\e668fbbe2fc94b354e6fd3ccdd4dbf3c.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=7",
+      "timestamp": "2025-06-20T22:13:05.854270",
+      "file_size": 5106,
+      "compressed_size": 918,
+      "compression_ratio": 82.02115158636897,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "ecef53126c36ee28568571e75778dfeb": {
+      "cache_key": "ecef53126c36ee28568571e75778dfeb",
+      "file_path": "data\\cache\\ecef53126c36ee28568571e75778dfeb.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=35",
+      "timestamp": "2025-06-20T22:13:05.861783",
+      "file_size": 4436,
+      "compressed_size": 810,
+      "compression_ratio": 81.74030658250676,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -651,10 +1755,10 @@
       "cache_key": "ed82ba6bad990f3cd407cda05beef7e0",
       "file_path": "data\\cache\\ed82ba6bad990f3cd407cda05beef7e0.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=12",
-      "timestamp": "2025-06-20T03:46:59.982741",
-      "file_size": 3587,
-      "compressed_size": 724,
-      "compression_ratio": 79.816002230276,
+      "timestamp": "2025-06-20T22:13:05.867782",
+      "file_size": 3590,
+      "compressed_size": 744,
+      "compression_ratio": 79.27576601671309,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -674,10 +1778,56 @@
       "cache_key": "ef532191b28289217231c9416f3ebe6e",
       "file_path": "data\\cache\\ef532191b28289217231c9416f3ebe6e.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=19",
-      "timestamp": "2025-06-20T03:46:59.986250",
-      "file_size": 3870,
-      "compressed_size": 655,
-      "compression_ratio": 83.0749354005168,
+      "timestamp": "2025-06-20T22:13:05.874292",
+      "file_size": 3872,
+      "compressed_size": 705,
+      "compression_ratio": 81.79235537190083,
+      "job_count": 9,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "f78378b9d31a963c8ae1509316cfd3cf": {
+      "cache_key": "f78378b9d31a963c8ae1509316cfd3cf",
+      "file_path": "data\\cache\\f78378b9d31a963c8ae1509316cfd3cf.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=10",
+      "timestamp": "2025-06-20T22:13:05.881803",
+      "file_size": 4861,
+      "compressed_size": 874,
+      "compression_ratio": 82.02016046081053,
+      "job_count": 10,
+      "companies": [
+        "Empresa não identificada"
+      ],
+      "technologies": [],
+      "salary_ranges": [
+        "Não informado"
+      ],
+      "locations": [
+        "Home Office"
+      ],
+      "levels": [
+        "Não especificado"
+      ]
+    },
+    "fc90e2d1208feac03aa27a34e3778110": {
+      "cache_key": "fc90e2d1208feac03aa27a34e3778110",
+      "file_path": "data\\cache\\fc90e2d1208feac03aa27a34e3778110.json.gz",
+      "url": "https://www.catho.com.br/vagas/hibrido/?page=2",
+      "timestamp": "2025-06-20T22:13:05.887802",
+      "file_size": 4355,
+      "compressed_size": 747,
+      "compression_ratio": 82.84730195177956,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -697,10 +1847,10 @@
       "cache_key": "fd09986362209de3a36515c8283afc08",
       "file_path": "data\\cache\\fd09986362209de3a36515c8283afc08.json.gz",
       "url": "https://www.catho.com.br/vagas/home-office/?page=18",
-      "timestamp": "2025-06-20T03:46:59.990256",
-      "file_size": 3816,
-      "compressed_size": 818,
-      "compression_ratio": 78.56394129979036,
+      "timestamp": "2025-06-20T22:13:05.895314",
+      "file_size": 3797,
+      "compressed_size": 765,
+      "compression_ratio": 79.85251514353436,
       "job_count": 9,
       "companies": [
         "Empresa não identificada"
@@ -720,69 +1870,169 @@
   "date_index": {
     "2025-06-20": [
       "0119465468d57f922b353ab0d4163e1b",
+      "029e4d1065698edfda595987699a423a",
       "0690ecd9dbe599ab8a2641e11bd113d3",
+      "0a9cc32fff3f00a84667c0583119d25e",
+      "0b477088cd28d03ed688ca562bf38afa",
+      "0d837704d78915184c37e2347b000849",
+      "113d74ccfcc44f2c0680eaa0b3eb6dfe",
       "1221bf09a5a65f9636b150c83c80bb2f",
       "149f41eb0d3c49fe9895fa3c84fb463f",
       "163459313fae4411168044d2137efdf8",
+      "22c0a58d51948f05935c24ddbf390a69",
       "2377adcfc31b18d9b254ba39129b4888",
       "28b082f308190363f69d4616175cd46f",
+      "2d0c0175d7dc1661a81659270d33414c",
+      "2ea4201a51857203c73e5fc66bd644b4",
+      "2f9f7c4d1397dc064b78e89746eff81b",
+      "342397da2f05b66c27c318b153bc5bb6",
       "36fbe836d1a057bb6a5c5718dc4178bd",
+      "3b0f87ae836940dc2e938245bc20f87e",
+      "3e99c8f8c66dea6304c6664e294a9513",
+      "405d9650c67d9c25d0486ae6d6ba588c",
+      "41bb0bc987cc6305cf55a966faca996d",
+      "44ba8981a53b5c2d29db433b6e5e5fb2",
       "493a07603cf7e54f5518bdb4392bca58",
+      "4d41bf52afceb398a50f384c3669dd29",
+      "51433fed18c0a4264be35ce9941db6ef",
+      "54f3e21ba73cbdc22bfcac4a58405fc5",
+      "55c0df30fde7ce6e8f62ece586780b5b",
       "6263bd58b0bf3ab0cacd9383430c0474",
       "6c855283b9b60b45919db770e4230703",
+      "6d5c9bc84bc6efbac41071502f754243",
       "6e57c7060eb0d12028421515fbcc5b76",
+      "72d988181780d2c865b1de23b19260e8",
       "73f8f2663a5629564b10a56fce04f3f9",
+      "75ac4e445789e57cfb9579fa8a2fdd42",
       "79f2db95f4dd3a9a45f02ea6108ddc73",
       "7c855c3dd5a4419e3546096976e0a9e6",
+      "7f084aedfda8bfe29d1ea0db9d8a9cdb",
+      "83210a4aa495a3a832571d34afd1945e",
+      "84ade524975c3cbf747367f0e79fad2a",
       "8561b0b23bf3b8c51e75627179b1d1d3",
+      "8868171a356be108957b0128ed3e812f",
+      "894d56784ec1048e162a9c392333c4ba",
+      "8d8c6a1abeceb73dc27ac1a53c7272d4",
+      "8f4a89785897a820568e69b2ee469c5e",
+      "91412b4f4fd1172cf0192454908a2403",
       "93f157879246fc6fb146867b5a5d33af",
       "9673e381dbea49492b95a7b7f8cafb13",
+      "983ff7856987a149bbe14430e68079ab",
       "99cf589c097c7df64755dcae1c963646",
+      "9d41b9e6b8dc979531fc4e248ffdcc9c",
       "9f61c49b1ee0b2161696e424961ef9a1",
+      "a62221e934ea2f6391f0dd154920eda2",
+      "a8a75dfe02c4ce2b8688e7498ad2d0ed",
+      "a93f77d8996251737fcc682eb4837f80",
       "af46820ed0005109c581ecfd3bca39a7",
       "b2cc7a54f26ebd7cce0d457b3ccdb9d3",
       "b3ac524b3682e53d65debbdab6f025f3",
+      "b6d9006330f0cb38cb25511ca7f9bd16",
       "b97349f020d6f2c1ac504dfad29baa3e",
+      "bb17ad5e4dc517f314d3845c073831b0",
+      "c2a3cae7def572cb2ad245f310035c7b",
       "c52dd96f87b00c0b7d6d7d30b5bda98e",
+      "c6d8318809541412b3da5f49654542c1",
+      "c903352e271bb8c0f651cc9a6fbb04a8",
+      "c94a5f36f93a50579ed0066547e2d207",
+      "d02aeb40a0691e9c344431ec9f0ab547",
+      "d324e7ac011b493f8a5cf4fd0b86a80f",
       "d526869e371c016884eef804547f586c",
+      "d678a65332d5e4c2c7a7a7ab9fd05a1d",
       "d757098d4ee4ba7ac09e303974013544",
       "d8aea1fd01e4e70ce733648dc940f372",
+      "e62473aaaad37393d0ccd46e2194c152",
+      "e65fbc2acab8601ef244224fe051d99d",
+      "e668fbbe2fc94b354e6fd3ccdd4dbf3c",
+      "ecef53126c36ee28568571e75778dfeb",
       "ed82ba6bad990f3cd407cda05beef7e0",
       "ef532191b28289217231c9416f3ebe6e",
+      "f78378b9d31a963c8ae1509316cfd3cf",
+      "fc90e2d1208feac03aa27a34e3778110",
       "fd09986362209de3a36515c8283afc08"
     ]
   },
   "company_index": {
     "empresa não identificada": [
       "0119465468d57f922b353ab0d4163e1b",
+      "029e4d1065698edfda595987699a423a",
       "0690ecd9dbe599ab8a2641e11bd113d3",
+      "0a9cc32fff3f00a84667c0583119d25e",
+      "0b477088cd28d03ed688ca562bf38afa",
+      "0d837704d78915184c37e2347b000849",
+      "113d74ccfcc44f2c0680eaa0b3eb6dfe",
       "1221bf09a5a65f9636b150c83c80bb2f",
       "149f41eb0d3c49fe9895fa3c84fb463f",
       "163459313fae4411168044d2137efdf8",
+      "22c0a58d51948f05935c24ddbf390a69",
       "2377adcfc31b18d9b254ba39129b4888",
       "28b082f308190363f69d4616175cd46f",
+      "2d0c0175d7dc1661a81659270d33414c",
+      "2ea4201a51857203c73e5fc66bd644b4",
+      "2f9f7c4d1397dc064b78e89746eff81b",
+      "342397da2f05b66c27c318b153bc5bb6",
       "36fbe836d1a057bb6a5c5718dc4178bd",
+      "3b0f87ae836940dc2e938245bc20f87e",
+      "3e99c8f8c66dea6304c6664e294a9513",
+      "405d9650c67d9c25d0486ae6d6ba588c",
+      "41bb0bc987cc6305cf55a966faca996d",
+      "44ba8981a53b5c2d29db433b6e5e5fb2",
       "493a07603cf7e54f5518bdb4392bca58",
+      "4d41bf52afceb398a50f384c3669dd29",
+      "51433fed18c0a4264be35ce9941db6ef",
+      "54f3e21ba73cbdc22bfcac4a58405fc5",
+      "55c0df30fde7ce6e8f62ece586780b5b",
       "6c855283b9b60b45919db770e4230703",
+      "6d5c9bc84bc6efbac41071502f754243",
       "6e57c7060eb0d12028421515fbcc5b76",
+      "72d988181780d2c865b1de23b19260e8",
       "73f8f2663a5629564b10a56fce04f3f9",
+      "75ac4e445789e57cfb9579fa8a2fdd42",
       "79f2db95f4dd3a9a45f02ea6108ddc73",
       "7c855c3dd5a4419e3546096976e0a9e6",
+      "7f084aedfda8bfe29d1ea0db9d8a9cdb",
+      "83210a4aa495a3a832571d34afd1945e",
+      "84ade524975c3cbf747367f0e79fad2a",
       "8561b0b23bf3b8c51e75627179b1d1d3",
+      "8868171a356be108957b0128ed3e812f",
+      "894d56784ec1048e162a9c392333c4ba",
+      "8d8c6a1abeceb73dc27ac1a53c7272d4",
+      "8f4a89785897a820568e69b2ee469c5e",
+      "91412b4f4fd1172cf0192454908a2403",
       "93f157879246fc6fb146867b5a5d33af",
       "9673e381dbea49492b95a7b7f8cafb13",
+      "983ff7856987a149bbe14430e68079ab",
       "99cf589c097c7df64755dcae1c963646",
+      "9d41b9e6b8dc979531fc4e248ffdcc9c",
       "9f61c49b1ee0b2161696e424961ef9a1",
+      "a62221e934ea2f6391f0dd154920eda2",
+      "a8a75dfe02c4ce2b8688e7498ad2d0ed",
+      "a93f77d8996251737fcc682eb4837f80",
       "af46820ed0005109c581ecfd3bca39a7",
       "b2cc7a54f26ebd7cce0d457b3ccdb9d3",
       "b3ac524b3682e53d65debbdab6f025f3",
+      "b6d9006330f0cb38cb25511ca7f9bd16",
       "b97349f020d6f2c1ac504dfad29baa3e",
+      "bb17ad5e4dc517f314d3845c073831b0",
+      "c2a3cae7def572cb2ad245f310035c7b",
       "c52dd96f87b00c0b7d6d7d30b5bda98e",
+      "c6d8318809541412b3da5f49654542c1",
+      "c903352e271bb8c0f651cc9a6fbb04a8",
+      "c94a5f36f93a50579ed0066547e2d207",
+      "d02aeb40a0691e9c344431ec9f0ab547",
+      "d324e7ac011b493f8a5cf4fd0b86a80f",
       "d526869e371c016884eef804547f586c",
+      "d678a65332d5e4c2c7a7a7ab9fd05a1d",
       "d757098d4ee4ba7ac09e303974013544",
       "d8aea1fd01e4e70ce733648dc940f372",
+      "e62473aaaad37393d0ccd46e2194c152",
+      "e65fbc2acab8601ef244224fe051d99d",
+      "e668fbbe2fc94b354e6fd3ccdd4dbf3c",
+      "ecef53126c36ee28568571e75778dfeb",
       "ed82ba6bad990f3cd407cda05beef7e0",
       "ef532191b28289217231c9416f3ebe6e",
+      "f78378b9d31a963c8ae1509316cfd3cf",
+      "fc90e2d1208feac03aa27a34e3778110",
       "fd09986362209de3a36515c8283afc08"
     ],
     "testecorp": [
@@ -800,34 +2050,84 @@
   "location_index": {
     "home office": [
       "0119465468d57f922b353ab0d4163e1b",
+      "029e4d1065698edfda595987699a423a",
       "0690ecd9dbe599ab8a2641e11bd113d3",
+      "0a9cc32fff3f00a84667c0583119d25e",
+      "0b477088cd28d03ed688ca562bf38afa",
+      "0d837704d78915184c37e2347b000849",
+      "113d74ccfcc44f2c0680eaa0b3eb6dfe",
       "1221bf09a5a65f9636b150c83c80bb2f",
       "149f41eb0d3c49fe9895fa3c84fb463f",
       "163459313fae4411168044d2137efdf8",
+      "22c0a58d51948f05935c24ddbf390a69",
       "2377adcfc31b18d9b254ba39129b4888",
       "28b082f308190363f69d4616175cd46f",
+      "2d0c0175d7dc1661a81659270d33414c",
+      "2ea4201a51857203c73e5fc66bd644b4",
+      "2f9f7c4d1397dc064b78e89746eff81b",
+      "342397da2f05b66c27c318b153bc5bb6",
       "36fbe836d1a057bb6a5c5718dc4178bd",
+      "3b0f87ae836940dc2e938245bc20f87e",
+      "3e99c8f8c66dea6304c6664e294a9513",
+      "405d9650c67d9c25d0486ae6d6ba588c",
+      "41bb0bc987cc6305cf55a966faca996d",
+      "44ba8981a53b5c2d29db433b6e5e5fb2",
       "493a07603cf7e54f5518bdb4392bca58",
+      "4d41bf52afceb398a50f384c3669dd29",
+      "51433fed18c0a4264be35ce9941db6ef",
+      "54f3e21ba73cbdc22bfcac4a58405fc5",
+      "55c0df30fde7ce6e8f62ece586780b5b",
       "6c855283b9b60b45919db770e4230703",
+      "6d5c9bc84bc6efbac41071502f754243",
       "6e57c7060eb0d12028421515fbcc5b76",
+      "72d988181780d2c865b1de23b19260e8",
       "73f8f2663a5629564b10a56fce04f3f9",
+      "75ac4e445789e57cfb9579fa8a2fdd42",
       "79f2db95f4dd3a9a45f02ea6108ddc73",
       "7c855c3dd5a4419e3546096976e0a9e6",
+      "7f084aedfda8bfe29d1ea0db9d8a9cdb",
+      "83210a4aa495a3a832571d34afd1945e",
+      "84ade524975c3cbf747367f0e79fad2a",
       "8561b0b23bf3b8c51e75627179b1d1d3",
+      "8868171a356be108957b0128ed3e812f",
+      "894d56784ec1048e162a9c392333c4ba",
+      "8d8c6a1abeceb73dc27ac1a53c7272d4",
+      "8f4a89785897a820568e69b2ee469c5e",
+      "91412b4f4fd1172cf0192454908a2403",
       "93f157879246fc6fb146867b5a5d33af",
       "9673e381dbea49492b95a7b7f8cafb13",
+      "983ff7856987a149bbe14430e68079ab",
       "99cf589c097c7df64755dcae1c963646",
+      "9d41b9e6b8dc979531fc4e248ffdcc9c",
       "9f61c49b1ee0b2161696e424961ef9a1",
+      "a62221e934ea2f6391f0dd154920eda2",
+      "a8a75dfe02c4ce2b8688e7498ad2d0ed",
+      "a93f77d8996251737fcc682eb4837f80",
       "af46820ed0005109c581ecfd3bca39a7",
       "b2cc7a54f26ebd7cce0d457b3ccdb9d3",
       "b3ac524b3682e53d65debbdab6f025f3",
+      "b6d9006330f0cb38cb25511ca7f9bd16",
       "b97349f020d6f2c1ac504dfad29baa3e",
+      "bb17ad5e4dc517f314d3845c073831b0",
+      "c2a3cae7def572cb2ad245f310035c7b",
       "c52dd96f87b00c0b7d6d7d30b5bda98e",
+      "c6d8318809541412b3da5f49654542c1",
+      "c903352e271bb8c0f651cc9a6fbb04a8",
+      "c94a5f36f93a50579ed0066547e2d207",
+      "d02aeb40a0691e9c344431ec9f0ab547",
+      "d324e7ac011b493f8a5cf4fd0b86a80f",
       "d526869e371c016884eef804547f586c",
+      "d678a65332d5e4c2c7a7a7ab9fd05a1d",
       "d757098d4ee4ba7ac09e303974013544",
       "d8aea1fd01e4e70ce733648dc940f372",
+      "e62473aaaad37393d0ccd46e2194c152",
+      "e65fbc2acab8601ef244224fe051d99d",
+      "e668fbbe2fc94b354e6fd3ccdd4dbf3c",
+      "ecef53126c36ee28568571e75778dfeb",
       "ed82ba6bad990f3cd407cda05beef7e0",
       "ef532191b28289217231c9416f3ebe6e",
+      "f78378b9d31a963c8ae1509316cfd3cf",
+      "fc90e2d1208feac03aa27a34e3778110",
       "fd09986362209de3a36515c8283afc08"
     ],
     "são paulo, sp": [
@@ -835,15 +2135,15 @@
     ]
   },
   "stats": {
-    "total_entries": 31,
-    "total_jobs": 273,
-    "total_file_size": 113226,
-    "total_compressed_size": 21938,
-    "average_compression_ratio": 78.25578405178565,
-    "oldest_entry": "2025-06-20T03:46:59.912577",
-    "newest_entry": "2025-06-20T03:46:59.990256",
-    "last_updated": "2025-06-20T03:46:59.990256"
+    "total_entries": 81,
+    "total_jobs": 725,
+    "total_file_size": 336922,
+    "total_compressed_size": 62872,
+    "average_compression_ratio": 80.3962280405397,
+    "oldest_entry": "2025-06-20T22:13:05.553280",
+    "newest_entry": "2025-06-20T22:13:05.895314",
+    "last_updated": "2025-06-20T22:13:05.895314"
   },
   "version": "1.0",
-  "created_at": "2025-06-20T03:46:59.990256"
+  "created_at": "2025-06-20T22:13:05.896313"
 }

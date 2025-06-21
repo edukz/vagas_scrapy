@@ -1,0 +1,60 @@
+{
+  "regional_aggregates": {
+    "Outras": {
+      "region": "Outras",
+      "job_count": 1,
+      "avg_salary": 8000.0,
+      "salary_range": [
+        8000.0,
+        8000.0
+      ],
+      "top_positions": [
+        "Desenvolvedor Python"
+      ],
+      "growth_trend": "stable",
+      "competition_level": "high",
+      "opportunity_score": 25,
+      "last_update": "2025-06-20T21:02:34.667343"
+    },
+    "Rio de Janeiro": {
+      "region": "Rio de Janeiro",
+      "job_count": 1,
+      "avg_salary": 6500.0,
+      "salary_range": [
+        6500.0,
+        6500.0
+      ],
+      "top_positions": [
+        "Analista Java React"
+      ],
+      "growth_trend": "stable",
+      "competition_level": "high",
+      "opportunity_score": 25,
+      "last_update": "2025-06-20T21:02:34.667346"
+    },
+    "Remoto": {
+      "region": "Remoto",
+      "job_count": 1,
+      "avg_salary": 9000.0,
+      "salary_range": [
+        9000.0,
+        9000.0
+      ],
+      "top_positions": [
+        "DevOps AWS"
+      ],
+      "growth_trend": "stable",
+      "competition_level": "high",
+      "opportunity_score": 30,
+      "last_update": "2025-06-20T21:02:34.667347"
+    }
+  },
+  "time_series": [],
+  "heatmap_data": {},
+  "last_update": null,
+  "statistics": {
+    "total_regions": 3,
+    "total_jobs_analyzed": 3,
+    "last_analysis": "2025-06-20T21:02:34.667351"
+  }
+}

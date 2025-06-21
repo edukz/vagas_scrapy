@@ -1,376 +1,533 @@
-# 🚀 Catho Job Scraper - Sistema Enterprise
+# 🚀 Catho Job Scraper & AI Platform - Sistema Enterprise
 
-Sistema avançado de web scraping para análise de vagas do Catho.com.br com arquitetura moderna, dashboard de estatísticas, API REST completa e sistema de análise de currículos com OCR.
+Sistema completo de **Web Scraping + Inteligência Artificial** para análise de vagas do Catho.com.br com arquitetura moderna, **sistema de recomendações IA**, **análise detalhada de compatibilidade** e interface revolucionária.
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://docker.com)
-[![Playwright](https://img.shields.io/badge/Playwright-1.52+-orange.svg)](https://playwright.dev)
-[![EasyOCR](https://img.shields.io/badge/EasyOCR-1.7+-red.svg)](https://github.com/JaidedAI/EasyOCR)
+[![Playwright](https://img.shields.io/badge/Playwright-1.40+-orange.svg)](https://playwright.dev)
 [![Machine Learning](https://img.shields.io/badge/ML-Ready-purple.svg)](https://scikit-learn.org)
+[![AI Recommendations](https://img.shields.io/badge/AI-Recommendations-red.svg)](https://scikit-learn.org)
 
 ## 📋 Índice
 
+- [🎯 Novidades v6.0](#-novidades-v60)
 - [🌟 Características Principais](#-características-principais)
 - [⚡ Instalação Rápida](#-instalação-rápida)
 - [🎮 Como Usar](#-como-usar)
-- [🤖 Sistema de Análise de CV](#-sistema-de-análise-de-cv)
-- [📊 Dashboard de Estatísticas](#-dashboard-de-estatísticas)
-- [⚙️ Sistema de Configurações](#️-sistema-de-configurações)
+- [🤖 Sistema de Recomendações IA](#-sistema-de-recomendações-ia)
+- [🧠 Análise Detalhada](#-análise-detalhada)
+- [📊 Business Intelligence](#-business-intelligence)
 - [🏗️ Arquitetura](#️-arquitetura)
 - [📚 Documentação](#-documentação)
-- [🤝 Contribuição](#-contribuição)
 
-## 🌟 Características Principais
+---
 
-### 🎯 **Interface Completa**
-- **Menu interativo** com 9 opções principais
-- **Dashboard de estatísticas** com 8 categorias de análise
-- **Sistema de configurações** com 8 seções organizadas
-- **Sistema de análise de CV** com OCR integrado
-- **Interface visual** profissional com cores e layouts estruturados
+## 🎯 **NOVIDADES v6.0 - SISTEMA DE IA REVOLUCIONÁRIO**
 
-### 📊 **Dashboard de Analytics**
-- 🎯 **Visão Geral** - Métricas gerais e resumos
-- 💼 **Análise de Vagas** - Qualidade dos dados e distribuição
-- 💻 **Tecnologias** - Top 20 techs mais demandadas por categoria
-- 🏢 **Empresas** - Ranking de contratantes e distribuição por porte
-- 📍 **Localização** - Distribuição geográfica e modalidades
-- 💰 **Salários** - Análise de faixas salariais (em desenvolvimento)
-- ⚡ **Performance** - Métricas de cache e eficiência do sistema
-- 📈 **Histórico** - Evolução temporal e tendências
+### 🆕 **IMPLEMENTAÇÕES RECENTES**
+- ✅ **Sistema de Recomendações IA** - Matching CV-Vagas com Machine Learning
+- ✅ **Análise Detalhada de Compatibilidade** - 8 seções com insights profundos
+- ✅ **Preparação Completa para Entrevistas** - Guias específicos e personalizados
+- ✅ **Interface Modernizada** - 3 níveis de complexidade (Iniciante/Intermediário/Avançado)
+- ✅ **Tutorial Interativo** - Sistema de help contextual integrado
+- ✅ **Tratamento Robusto de Interrupções** - Solução para crashes Ctrl+C no Windows
 
-### 🤖 **Sistema de Análise de CV com OCR**
-- 📄 **Múltiplos Formatos** - TXT, PDF (texto e escaneado), DOCX
-- 🔍 **OCR Avançado** - EasyOCR para PDFs escaneados (imagens)
-- 🧠 **Machine Learning** - Extração inteligente de informações
-- 💼 **Análise Profissional** - Nome, contato, experiência, tecnologias
-- 💰 **Estimativa Salarial** - Baseada em senioridade e habilidades
-- 📊 **Confiança da Análise** - Score de qualidade da extração
-- 💾 **Histórico de Análises** - Armazenamento e consulta de resultados
-- 🎯 **Recomendações** - Sistema de matching com vagas
+### 🔥 **FUNCIONALIDADES DESTACADAS**
+- **💡 Recomendações Personalizadas** - IA aprende com suas interações
+- **📋 Análise de 8 Dimensões** - Compatibilidade técnica, carreira, negociação, preparação
+- **🎓 Sistema de Aprendizado** - User feedback system com weight adjustment
+- **🎯 Menu Inteligente** - Adapta-se ao nível do usuário automaticamente
 
-### ⚙️ **Sistema de Configurações Avançadas**
-- 🚀 **Scraping** - URLs, concorrência, rate limiting, compressão
-- 💾 **Cache** - Diretórios, TTL, limpeza automática, índices
-- ⚡ **Performance** - Timeouts, retry, pool de conexões
-- 📁 **Output** - Formatos de exportação, limites, relatórios
-- 📝 **Logs** - Níveis, rotação, debug e performance
-- 🚨 **Alertas** - Email, webhook, canais multi-plataforma
-- 🌐 **Navegador** - Headless, user-agent, argumentos customizados
-- 👤 **Perfis** - Múltiplos perfis de configuração
+---
 
-### 🛡️ **Sistema de Robustez Enterprise**
-- ✅ **Sistema de Retry** - Exponential backoff + jitter
-- ✅ **Fallback de Seletores** - 84 estratégias adaptativas
-- ✅ **Validação de Dados** - Auto-correção + detecção de anomalias
-- ✅ **Logs Estruturados** - JSON + trace IDs + performance
-- ✅ **Circuit Breaker** - Proteção contra sobrecarga
-- ✅ **Métricas e Monitoramento** - Dashboard + alertas
-- ✅ **Sistema de Alertas** - Multi-canal + escalação
-- ✅ **Cache Inteligente** - Compressão + índices + deduplicação
+## 🌟 **CARACTERÍSTICAS PRINCIPAIS**
 
-### 🚀 **Modos de Performance**
-1. **BÁSICO** - Scraping tradicional sequencial
-2. **OTIMIZADO** - Processamento incremental + deduplicação
-3. **MÁXIMA PERFORMANCE** - Pool de conexões + compressão avançada
+### 🤖 **SISTEMA DE IA AVANÇADO**
+```
+🧠 Machine Learning para Matching CV-Vagas
+💡 Recomendações Personalizadas com Feedback Learning
+📊 Análise de Compatibilidade Multi-Dimensional
+🎯 Explicações Detalhadas e Insights Específicos
+📈 Business Intelligence com Análise de Mercado
+🎓 Preparação Completa para Entrevistas
+```
 
-## ⚡ Instalação Rápida
+### 🎮 **INTERFACE REVOLUCIONÁRIA**
+```
+🌱 MODO INICIANTE    - 5 funcionalidades essenciais
+⚡ MODO INTERMEDIÁRIO - 15 funcionalidades principais  
+🚀 MODO AVANÇADO     - 20+ funcionalidades completas
+🎓 Tutorial Interativo integrado
+💫 Comandos Especiais (tutorial, ajuda, config, status)
+🎨 Interface visual com cores e feedback
+```
 
-### 📦 Pré-requisitos
+### 📊 **BUSINESS INTELLIGENCE COMPLETO**
+- 💰 **Análise de Tendências Salariais** - Por região e tecnologia
+- 🗺️ **Mapa de Calor Regional** - Distribuição de oportunidades
+- 🛠️ **Skills em Demanda** - Tecnologias mais procuradas
+- 📈 **Relatórios Executivos** - Dashboard inteligente
+- 🎯 **Análise de Mercado** - Insights estratégicos
+
+### ⚡ **PERFORMANCE ENTERPRISE**
+- 🚀 **3 Modos de Scraping** (Básico/Rápido/Avançado)
+- 💾 **Cache Inteligente** - Compressão + índices
+- 🔄 **Processamento Incremental** - Apenas dados novos
+- 🛡️ **Sistema de Robustez** - Circuit breaker + retry
+- 📊 **Monitoramento** - Métricas e alertas
+
+---
+
+## ⚡ **INSTALAÇÃO RÁPIDA**
+
+### 📦 **Pré-requisitos**
 - Python 3.8+
 - pip
 - Git
 
-### 🔧 Instalação Básica
+### 🔧 **Instalação Completa**
 ```bash
 # Clone o repositório
 git clone <repository-url>
 cd web
 
-# Instale as dependências básicas
+# Instale dependências básicas
 pip install -r requirements.txt
 
-# Configure o Playwright
+# Configure o Playwright (para scraping)
 playwright install chromium
 
-# Execute o sistema
-python main.py
+# Instale dependências de ML (para IA)
+pip install scikit-learn pandas numpy
+
+# Execute o sistema modernizado
+python main_enhanced.py
 ```
 
-### 🤖 Instalação Completa (com OCR)
+### 🐳 **Docker (Opcional)**
 ```bash
-# Após a instalação básica, instale dependências OCR
-pip install easyocr PyMuPDF Pillow
-
-# Para análise ML avançada (opcional)
-pip install pandas scikit-learn
-
-# Para Tesseract (alternativa ao EasyOCR)
-# Ubuntu/Debian:
-sudo apt install tesseract-ocr tesseract-ocr-por
-pip install pytesseract
-
-# Windows: baixe de https://github.com/UB-Mannheim/tesseract/wiki
-# macOS:
-brew install tesseract
-```
-
-### 🐳 Docker (Opcional)
-```bash
-# Build da imagem
-docker build -t catho-scraper .
-
-# Execute com Docker Compose
+# Build e execute com Docker
 docker-compose up -d
+
+# Acesse a interface web
+http://localhost:8000
 ```
-
-## 🎮 Como Usar
-
-### 🖥️ Interface Principal
-```bash
-python main.py
-```
-
-**Menu Principal:**
-- `[1]` 🚀 **NOVO SCRAPING** - Coleta de dados com 3 modos de performance
-- `[2]` 🔍 **BUSCAR CACHE** - Pesquisa em dados coletados anteriormente
-- `[3]` 🤖 **ANÁLISE DE CV** - Sistema completo de análise de currículos com OCR
-- `[4]` 🗑️ **LIMPAR DADOS** - Reset completo do sistema
-- `[5]` 🧹 **DEDUPLICAÇÃO** - Remoção de duplicatas
-- `[6]` ⚙️ **CONFIGURAÇÕES** - Sistema completo de configurações
-- `[7]` 📊 **ESTATÍSTICAS** - Dashboard de analytics completo
-- `[8]` 🌐 **API SERVER** - Servidor REST API
-- `[9]` ❓ **AJUDA** - Documentação e suporte
-
-### 🌐 API REST
-```bash
-# Inicie o servidor da API
-python main.py
-# Escolha opção [7] ou execute:
-uvicorn api.main:app --reload
-
-# Acesse a documentação
-http://localhost:8000/docs
-```
-
-## 🤖 Sistema de Análise de CV
-
-O sistema oferece análise completa de currículos com tecnologia OCR avançada para processar PDFs escaneados.
-
-### 📄 Formatos Suportados
-- **TXT** - Arquivos de texto simples
-- **PDF** - PDFs com texto pesquisável
-- **PDF Escaneado** - PDFs de imagem com OCR automático
-- **DOCX/DOC** - Documentos Microsoft Word
-
-### 🔍 Tecnologias OCR
-- **EasyOCR** - OCR moderno com IA (recomendado)
-- **Tesseract** - OCR tradicional de alta qualidade
-- **PyMuPDF** - Conversão PDF para imagem otimizada
-- **Detecção Automática** - Sistema detecta se PDF precisa de OCR
-
-### 🧠 Análise Inteligente
-O sistema extrai automaticamente:
-
-#### 👤 **Informações Pessoais**
-- Nome completo
-- Email e telefone
-- Localização geográfica
-- LinkedIn e GitHub
-
-#### 💼 **Experiência Profissional**
-- Anos de experiência total
-- Posição atual
-- Empresas anteriores
-- Nível de senioridade (júnior, pleno, sênior, líder)
-
-#### 🛠️ **Habilidades Técnicas**
-- **Linguagens**: Python, Java, JavaScript, etc.
-- **Frameworks**: React, Django, Spring, etc.
-- **Databases**: PostgreSQL, MongoDB, Redis, etc.
-- **Cloud/DevOps**: AWS, Docker, Kubernetes, etc.
-- **Data Science**: Pandas, TensorFlow, scikit-learn, etc.
-- **Categorização Automática**: 10+ categorias técnicas
-
-#### 🧭 **Análise Avançada**
-- **Estimativa Salarial**: Baseada em senioridade e tecnologias
-- **Confiança da Análise**: Score de qualidade (0-100%)
-- **Soft Skills**: Liderança, comunicação, trabalho em equipe
-- **Preferências**: Modalidade de trabalho (remoto, híbrido, presencial)
-
-### 🎯 Sistema de Recomendações
-- **Matching com Vagas**: Compatibilidade automática
-- **Score de Adequação**: Percentual de compatibilidade
-- **Skills em Comum**: Tecnologias que coincidem
-- **Top 5 Recomendações**: Melhores oportunidades
-
-### 💾 Histórico e Armazenamento
-- **Análises Salvas**: JSON estruturado com todos os dados
-- **Consulta de Histórico**: Visualização de análises anteriores
-- **Estatísticas de Perfis**: Distribuição de senioridade e tecnologias
-- **Exportação**: Dados em formato JSON para integração
-
-### 🚀 Como Usar
-
-1. **Coloque seu CV** na pasta `data/cv_input/`
-2. **Execute o sistema**: `python main.py`
-3. **Escolha opção [3]**: Análise de CV
-4. **Selecione "Analisar Novo Currículo"**
-5. **Escolha seu arquivo** da lista ou digite o caminho
-6. **Aguarde a análise**: OCR + ML + Extração
-7. **Visualize os resultados**: Informações detalhadas extraídas
-
-### ⚡ Otimizações de Performance
-- **Lazy Loading**: Dependências OCR carregam apenas quando necessário
-- **Cache Inteligente**: Resultados salvos para consulta rápida
-- **Processamento Otimizado**: OCR apenas para PDFs de imagem
-- **Interface Responsiva**: Feedback visual do progresso
-
-## 📊 Dashboard de Estatísticas
-
-O sistema oferece um dashboard completo com 8 categorias de análise:
-
-### 🎯 Visão Geral
-- Total de vagas coletadas
-- Top 10 tecnologias mais demandadas
-- Top 10 empresas que mais contratam
-- Distribuição por modalidades e níveis
-
-### 💻 Análise de Tecnologias
-- Top 20 tecnologias categorizadas
-- Análise por categoria (Linguagens, Frameworks, DBs, Cloud)
-- Percentuais de demanda e tendências
-
-### 🏢 Análise de Empresas
-- Ranking de empresas contratantes
-- Classificação por porte (Grande, Médio, Pequeno, Micro)
-- Distribuição estatística
-
-### 📈 Análise Histórica
-- Evolução temporal das coletas
-- Tendências de crescimento
-- Evolução de tecnologias ao longo do tempo
-
-## ⚙️ Sistema de Configurações
-
-### 🔧 Configurações Disponíveis
-- **Scraping**: Rate limiting, concorrência, páginas
-- **Cache**: TTL, limpeza automática, compressão
-- **Performance**: Timeouts, retry, pool de conexões
-- **Output**: Formatos (JSON, CSV, TXT), relatórios
-- **Logs**: Níveis, rotação, debug/performance
-- **Alertas**: Email, webhook, canais múltiplos
-- **Navegador**: Modo headless, user-agent, argumentos
-- **Perfis**: Sistema de múltiplos perfis
-
-### 👤 Gerenciamento de Perfis
-- Criação e alternância entre perfis
-- Duplicação e renomeação
-- Import/Export de configurações
-- Backup automático
-
-## 🏗️ Arquitetura
-
-```
-web/
-├── src/                      # Código fonte principal
-│   ├── core/                 # Scrapers e lógica central
-│   ├── handlers/             # Handlers para cada funcionalidade
-│   ├── ml/                   # Machine Learning e análise de CV
-│   │   └── models/           # Modelos de ML e analisadores
-│   ├── systems/              # Sistemas de robustez
-│   └── utils/                # Utilitários e configurações
-├── api/                      # API REST FastAPI
-├── data/                     # Dados coletados
-│   ├── resultados/           # Resultados de scraping
-│   ├── cache/                # Cache comprimido e índices
-│   ├── cv_input/             # CVs para análise (TXT, PDF, DOCX)
-│   ├── cv_analysis/          # Resultados de análise de CV
-│   └── checkpoints/          # Processamento incremental
-├── config/                   # Configurações e backups
-├── docs/                     # Documentação organizada
-│   ├── features/             # Documentação de funcionalidades
-│   ├── api/                  # Documentação da API
-│   └── deployment/           # Guias de deployment
-├── tests/                    # Testes organizados
-│   ├── core/                 # Testes do core
-│   └── systems/              # Testes dos sistemas
-└── logs/                     # Logs estruturados
-```
-
-## 📚 Documentação
-
-### 📖 Documentação Disponível
-- `docs/features/` - Funcionalidades do sistema
-- `docs/api/` - Documentação da API REST
-- `docs/deployment/` - Guias de deployment
-- `docs/` - Documentação técnica detalhada
-
-### 🔗 Links Importantes
-- **API Documentation**: `http://localhost:8000/docs`
-- **ReDoc**: `http://localhost:8000/redoc`
-- **Monitoring**: Prometheus + Grafana (Docker)
-
-## 🚀 Próximos Desenvolvimentos
-
-### ✅ **Recentemente Implementado**
-- ✅ **Sistema de Análise de CV** - Completo com OCR e ML
-- ✅ **OCR Avançado** - EasyOCR + Tesseract para PDFs escaneados
-- ✅ **Machine Learning** - Extração inteligente de informações
-- ✅ **Estimativa Salarial** - Baseada em senioridade e habilidades
-- ✅ **Sistema de Recomendações** - Matching automático com vagas
-- ✅ **Otimização de Performance** - Lazy loading e cache inteligente
-
-### 🔮 **Próximas Funcionalidades**
-- [ ] **API de CV** - Endpoints REST para análise de currículos
-- [ ] **Análise de Salários** - Coleta e análise sistemática de faixas
-- [ ] **Interface Web** - Dashboard web complementar
-- [ ] **Integração com BI** - Export para ferramentas de Business Intelligence
-- [ ] **ML Avançado** - Predição de tendências de mercado
-- [ ] **Notificações Push** - Alertas em tempo real
-- [ ] **Multi-sites** - Suporte a outros sites de vagas
-- [ ] **Análise de Vídeo CV** - OCR em vídeos e apresentações
-- [ ] **Matching Inteligente** - IA para recomendações personalizadas
-
-## 🤝 Contribuição
-
-Contribuições são bem-vindas! Por favor:
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -m 'Add nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
-## 🏆 Status do Projeto
-
-✅ **Sistema Enterprise Completo e Funcional**
-- ✅ Interface visual profissional com 9 opções principais
-- ✅ Dashboard de estatísticas completo (8 categorias)
-- ✅ Sistema de configurações avançadas (8 seções)
-- ✅ **Sistema de Análise de CV com OCR** - **NOVO!**
-- ✅ **Machine Learning integrado** - **NOVO!**
-- ✅ **Suporte a PDFs escaneados** - **NOVO!**
-- ✅ Arquitetura robusta e escalável
-- ✅ API REST documentada
-- ✅ Testes organizados
-- ✅ Deployment pronto
-- ✅ **Performance otimizada** com lazy loading
-
-### 🎯 **Funcionalidades Principais**
-- 🚀 **Web Scraping Inteligente** com 3 modos de performance
-- 🤖 **Análise de CV Completa** com OCR e ML
-- 📊 **Dashboard Analytics** com 8 categorias de dados
-- ⚙️ **Sistema de Configurações** com 8 seções organizadas
-- 🛡️ **Robustez Enterprise** com sistemas de retry e fallback
-- 🌐 **API REST** com documentação completa
 
 ---
 
-**Sistema Enterprise de Web Scraping + CV Analysis - Versão 5.0.0**
-*Novo: Sistema completo de análise de currículos com OCR e Machine Learning*
+## 🎮 **COMO USAR**
+
+### 🚀 **Executar Sistema Completo**
+```bash
+python main.py
+```
+
+---
+
+## 🤖 **SISTEMA DE RECOMENDAÇÕES IA**
+
+O sistema oferece **matching inteligente CV-Vagas** com Machine Learning e explicações detalhadas.
+
+### 🧠 **Funcionalidades Avançadas**
+
+#### **📋 1. ANÁLISE DE CV COM IA**
+- **Upload Simples** - Suporte a PDF, DOCX, TXT
+- **OCR Automático** - Para PDFs escaneados  
+- **Extração Inteligente** - Skills, senioridade, experiência
+- **Análise de Confiança** - Score de qualidade da extração
+
+#### **🎯 2. MATCHING SEMÂNTICO**
+- **TF-IDF + Cosine Similarity** - Análise semântica avançada
+- **7 Fatores de Compatibilidade**:
+  - 🛠️ Skills Técnicas (semântica + exata)
+  - 📈 Senioridade e Experiência
+  - 💰 Compatibilidade Salarial
+  - 📍 Localização e Flexibilidade
+  - 🏢 Tipo de Empresa
+  - 🏠 Modalidade de Trabalho
+
+#### **🎓 3. SISTEMA DE APRENDIZADO**
+- **User Feedback** - Like/dislike/apply/hired
+- **Weight Adjustment** - IA aprende suas preferências
+- **Recomendações Personalizadas** - Baseadas no histórico
+- **Confidence Learning** - Melhora com cada interação
+
+### 🔥 **FLUXO DE USO COMPLETO**
+
+1. **🔍 Análise de CV**
+   ```
+   [1] Analisar CV e Obter Recomendações
+   → Upload do CV → Análise automática → Perfil extraído
+   ```
+
+2. **🎯 Recomendações Inteligentes**
+   ```
+   → Top recomendações → Scores detalhados → Explicações
+   ```
+
+3. **📋 Análise Profunda**
+   ```
+   → "Quer ver análise detalhada?" → 8 seções completas
+   ```
+
+4. **💬 Feedback Learning**
+   ```
+   → Dar feedback → Sistema aprende → Próximas melhores
+   ```
+
+---
+
+## 🧠 **ANÁLISE DETALHADA**
+
+O sistema oferece **análise profunda de compatibilidade** com 8 seções especializadas:
+
+### 📊 **1. ANÁLISE DE COMPATIBILIDADE**
+```
+🔧 Compatibilidade Técnica: 65.2% (BOM)
+   Boa compatibilidade técnica. Você tem a maioria das 
+   habilidades necessárias, com pequenas lacunas...
+
+🛠️ Match de Tecnologias: 42.1% (REGULAR)
+   Você possui experiência com algumas das tecnologias
+   principais requeridas.
+
+📈 Nível Profissional: 95.0% (EXCELENTE)
+   Seu nível de experiência corresponde exatamente
+   ao que a empresa busca.
+```
+
+### 🛠️ **2. ANÁLISE DE HABILIDADES**
+```
+✅ Habilidades em comum (3):
+   • Python • Pandas • SQL
+   💡 Essas habilidades demonstram que você tem a base necessária.
+
+📚 Habilidades para desenvolver:
+   Frameworks:
+      • Django - Médio se você sabe Python (4-6 semanas)
+   Database:
+      • PostgreSQL - Fácil se você sabe SQL (2-3 semanas)
+```
+
+### 📈 **3. IMPACTO NA CARREIRA**
+```
+Tipo: PROMOÇÃO 🚀
+Nível atual: Pleno → Nível da vaga: Senior
+💡 Esta vaga representa um avanço na sua carreira.
+🎯 Excelente oportunidade de crescimento! Certifique-se
+   de destacar suas realizações que demonstram readiness.
+```
+
+### 🎓 **4. OPORTUNIDADES DE APRENDIZADO**
+```
+Total de novas habilidades: 5
+Tempo estimado: 3 meses dedicados (12 semanas)
+
+Caminho de aprendizado sugerido:
+   1. Comece com ferramentas básicas - 1-2 semanas
+   2. Desenvolva habilidades frontend - 4-6 semanas
+   3. Aprenda tecnologias backend - 6-8 semanas
+```
+
+### ⚠️ **5. AVALIAÇÃO DE RISCOS**
+```
+Nível de risco: BAIXO
+Oportunidades identificadas:
+   ✅ Alta compatibilidade - boa chance de sucesso
+   ✅ Muitas skills em comum - destaque na candidatura
+
+Recomendação: RECOMENDADO - Vá em frente com a candidatura!
+```
+
+### 💰 **6. INSIGHTS PARA NEGOCIAÇÃO**
+```
+Posição salarial: Vaga oferece 15% acima de sua expectativa
+Posição no mercado: FORTE - Você está em posição vantajosa
+
+Pontos fortes para negociação:
+   💪 Domínio de Python (alta demanda no mercado)
+   💪 8 anos de experiência
+   💪 Nível de senioridade elevado
+
+Estratégia sugerida:
+   🎯 Empresa oferece acima - aceite ou negocie benefícios
+   🎯 Foque em negociar férias, flexibilidade ou desenvolvimento
+```
+
+### 📝 **7. PREPARAÇÃO PARA ENTREVISTA**
+```
+🔧 PREPARAÇÃO TÉCNICA:
+   📚 Django Framework:
+      • Estude Models, Views, Templates (MVT pattern)
+      • Pratique Django ORM e migrations
+      • Aprenda Django REST Framework para APIs
+      • Recursos: Django Girls Tutorial, documentação oficial
+
+   📅 CRONOGRAMA DE ESTUDOS (7 dias):
+      📅 Dias 1-2: Foque na skill mais crítica (django)
+      📅 Dias 3-4: Revise conceitos das suas skills fortes
+      📅 Dias 5-6: Pratique coding challenges e projetos
+      📅 Dia 7: Revisão geral e preparação de exemplos
+
+   💻 DESAFIOS PRÁTICOS:
+      • LeetCode: Easy/Medium problems (arrays, strings)
+      • HackerRank: Pratique problemas da linguagem principal
+      • Prepare solução para FizzBuzz, Fibonacci, Palindromes
+
+🗣️ PREPARAÇÃO COMPORTAMENTAL:
+   📝 Prepare 5-7 exemplos STAR estruturados:
+      🎯 Situação de resolução de problema técnico complexo
+      🎯 Momento de trabalho em equipe sob pressão
+      🎯 Ocasião onde tomou iniciativa em projeto
+      🎯 Erro/falha e como aprendeu com ele
+
+   🏢 Pesquise sobre a empresa:
+      📊 Modelo de negócio e principais produtos/serviços
+      🎯 Missão, visão, valores da empresa
+      👥 Equipe de tecnologia (LinkedIn, blog técnico)
+
+❓ PERGUNTAS ESTRATÉGICAS PARA FAZER:
+   🔧 Sobre o Papel Técnico:
+      • Quais são os principais desafios técnicos da equipe?
+      • Como é a arquitetura atual do sistema/produto principal?
+      • Qual é o stack tecnológico completo utilizado?
+
+   📈 Sobre Crescimento:
+      • Qual é o plano de carreira típico para esta posição?
+      • Como funciona o processo de feedback e avaliação?
+      • A empresa oferece budget para cursos/conferências?
+```
+
+### ⏰ **8. TIMELINE ESPERADO**
+```
+Preparação: 3-5 dias para preparação adequada
+Resposta inicial: 1-2 semanas para resposta inicial
+Processo de entrevistas: 2-4 semanas (geralmente 2-3 rodadas)
+Timeline total: 1-2 meses do envio até decisão final
+```
+
+---
+
+## 📊 **BUSINESS INTELLIGENCE**
+
+Sistema completo de análise de mercado e tendências.
+
+### 💰 **Análise de Tendências Salariais**
+- Faixas salariais por senioridade
+- Variação por região geográfica
+- Correlação salário-tecnologia
+- Tendências de crescimento
+
+### 🗺️ **Mapa de Calor Regional**
+- Distribuição de vagas por estado/cidade
+- Concentração de oportunidades
+- Modalidades de trabalho por região
+- Análise de competitividade
+
+### 🛠️ **Skills em Demanda**
+- Top tecnologias mais procuradas
+- Crescimento de novas tecnologias
+- Análise por categoria (Frontend/Backend/Data/DevOps)
+- Predição de tendências
+
+### 📈 **Relatórios Executivos**
+- Dashboard executivo automatizado
+- KPIs do mercado de tecnologia
+- Insights estratégicos para carreira
+- Comparações temporais
+
+---
+
+## 🏗️ **ARQUITETURA**
+
+### 📁 **Estrutura Enterprise**
+```
+web/
+├── 🎮 main.py                   # Interface principal do sistema
+├── 📚 UPGRADE_GUIDE.md          # Guia completo de migração
+├── 📄 main_original_backup.py   # Backup da interface original
+│
+├── 📂 src/                      # Código fonte principal
+│   ├── 🤖 ml/                   # Machine Learning & IA
+│   │   ├── cv_job_matcher.py    # Sistema de matching CV-Vagas
+│   │   ├── user_feedback_system.py  # Sistema de aprendizado
+│   │   └── models/              # Modelos de ML
+│   ├── 🎯 handlers/             # Handlers especializados
+│   │   ├── recommendation_handler.py  # Sistema de recomendações
+│   │   ├── scraping_handler.py  # Web scraping
+│   │   └── cv_handler.py        # Análise de CV
+│   ├── 📊 business_intelligence/ # BI e análise de mercado
+│   ├── 🚀 core/                 # Scrapers otimizados
+│   ├── 🛡️ systems/              # Sistemas de robustez
+│   └── 🎨 utils/                # Interface e utilidades
+│       ├── enhanced_menu_system.py  # Menu modernizado
+│       └── menu_system.py       # Menu original
+│
+├── 📂 data/                     # Dados e resultados
+│   ├── 📄 cv_input/             # CVs para análise
+│   ├── 🎯 cv_analysis/          # Resultados da análise de CV
+│   ├── 💡 recommendations/      # Recomendações salvas
+│   ├── 📊 business_intelligence/ # Relatórios de BI
+│   ├── 📈 resultados/           # Resultados de scraping
+│   └── 💾 cache/                # Cache inteligente
+│
+├── 🌐 api/                      # API REST FastAPI
+├── 📖 docs/                     # Documentação completa
+├── 🧪 tests/                    # Testes automatizados
+└── 🐳 docker-compose.yml        # Container orchestration
+```
+
+### 🔧 **Componentes Técnicos**
+
+#### **🤖 Machine Learning Stack**
+- **Scikit-learn** - Algoritmos de ML
+- **TF-IDF Vectorizer** - Análise semântica
+- **Cosine Similarity** - Matching de compatibilidade
+- **Standard Scaler** - Normalização de dados
+- **Pandas + NumPy** - Processamento de dados
+
+#### **🎨 Interface & UX**
+- **Enhanced Menu System** - 3 níveis de complexidade
+- **Interactive Tutorial** - Sistema de help contextual
+- **Color System** - Interface visual profissional
+- **Signal Handlers** - Tratamento robusto de interrupções
+
+#### **⚡ Performance & Robustez**
+- **Connection Pooling** - Pool de conexões HTTP
+- **Circuit Breaker** - Proteção contra sobrecarga
+- **Retry System** - Exponential backoff + jitter
+- **Cache System** - Compressão + índices
+- **Structured Logging** - Logs JSON estruturados
+
+---
+
+## 📚 **DOCUMENTAÇÃO**
+
+### 📖 **Guias Disponíveis**
+- 📋 **UPGRADE_GUIDE.md** - Guia completo de migração para v6.0
+- 🏗️ **ORGANIZACAO_PROJETO.md** - Estrutura e arquitetura
+- ⚡ **docs/features/** - Documentação de funcionalidades
+- 🌐 **docs/api/** - Documentação da API REST
+- 🚀 **docs/deployment/** - Guias de deployment
+
+### 🎓 **Tutorial Interativo**
+```bash
+# Execute e escolha:
+python main.py
+→ Digite: tutorial
+→ ou use comandos: ajuda, config, status
+```
+
+### 🔗 **Links Importantes**
+- **API Docs**: `http://localhost:8000/docs`
+- **ReDoc**: `http://localhost:8000/redoc`
+- **Monitoring**: Prometheus + Grafana (Docker)
+
+---
+
+## 🚀 **PRÓXIMOS DESENVOLVIMENTOS**
+
+### ✅ **IMPLEMENTADO v6.0**
+- ✅ Sistema de Recomendações IA com Machine Learning
+- ✅ Análise Detalhada de Compatibilidade (8 seções)
+- ✅ Preparação Completa para Entrevistas (específica)
+- ✅ Interface Modernizada com 3 níveis
+- ✅ Tutorial Interativo integrado
+- ✅ User Feedback System com aprendizado
+- ✅ Tratamento robusto de Ctrl+C (Windows)
+
+### 🔮 **ROADMAP v7.0**
+- [ ] **API de Recomendações** - Endpoints REST para IA
+- [ ] **Dashboard Web** - Interface visual para análises
+- [ ] **Mobile App** - Aplicativo para recomendações
+- [ ] **Multi-CV Analysis** - Análise comparativa de perfis
+- [ ] **Real-time Notifications** - Alertas de novas oportunidades
+- [ ] **Advanced Analytics** - Predição de tendências
+- [ ] **Integration Hub** - Conectores para outras plataformas
+- [ ] **Video CV Analysis** - Análise de apresentações em vídeo
+
+---
+
+## 🏆 **STATUS DO PROJETO**
+
+### ✅ **SISTEMA ENTERPRISE-READY v6.0**
+
+| Componente | Status | Funcionalidades |
+|------------|--------|----------------|
+| **🤖 IA & ML** | ✅ **COMPLETO** | Recomendações, Matching, Learning |
+| **🎨 Interface** | ✅ **MODERNIZADA** | 3 níveis, Tutorial, Comandos |
+| **📊 Analytics** | ✅ **AVANÇADO** | BI, Tendências, Insights |
+| **⚡ Performance** | ✅ **OTIMIZADO** | 3 modos, Cache, Pool |
+| **🛡️ Robustez** | ✅ **ENTERPRISE** | Retry, Circuit, Monitoring |
+| **🌐 API** | ✅ **COMPLETA** | FastAPI, Docs, Security |
+| **📖 Docs** | ✅ **ATUALIZADA** | Guias, Tutorial, Migration |
+
+### 🎯 **FUNCIONALIDADES ATIVAS**
+- 🚀 **Web Scraping** - 3 modos de performance
+- 🤖 **Análise de CV** - OCR + ML + Extração
+- 💡 **Recomendações IA** - Matching personalizado
+- 📋 **Análise Detalhada** - 8 seções profundas
+- 📊 **Business Intelligence** - Análise de mercado
+- ⚙️ **Configurações** - Sistema completo
+- 🎮 **Interface Moderna** - 3 níveis + tutorial
+- 🌐 **API REST** - Documentada e segura
+
+---
+
+## 🤝 **CONTRIBUIÇÃO**
+
+Contribuições são bem-vindas! Por favor:
+
+1. **Fork** o projeto
+2. **Crie** uma branch (`git checkout -b feature/nova-feature`)
+3. **Commit** suas mudanças (`git commit -m 'Add: nova feature'`)
+4. **Push** para a branch (`git push origin feature/nova-feature`)
+5. **Abra** um Pull Request
+
+### 🔧 **Desenvolvimento**
+```bash
+# Setup do ambiente de desenvolvimento
+pip install -r requirements.txt
+playwright install chromium
+
+# Execute os testes
+pytest tests/
+
+# Lint e formatação
+black src/
+flake8 src/
+```
+
+---
+
+## 📄 **LICENÇA**
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+---
+
+## 🎊 **RECONHECIMENTOS**
+
+- **Catho.com.br** - Fonte de dados de vagas
+- **Playwright** - Framework de automação web
+- **FastAPI** - Framework web moderno
+- **Scikit-learn** - Biblioteca de Machine Learning
+- **EasyOCR** - Engine de OCR moderna
+
+---
+
+<div align="center">
+
+### 🚀 **CATHO JOB SCRAPER & AI PLATFORM v6.0**
+**Sistema Enterprise de Web Scraping + Inteligência Artificial**
+
+*Transformando a busca de empregos com tecnologia de ponta*
+
+[![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red.svg)](https://github.com)
+[![AI Powered](https://img.shields.io/badge/AI-Powered-purple.svg)](https://scikit-learn.org)
+[![Enterprise Ready](https://img.shields.io/badge/Enterprise-Ready-green.svg)](https://fastapi.tiangolo.com)
+
+**[⭐ Star this repo](https://github.com) | [📖 Documentation](docs/) | [🐛 Report Bug](https://github.com/issues) | [💡 Request Feature](https://github.com/issues)**
+
+</div>

@@ -79,7 +79,8 @@ class ScrapingHandler:
                 max_pages=config['max_pages'],
                 incremental=config['incremental'],
                 show_compression_stats=True,
-                enable_deduplication=True
+                enable_deduplication=True,
+                use_url_diversity=config.get('use_diversity', True)
             )
             
         else:  # performance_mode == 3

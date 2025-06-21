@@ -1,0 +1,88 @@
+{
+  "user_id": "Dedos",
+  "timestamp": "2025-06-20T22:24:48.673524",
+  "cv_summary": {
+    "name": "EDUARDO K. INAGAKI",
+    "seniority": "estagiario",
+    "skills_count": 28,
+    "confidence": 0.7500000000000001
+  },
+  "recommendations": [
+    {
+      "job_id": "job_004",
+      "job_title": "Desenvolvedor Full Stack Júnior",
+      "company": "StartupBR",
+      "overall_score": 0.496,
+      "matched_skills": [],
+      "missing_skills": [
+        "mongodb",
+        "javascript",
+        "react"
+      ],
+      "recommendation_reason": "Excelente compatibilidade salarial; Oportunidade de aprender: mongodb, javascript"
+    },
+    {
+      "job_id": "job_002",
+      "job_title": "Analista de Dados Pleno",
+      "company": "DataCorp Analytics",
+      "overall_score": 0.3607119483809677,
+      "matched_skills": [
+        "pandas",
+        "python"
+      ],
+      "missing_skills": [],
+      "recommendation_reason": "Skills em comum: pandas, python"
+    },
+    {
+      "job_id": "job_001",
+      "job_title": "Desenvolvedor Python Sênior",
+      "company": "TechCorp Brasil",
+      "overall_score": 0.32400263128684076,
+      "matched_skills": [
+        "postgresql",
+        "python"
+      ],
+      "missing_skills": [
+        "docker",
+        "django",
+        "fastapi",
+        "aws"
+      ],
+      "recommendation_reason": "Skills em comum: postgresql, python; Oportunidade de aprender: docker, django"
+    },
+    {
+      "job_id": "job_003",
+      "job_title": "Engenheiro DevOps",
+      "company": "CloudTech Solutions",
+      "overall_score": 0.267,
+      "matched_skills": [],
+      "missing_skills": [
+        "devops",
+        "aws",
+        "linux",
+        "terraform",
+        "docker"
+      ],
+      "recommendation_reason": "Oportunidade de aprender: devops, aws"
+    },
+    {
+      "job_id": "job_005",
+      "job_title": "Cientista de Dados",
+      "company": "AI Research Lab",
+      "overall_score": 0.26251340357161945,
+      "matched_skills": [
+        "pandas",
+        "tensorflow",
+        "python"
+      ],
+      "missing_skills": [
+        "numpy",
+        "scikit-learn",
+        "data science",
+        "machine learning",
+        "pytorch"
+      ],
+      "recommendation_reason": "Skills em comum: pandas, tensorflow, python; Oportunidade de aprender: numpy, scikit-learn"
+    }
+  ]
+}

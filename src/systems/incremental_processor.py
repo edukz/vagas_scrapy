@@ -173,13 +173,14 @@ class IncrementalProcessor:
         self.session_stats['jobs_processed'] += 1
     
     def should_continue_processing(self, current_page_jobs: List[Dict], 
-                                  threshold: float = 0.5) -> Tuple[bool, List[Dict]]:
+                                  threshold: float = 0.5, page_number: int = 1) -> Tuple[bool, List[Dict]]:
         """
         Determina se deve continuar processando baseado em vagas já conhecidas
         
         Args:
             current_page_jobs: Lista de vagas da página atual
             threshold: Percentual de vagas novas necessário para continuar (0.5 = 50%)
+            page_number: Número da página atual (para estratégia adaptativa)
             
         Returns:
             (should_continue, new_jobs): Se deve continuar e lista de vagas novas
@@ -200,14 +201,28 @@ class IncrementalProcessor:
         # Calcular proporção de vagas novas
         new_ratio = len(new_jobs) / len(current_page_jobs)
         
-        # Decisão de continuar
-        should_continue = new_ratio >= threshold
+        # Estratégia adaptativa baseada na página
+        if page_number <= 2:
+            # Páginas 1-2: sempre continuar (para garantir que pelo menos tentamos página 2)
+            should_continue = True
+        elif page_number <= 5:
+            # Páginas 3-5: continuar se tiver qualquer vaga nova ou ratio baixo
+            should_continue = len(new_jobs) > 0 or new_ratio >= 0.05  # 5% threshold
+        elif page_number <= 10:
+            # Páginas 6-10: ser mais restritivo
+            should_continue = new_ratio >= threshold * 0.5  # 50% do threshold
+        else:
+            # Páginas 10+: usar threshold completo
+            should_continue = new_ratio >= threshold
         
         if not should_continue:
-            print(f"🛑 Parando processamento: {known_jobs}/{len(current_page_jobs)} vagas já conhecidas")
+            print(f"🛑 Parando processamento na página {page_number}: {known_jobs}/{len(current_page_jobs)} vagas já conhecidas (ratio: {new_ratio:.1%})")
             self.session_stats['time_saved_seconds'] = self._estimate_time_saved()
         else:
-            print(f"✅ Continuando: {len(new_jobs)} vagas novas encontradas")
+            if page_number <= 2:
+                print(f"✅ Continuando página {page_number}: {len(new_jobs)} vagas novas (política: sempre continuar nas 2 primeiras páginas)")
+            else:
+                print(f"✅ Continuando página {page_number}: {len(new_jobs)} vagas novas encontradas (ratio: {new_ratio:.1%})")
         
         return should_continue, new_jobs
     

@@ -1,0 +1,48 @@
+{
+  "skill_trends": {
+    "python": {
+      "name": "python",
+      "frequency": 1,
+      "avg_salary": 0,
+      "growth_trend": "stable",
+      "demand_level": "high",
+      "related_positions": [
+        "Desenvolvedor Python"
+      ],
+      "market_penetration": 50.0,
+      "last_update": "2025-06-20T21:06:31.411562"
+    },
+    "pandas": {
+      "name": "pandas",
+      "frequency": 1,
+      "avg_salary": 0,
+      "growth_trend": "stable",
+      "demand_level": "high",
+      "related_positions": [
+        "Desenvolvedor Python"
+      ],
+      "market_penetration": 50.0,
+      "last_update": "2025-06-20T21:06:31.411567"
+    },
+    "postgresql": {
+      "name": "postgresql",
+      "frequency": 1,
+      "avg_salary": 0,
+      "growth_trend": "stable",
+      "demand_level": "high",
+      "related_positions": [
+        "Analista de Dados"
+      ],
+      "market_penetration": 50.0,
+      "last_update": "2025-06-20T21:06:31.411568"
+    }
+  },
+  "time_series": [],
+  "salary_correlations": {},
+  "last_update": null,
+  "statistics": {
+    "total_skills_tracked": 3,
+    "total_jobs_analyzed": 2,
+    "last_analysis": "2025-06-20T21:06:31.411573"
+  }
+}
