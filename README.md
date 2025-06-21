@@ -345,8 +345,8 @@ Sistema completo de análise de mercado e tendências.
 ```
 web/
 ├── 🎮 main.py                   # Interface principal do sistema
-├── 📚 UPGRADE_GUIDE.md          # Guia completo de migração
-├── 📄 main_original_backup.py   # Backup da interface original
+├── 📄 README.md                 # Documentação principal
+├── 📄 requirements.txt          # Dependências do projeto
 │
 ├── 📂 src/                      # Código fonte principal
 │   ├── 🤖 ml/                   # Machine Learning & IA
@@ -374,7 +374,13 @@ web/
 │
 ├── 🌐 api/                      # API REST FastAPI
 ├── 📖 docs/                     # Documentação completa
+│   ├── 📂 api/                  # Docs da API
+│   ├── 📂 deployment/           # Guias de deploy
+│   ├── 📂 features/             # Docs de funcionalidades
+│   └── 📂 guides/               # Guias e tutoriais
 ├── 🧪 tests/                    # Testes automatizados
+├── 📁 scripts/                  # Scripts auxiliares
+├── 💾 backups/                  # Arquivos de backup
 └── 🐳 docker-compose.yml        # Container orchestration
 ```
 
@@ -405,11 +411,11 @@ web/
 ## 📚 **DOCUMENTAÇÃO**
 
 ### 📖 **Guias Disponíveis**
-- 📋 **UPGRADE_GUIDE.md** - Guia completo de migração para v6.0
-- 🏗️ **ORGANIZACAO_PROJETO.md** - Estrutura e arquitetura
-- ⚡ **docs/features/** - Documentação de funcionalidades
-- 🌐 **docs/api/** - Documentação da API REST
-- 🚀 **docs/deployment/** - Guias de deployment
+- 📋 **[docs/guides/UPGRADE_GUIDE.md](docs/guides/UPGRADE_GUIDE.md)** - Guia completo de migração para v6.0
+- 🏗️ **[docs/ORGANIZACAO_PROJETO.md](docs/ORGANIZACAO_PROJETO.md)** - Estrutura e arquitetura
+- ⚡ **[docs/features/](docs/features/)** - Documentação de funcionalidades
+- 🌐 **[docs/api/](docs/api/)** - Documentação da API REST
+- 🚀 **[docs/deployment/](docs/deployment/)** - Guias de deployment
 
 ### 🎓 **Tutorial Interativo**
 ```bash
