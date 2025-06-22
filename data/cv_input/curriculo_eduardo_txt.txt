@@ -1,0 +1,112 @@
+EDUARDO K. INAGAKI
+DESENVOLVEDOR BACK-END & CIENTISTA DE DADOS
+
+CONTATO
+• São Paulo, Brasil
+• (18) 98199-5533
+• edukz93@gmail.com
+• linkedin.com/in/Eduardo-Inagaki
+• github.com/edukz
+
+HABILIDADES
+
+Linguagens & Frameworks
+• Python (Pandas, PyAutoGUI, OpenCV, TensorFlow)
+• SQL (MySQL, PostgreSQL)
+• Web Scraping (Selenium, Beautiful Soup)
+• GUI Development (Tkinter)
+• Data Visualization (Matplotlib, Plotly)
+
+Machine Learning & Análise
+• Visualização de dados avançada
+• Modelos de regressão e classificação
+• Processamento de grandes volumes
+• Visão computacional e RL
+• Pipelines ETL automatizados
+
+Características Profissionais
+• Resolução de problemas complexos
+• Adaptabilidade e rápido aprendizado
+• Atenção aos detalhes
+• Comunicação eficiente
+• Experiência com metodologias ágeis
+
+IDIOMAS
+• Português: Nativo
+• Inglês: Avançado
+
+FORMAÇÃO
+
+FIAP
+Data Science
+2023 - 2025 (em andamento)
+
+Centro Universitário Toledo
+Arquitetura e Urbanismo
+2012 - 2017
+
+EC Vancouver
+Intercâmbio de Inglês
+2018
+
+HIRO学園 HIRO GAKUEN
+Ensino Fundamental e Médio
+2004 - 2010
+
+EXPERIÊNCIA PROFISSIONAL
+
+Desenvolvedor de Bots para Jogos
+Projetos Autônomos
+06/2024 - 05/2025
+- Desenvolvi bots inteligentes com Python, PyAutoGUI, OpenCV e TensorFlow
+- Treinei modelos de detecção de objetos com YOLOv5 para identificação de elementos específicos
+- Implementei modelos de CNN (Convolutional Neural Networks) para reconhecimento de elementos gráficos em tempo real
+- Implementei visão computacional com 95% de precisão em reconhecimento
+- Criei sistemas de decisão baseados em aprendizado por reforço
+- Projetei arquitetura de microserviços para processamento distribuído
+- Desenvolvi mecanismos anti-detecção utilizando técnicas de randomização de movimentos
+- Implementei interfaces com Tkinter para monitoramento em tempo real
+
+Especialista em Soluções de Web Scraping
+Projetos Autônomos
+10/2024 - 06/2024
+- Implementei soluções de web scraping escaláveis para múltiplos clientes
+- Desenvolvi sistemas anti-bloqueio com rotação de proxies e fingerprinting
+- Projetei pipelines ETL para transformação e enriquecimento de dados
+- Criei sistemas de monitoramento de preços para análise competitiva
+- Desenvolvi dashboards interativos com Streamlit e Plotly
+
+Engenheiro de Dados
+Simple & Co
+12/2022 - 10/2023
+- Arquitetei sistema de coleta do iFood, aumentando eficiência em 40%
+- Projetei banco de dados relacional com otimização de queries
+- Desenvolvi pipeline para tratamento de datasets complexos
+- Criei monitoramento de preços para análise em tempo real
+- Implementei modelos preditivos com 85% de precisão
+
+PROJETOS DESTACADOS
+
+Bot de Automação para MMORPGs
+Sistema inteligente com visão computacional para automatizar tarefas em jogos online.
+Tecnologias: Python, OpenCV, TensorFlow
+
+Sistema de Monitoramento de Preços
+Sistema automatizado para análise de preços de concorrentes em tempo real.
+Tecnologias: Web Scraping, Selenium
+
+Pipeline ETL para Análise de Dados
+Sistema para extração, transformação e carregamento de dados automatizado.
+Tecnologias: Python, Pandas, SQL
+
+Dashboard de Análise Competitiva
+Painel interativo para visualização de métricas competitivas e análise.
+Tecnologias: Streamlit, Plotly
+
+Sistema de Previsão de Demanda
+Modelo preditivo baseado em machine learning para estimativas futuras.
+Tecnologias: Scikit-learn, Regressão
+
+Sistema de Detecção de Anomalias
+Algoritmo de identificação de padrões atípicos em séries temporais.
+Tecnologias: Python, Clustering, Estatística

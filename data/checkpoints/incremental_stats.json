@@ -1,8 +1,8 @@
 {
-  "total_runs": 6,
-  "total_time_saved_minutes": 18.6,
-  "average_jobs_per_run": 125.16666666666667,
-  "average_time_saved_per_run": 3.1,
+  "total_runs": 11,
+  "total_time_saved_minutes": 31.0,
+  "average_jobs_per_run": 68.72727272727273,
+  "average_time_saved_per_run": 2.8181818181818183,
   "history": [
     {
       "date": "2025-06-19T22:52:02.611186",
@@ -51,6 +51,46 @@
       "jobs_skipped": 20,
       "pages_processed": 1,
       "time_saved_seconds": 0
+    },
+    {
+      "date": "2025-06-21T01:45:41.577142",
+      "duration_seconds": 54.777145,
+      "jobs_processed": 2,
+      "jobs_skipped": 36,
+      "pages_processed": 2,
+      "time_saved_seconds": 0
+    },
+    {
+      "date": "2025-06-21T01:47:23.795943",
+      "duration_seconds": 23.680228,
+      "jobs_processed": 3,
+      "jobs_skipped": 98,
+      "pages_processed": 5,
+      "time_saved_seconds": 294
+    },
+    {
+      "date": "2025-06-21T02:05:13.574011",
+      "duration_seconds": 51.499609,
+      "jobs_processed": 0,
+      "jobs_skipped": 50,
+      "pages_processed": 2,
+      "time_saved_seconds": 150
+    },
+    {
+      "date": "2025-06-21T02:12:01.825678",
+      "duration_seconds": 16.296939,
+      "jobs_processed": 0,
+      "jobs_skipped": 50,
+      "pages_processed": 2,
+      "time_saved_seconds": 150
+    },
+    {
+      "date": "2025-06-21T02:47:33.893817",
+      "duration_seconds": 46.72386,
+      "jobs_processed": 0,
+      "jobs_skipped": 50,
+      "pages_processed": 2,
+      "time_saved_seconds": 150
     }
   ]
 }

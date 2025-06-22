@@ -60,26 +60,52 @@ class PooledPage:
     
     async def reset(self) -> bool:
         """
-        Reseta página para estado limpo
+        Reseta página para estado limpo - versão robusta
         
         Returns:
             True se sucesso, False se deve ser descartada
         """
         try:
-            # Limpar página
-            await self.page.goto("about:blank")
-            await self.page.evaluate("localStorage.clear()")
-            await self.page.evaluate("sessionStorage.clear()")
+            # Tentar limpar storage apenas se possível
+            try:
+                # Verificar se podemos acessar localStorage primeiro
+                await self.page.evaluate("typeof(Storage) !== 'undefined' && localStorage")
+                await self.page.evaluate("localStorage.clear()")
+            except Exception:
+                # Ignore localStorage errors - muitas vezes o site bloqueia acesso
+                pass
             
-            # Limpar cookies
-            context = self.page.context
-            await context.clear_cookies()
+            try:
+                # Tentar limpar sessionStorage
+                await self.page.evaluate("typeof(Storage) !== 'undefined' && sessionStorage")
+                await self.page.evaluate("sessionStorage.clear()")
+            except Exception:
+                # Ignore sessionStorage errors também
+                pass
+            
+            # Limpar cookies (isso geralmente funciona)
+            try:
+                context = self.page.context
+                await context.clear_cookies()
+            except Exception:
+                # Se nem cookies conseguimos limpar, a página pode estar com problemas
+                pass
+            
+            # Navegar para página limpa
+            try:
+                await self.page.goto("about:blank", timeout=5000)
+            except Exception:
+                # Se não conseguir navegar, a página provavelmente tem problemas sérios
+                self.mark_error()
+                return False
             
             return True
             
         except Exception as e:
             self.mark_error()
-            print(f"⚠️ Erro ao resetar página: {e}")
+            # Log apenas em casos realmente críticos, não para erros de localStorage
+            if "localStorage" not in str(e) and "sessionStorage" not in str(e):
+                print(f"⚠️ Erro crítico ao resetar página: {e}")
             return False
 
 
@@ -194,7 +220,7 @@ class ConnectionPool:
     
     async def get_page(self, timeout_seconds: float = 10.0) -> Optional[Page]:
         """
-        Obtém página do pool ou cria nova se necessário
+        Obtém página do pool ou cria nova se necessário - VERSÃO CORRIGIDA
         
         Args:
             timeout_seconds: Tempo máximo para aguardar página
@@ -208,21 +234,24 @@ class ConnectionPool:
         
         start_time = time.time()
         self.stats['total_requests'] += 1
+        pooled_page = None
         
+        # Manter lock durante toda operação para evitar race conditions
         async with self._lock:
             # Tentar pegar página disponível
             while self.available_pages:
-                pooled_page = self.available_pages.popleft()
+                candidate = self.available_pages.popleft()
                 
                 # Verificar se página ainda é válida
-                if pooled_page.should_recreate(self.max_age_minutes):
-                    await self._destroy_page(pooled_page)
+                if candidate.should_recreate(self.max_age_minutes):
+                    await self._destroy_page(candidate)
                     continue
                 
                 # Tentar resetar página
-                if await pooled_page.reset():
-                    pooled_page.mark_used()
-                    self.busy_pages.append(pooled_page)
+                if await candidate.reset():
+                    candidate.mark_used()
+                    self.busy_pages.append(candidate)
+                    pooled_page = candidate
                     
                     # Estatísticas
                     wait_time = time.time() - start_time
@@ -230,17 +259,18 @@ class ConnectionPool:
                     self.stats['total_wait_time'] += wait_time
                     self.stats['average_wait_time'] = self.stats['total_wait_time'] / self.stats['total_requests']
                     
-                    print(f"🔄 Página reutilizada do pool (uso #{pooled_page.usage_count})")
-                    return pooled_page.page
+                    print(f"🔄 Página reutilizada do pool (uso #{candidate.usage_count})")
+                    break
                 else:
-                    await self._destroy_page(pooled_page)
+                    await self._destroy_page(candidate)
             
-            # Se não há páginas disponíveis, tentar criar nova
-            if len(self.busy_pages) + len(self.available_pages) < self.max_size:
-                pooled_page = await self._create_new_page()
-                if pooled_page:
-                    pooled_page.mark_used()
-                    self.busy_pages.append(pooled_page)
+            # Se não achou página disponível, tentar criar nova
+            if not pooled_page and len(self.busy_pages) + len(self.available_pages) < self.max_size:
+                new_page = await self._create_new_page()
+                if new_page:
+                    new_page.mark_used()
+                    self.busy_pages.append(new_page)
+                    pooled_page = new_page
                     
                     # Estatísticas
                     wait_time = time.time() - start_time
@@ -249,31 +279,39 @@ class ConnectionPool:
                     self.stats['average_wait_time'] = self.stats['total_wait_time'] / self.stats['total_requests']
                     
                     print(f"🆕 Nova página criada no pool")
-                    return pooled_page.page
         
-        # Aguardar página ficar disponível
+        # Se conseguiu página, retornar
+        if pooled_page:
+            return pooled_page.page
+        
+        # Aguardar página ficar disponível (com timeout)
         deadline = time.time() + timeout_seconds
+        wait_interval = 0.05  # 50ms entre verificações
+        
         while time.time() < deadline:
             async with self._lock:
                 if self.available_pages:
+                    # Tentar recursivamente mas com timeout reduzido
+                    remaining_time = deadline - time.time()
+                    if remaining_time > 0:
+                        return await self.get_page(remaining_time)
                     break
-            await asyncio.sleep(0.1)
+            
+            await asyncio.sleep(wait_interval)
         
-        # Tentar novamente após aguardar
-        if self.available_pages:
-            return await self.get_page(timeout_seconds - (time.time() - start_time))
-        
-        print(f"⏰ Timeout ao aguardar página do pool")
+        print(f"⏰ Timeout ao aguardar página do pool após {timeout_seconds}s")
+        self.stats['errors'] += 1
         return None
     
     async def return_page(self, page: Page, had_error: bool = False) -> None:
         """
-        Retorna página para o pool
+        Retorna página para o pool - VERSÃO CORRIGIDA
         
         Args:
             page: Página a ser retornada
             had_error: Se houve erro ao usar a página
         """
+        # Toda operação dentro do lock para evitar race conditions
         async with self._lock:
             # Encontrar página nos busy_pages
             pooled_page = None
@@ -295,15 +333,17 @@ class ConnectionPool:
                 await self._destroy_page(pooled_page)
                 
                 # Criar nova página se pool ficou muito pequeno
-                if len(self.available_pages) < self.min_size:
+                # Fazer isso dentro do mesmo lock para garantir consistência
+                if len(self.available_pages) + len(self.busy_pages) < self.min_size:
                     new_page = await self._create_new_page()
                     if new_page:
                         self.available_pages.append(new_page)
+                        print(f"🔄 Nova página criada para manter pool mínimo")
             else:
                 # Retornar página para pool
                 pooled_page.mark_available()
                 self.available_pages.append(pooled_page)
-                print(f"↩️ Página retornada ao pool")
+                print(f"↩️ Página retornada ao pool (total disponível: {len(self.available_pages)})")
     
     async def _destroy_page(self, pooled_page: PooledPage) -> None:
         """

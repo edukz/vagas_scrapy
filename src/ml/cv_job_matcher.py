@@ -54,20 +54,20 @@ class AdvancedCVJobMatcher:
         # Inicializar analisadores existentes
         self._initialize_analyzers()
         
-        # Pesos do algoritmo de matching
+        # Pesos do algoritmo de matching - ajustados para melhor precisão
         self.weights = {
-            'skills_semantic': 0.25,     # Similaridade semântica de skills
-            'skills_exact': 0.20,       # Match exato de skills
-            'seniority': 0.15,          # Compatibilidade de senioridade
-            'salary': 0.15,             # Compatibilidade salarial
-            'location': 0.10,           # Preferência de localização
-            'company_type': 0.08,       # Tipo de empresa
-            'work_mode': 0.07           # Modo de trabalho (remoto/híbrido)
+            'skills_exact': 0.35,       # Match exato de skills (aumentado)
+            'skills_semantic': 0.15,     # Similaridade semântica de skills (reduzido)
+            'seniority': 0.20,          # Compatibilidade de senioridade (aumentado)
+            'salary': 0.10,             # Compatibilidade salarial
+            'location': 0.08,           # Preferência de localização
+            'experience': 0.07,         # Anos de experiência relevante
+            'work_mode': 0.05           # Modo de trabalho (remoto/híbrido)
         }
         
-        # Cache para performance
-        self.cv_cache = {}
-        self.job_cache = {}
+        # Cache inteligente com TTL para evitar memory leaks
+        from ..utils.lru_cache import CVJobMatcherCache
+        self.cache = CVJobMatcherCache()
         
         # Histórico de interações para learning
         self.interaction_history = []
@@ -100,8 +100,10 @@ class AdvancedCVJobMatcher:
         Returns:
             Dados estruturados do CV para matching
         """
-        if user_id in self.cv_cache:
-            return self.cv_cache[user_id]
+        # Verificar cache primeiro
+        cached_cv = self.cache.get_cv(user_id)
+        if cached_cv:
+            return cached_cv
         
         if not self.cv_analyzer:
             raise Exception("CV Analyzer não disponível")
@@ -130,8 +132,8 @@ class AdvancedCVJobMatcher:
             'full_profile_text': self._create_full_profile_text(cv_result)
         }
         
-        # Cache para performance
-        self.cv_cache[user_id] = cv_data
+        # Armazenar no cache com TTL
+        self.cache.set_cv(user_id, cv_data)
         return cv_data
     
     def _create_skills_text(self, skills: Dict) -> str:
@@ -204,8 +206,10 @@ class AdvancedCVJobMatcher:
         """
         job_id = job.get('id', str(hash(str(job))))
         
-        if job_id in self.job_cache:
-            return self.job_cache[job_id]
+        # Verificar cache primeiro
+        cached_job = self.cache.get_job(job_id)
+        if cached_job:
+            return cached_job
         
         # Extrair e processar skills da vaga
         job_skills = self._extract_job_skills(job)
@@ -239,8 +243,8 @@ class AdvancedCVJobMatcher:
             'requirements_text': self._create_requirements_text(job)
         }
         
-        # Cache
-        self.job_cache[job_id] = job_data
+        # Armazenar no cache com TTL
+        self.cache.set_job(job_id, job_data)
         return job_data
     
     def _extract_job_skills(self, job: Dict) -> List[str]:
@@ -400,9 +404,9 @@ class AdvancedCVJobMatcher:
             cv_data['preferences'], job_data['location_info']
         )
         
-        # 6. Tipo de empresa (se disponível)
-        scores['company_type'] = self._calculate_company_compatibility(
-            cv_data.get('preferences', {}), job_data['company']
+        # 6. Experiência relevante
+        scores['experience'] = self._calculate_experience_relevance(
+            cv_data.get('experience', {}), job_data
         )
         
         # 7. Modo de trabalho
@@ -467,9 +471,19 @@ class AdvancedCVJobMatcher:
         job_skills_set = set(skill.lower() for skill in job_skills)
         
         intersection = cv_skills_set & job_skills_set
-        union = cv_skills_set | job_skills_set
         
-        return len(intersection) / len(union) if union else 0.0
+        # Usar Jaccard modificado - foco na porcentagem de skills da vaga que o candidato tem
+        if not job_skills_set:
+            return 0.0
+            
+        # Quantas skills da vaga o candidato possui
+        match_ratio = len(intersection) / len(job_skills_set)
+        
+        # Bonus se o candidato tem muitas das skills principais
+        if match_ratio >= 0.7:
+            match_ratio = min(1.0, match_ratio * 1.1)
+        
+        return match_ratio
     
     def _calculate_seniority_compatibility(self, cv_seniority: str, job_seniority: str) -> float:
         """Calcula compatibilidade de senioridade"""
@@ -546,6 +560,39 @@ class AdvancedCVJobMatcher:
             return 0.8
         else:
             return 0.6
+    
+    def _calculate_experience_relevance(self, cv_experience: Dict, job_data: Dict) -> float:
+        """Calcula relevância da experiência para a vaga"""
+        cv_years = cv_experience.get('total_years', 0)
+        job_seniority = job_data.get('seniority', 'pleno')
+        
+        # Experiência ideal por nível
+        ideal_experience = {
+            'estagiario': 0,
+            'junior': 1,
+            'pleno': 3,
+            'senior': 5,
+            'especialista': 7,
+            'lead': 8,
+            'gerente': 10
+        }
+        
+        ideal_years = ideal_experience.get(job_seniority, 3)
+        
+        # Calcular diferença
+        diff = abs(cv_years - ideal_years)
+        
+        # Score baseado na diferença
+        if diff == 0:
+            return 1.0
+        elif diff <= 1:
+            return 0.9
+        elif diff <= 2:
+            return 0.7
+        elif diff <= 3:
+            return 0.5
+        else:
+            return 0.3
     
     def _generate_recommendation_reason(self, scores: Dict, matched_skills: List[str], 
                                       missing_skills: List[str]) -> str:

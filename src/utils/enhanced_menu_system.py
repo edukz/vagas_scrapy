@@ -124,10 +124,10 @@ class EnhancedMenuSystem:
         self.menu_options = {
             # CATEGORIA: COLETA DE DADOS
             "data_collection": [
-                MenuOption("1", "🚀", "SCRAPING BÁSICO", "Coleta simples de vagas do Catho", "data_collection", "beginner", Colors.GREEN),
+                MenuOption("1", "🎯", "BUSCA INTELIGENTE", "Interface moderna com presets automáticos", "data_collection", "beginner", Colors.GREEN, new_feature=True),
                 MenuOption("2", "⚡", "SCRAPING RÁPIDO", "Coleta otimizada com cache inteligente", "data_collection", "intermediate", Colors.YELLOW),
-                MenuOption("3", "🎯", "SCRAPING AVANÇADO", "Coleta com IA e filtros personalizados", "data_collection", "advanced", Colors.CYAN, tutorial_available=True),
-                MenuOption("4", "🔄", "SCRAPING INCREMENTAL", "Atualização inteligente de dados", "data_collection", "advanced", Colors.BLUE, new_feature=True),
+                MenuOption("3", "🔧", "SCRAPING AVANÇADO", "Coleta com IA e filtros personalizados", "data_collection", "advanced", Colors.CYAN, tutorial_available=True),
+                MenuOption("4", "🔄", "SCRAPING INCREMENTAL", "Atualização inteligente de dados", "data_collection", "advanced", Colors.BLUE),
             ],
             
             # CATEGORIA: ANÁLISE INTELIGENTE 
@@ -140,7 +140,7 @@ class EnhancedMenuSystem:
             
             # CATEGORIA: DADOS E CACHE
             "data_management": [
-                MenuOption("9", "🔍", "BUSCAR CACHE", "Pesquisar em dados coletados", "data_management", "beginner", Colors.BLUE),
+                MenuOption("9", "📋", "VISUALIZAR VAGAS", "Explorer vagas salvas no sistema", "data_management", "beginner", Colors.BLUE, new_feature=True),
                 MenuOption("10", "📈", "ESTATÍSTICAS", "Dashboard e métricas do sistema", "data_management", "intermediate", Colors.YELLOW),
                 MenuOption("11", "🧹", "LIMPAR DADOS", "Gerenciar armazenamento", "data_management", "beginner", Colors.RED),
                 MenuOption("12", "🔄", "DEDUPLICAÇÃO", "Otimizar banco de dados", "data_management", "intermediate", Colors.MAGENTA),

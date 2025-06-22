@@ -88,3 +88,6 @@ data/metrics/*.csv
 # Alertas temporários
 data/alerts/exports/*.json
 !data/alerts/exports/.gitkeep
+
+# Claude Code configurações
+.claude/

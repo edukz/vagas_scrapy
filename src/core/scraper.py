@@ -211,12 +211,20 @@ async def scrape_catho_jobs(max_concurrent_jobs: int = 3, max_pages: int = 5) ->
                 except Exception as e:
                     print(f"Erro durante o scraping: {e}")
                     
-                    # Cleanup em caso de erro
-                    try:
-                        for detail_page in detail_pages:
+                    # Cleanup em caso de erro com logging adequado
+                    cleanup_errors = []
+                    for detail_page in detail_pages:
+                        try:
                             await detail_page.close()
-                    except:
-                        pass
+                        except Exception as cleanup_error:
+                            cleanup_errors.append(f"Erro ao fechar página: {cleanup_error}")
+                    
+                    if cleanup_errors:
+                        print(f"⚠️ Problemas durante cleanup: {len(cleanup_errors)} erros")
+                        for error in cleanup_errors[:3]:  # Mostrar apenas os 3 primeiros
+                            print(f"   • {error}")
+                        if len(cleanup_errors) > 3:
+                            print(f"   • ... e mais {len(cleanup_errors) - 3} erros")
                     
                     return []
                 

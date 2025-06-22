@@ -1,0 +1,126 @@
+{
+  "personal_info": {
+    "email": "edukz93@gmail.com",
+    "phone": "(18) 98199-5533",
+    "linkedin": "Eduardo-Inagaki",
+    "github": "edukz",
+    "name": "EDUARDO K. INAGAKI",
+    "location": "São Paulo, Brasil"
+  },
+  "skills": {
+    "technical": [
+      ".net",
+      "selenium",
+      "cnn",
+      "python",
+      "yolo",
+      "sql",
+      "ios",
+      "plotly",
+      "mysql",
+      "postgresql",
+      "c#",
+      "tensorflow",
+      "go",
+      "tkinter",
+      "opencv",
+      "streamlit",
+      "bot",
+      "pandas",
+      "c++",
+      "web scraping",
+      "api",
+      "rpa",
+      "scikit-learn",
+      "etl",
+      "matplotlib",
+      "pyautogui",
+      "r",
+      "beautiful soup"
+    ],
+    "soft": [
+      "comunicação",
+      "adaptabilidade",
+      "resolução de problemas"
+    ],
+    "by_category": {
+      "linguagens": [
+        "c++",
+        "python",
+        "r",
+        "c#",
+        "sql",
+        "go"
+      ],
+      "frontend": [
+        "tkinter"
+      ],
+      "backend": [
+        ".net"
+      ],
+      "mobile": [
+        "ios"
+      ],
+      "databases": [
+        "postgresql",
+        "mysql"
+      ],
+      "data_science": [
+        "pandas",
+        "tensorflow",
+        "plotly",
+        "scikit-learn",
+        "matplotlib"
+      ],
+      "tools_libs": [
+        "opencv",
+        "streamlit",
+        "selenium",
+        "cnn",
+        "yolo",
+        "api",
+        "etl",
+        "beautiful soup",
+        "pyautogui"
+      ],
+      "web_scraping": [
+        "selenium",
+        "beautiful soup",
+        "web scraping"
+      ],
+      "automation": [
+        "bot",
+        "rpa",
+        "pyautogui"
+      ]
+    }
+  },
+  "experience": {
+    "total_years": 0,
+    "companies": [
+      "Processa",
+      "os para processa"
+    ],
+    "positions": [
+      "DESENVOLVEDOR BACK-END & CIENTISTA DE DADOS",
+      "Desenvolvedor de Bots para Jogos"
+    ],
+    "current_position": "Desenvolvedor de Bots para Jogos"
+  },
+  "education": {
+    "degree": "ciência em 40%",
+    "institution": "EDUARDO",
+    "courses": []
+  },
+  "preferences": {
+    "work_mode": "hibrido",
+    "salary_expectation": null
+  },
+  "seniority_level": "estagiario",
+  "estimated_salary_range": {
+    "min": 3800.0,
+    "max": 5200.0,
+    "median": 4500.0
+  },
+  "confidence_score": 0.8500000000000001
+}

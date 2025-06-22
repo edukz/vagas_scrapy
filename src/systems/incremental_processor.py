@@ -173,20 +173,28 @@ class IncrementalProcessor:
         self.session_stats['jobs_processed'] += 1
     
     def should_continue_processing(self, current_page_jobs: List[Dict], 
-                                  threshold: float = 0.5, page_number: int = 1) -> Tuple[bool, List[Dict]]:
+                                  threshold: float = 0.5, page_number: int = 1,
+                                  max_absolute_pages: int = 50) -> Tuple[bool, List[Dict]]:
         """
-        Determina se deve continuar processando baseado em vagas já conhecidas
+        Determina se deve continuar processando baseado em vagas já conhecidas - VERSÃO CORRIGIDA
         
         Args:
             current_page_jobs: Lista de vagas da página atual
             threshold: Percentual de vagas novas necessário para continuar (0.5 = 50%)
             page_number: Número da página atual (para estratégia adaptativa)
+            max_absolute_pages: Limite absoluto de páginas para evitar loops infinitos
             
         Returns:
             (should_continue, new_jobs): Se deve continuar e lista de vagas novas
         """
         if not current_page_jobs:
             return True, []
+        
+        # PROTEÇÃO: Limite absoluto para evitar loops infinitos
+        if page_number > max_absolute_pages:
+            print(f"🛑 Limite absoluto atingido: {max_absolute_pages} páginas processadas")
+            self.session_stats['stopped_reason'] = 'absolute_limit'
+            return False, []
         
         new_jobs = []
         known_jobs = 0
@@ -198,8 +206,11 @@ class IncrementalProcessor:
             else:
                 new_jobs.append(job)
         
-        # Calcular proporção de vagas novas
-        new_ratio = len(new_jobs) / len(current_page_jobs)
+        # Calcular proporção de vagas novas com proteção contra divisão por zero
+        if len(current_page_jobs) == 0:
+            new_ratio = 0.0
+        else:
+            new_ratio = len(new_jobs) / len(current_page_jobs)
         
         # Estratégia adaptativa baseada na página
         if page_number <= 2:
@@ -218,6 +229,7 @@ class IncrementalProcessor:
         if not should_continue:
             print(f"🛑 Parando processamento na página {page_number}: {known_jobs}/{len(current_page_jobs)} vagas já conhecidas (ratio: {new_ratio:.1%})")
             self.session_stats['time_saved_seconds'] = self._estimate_time_saved()
+            self.session_stats.setdefault('stopped_reason', 'threshold_reached')
         else:
             if page_number <= 2:
                 print(f"✅ Continuando página {page_number}: {len(new_jobs)} vagas novas (política: sempre continuar nas 2 primeiras páginas)")

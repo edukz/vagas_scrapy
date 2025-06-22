@@ -33,7 +33,7 @@ class JobDeduplicator:
     """
     
     def __init__(self, 
-                 similarity_threshold: float = 0.85,
+                 similarity_threshold: float = 0.95,
                  enable_fuzzy_matching: bool = True,
                  stats_file: str = "data/deduplication_stats.json"):
         """

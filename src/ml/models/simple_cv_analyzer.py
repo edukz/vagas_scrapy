@@ -449,43 +449,39 @@ class SimpleCVAnalyzer:
                 info['github'] = github_match.group(1)
                 break
         
-        # Nome - buscar padrões mais específicos
+        # Nome - melhorado para encontrar "EDUARDO K. INAGAKI"
         lines = text.split('\n')
         
-        # Primeiro buscar padrão específico "EDUARDO K. INAGAKI" no texto
-        name_pattern = r'\b[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-Za-záéíóúâêîôûãõç]+(?:\s+[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ]\.?)?\s+[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-Za-záéíóúâêîôûãõç]+\b'
-        name_match = re.search(name_pattern, text)
-        if name_match:
-            name_candidate = name_match.group().strip()
-            # Verificar se não é cargo
-            if not any(word in name_candidate.upper() for word in ['DESENVOLVEDOR', 'ENGENHEIRO', 'ANALISTA', 'CIENTISTA', 'GERENTE', 'BACK-END', 'DADOS']):
-                words = name_candidate.split()
+        # Primeiro buscar nomes completos em maiúsculas nas primeiras linhas
+        for line in lines[:10]:
+            line = line.strip()
+            # Verificar se a linha é toda em maiúsculas e tem 2-4 palavras
+            if line and line.isupper() and 10 <= len(line) <= 50:
+                words = line.split()
                 if 2 <= len(words) <= 4:
-                    info['name'] = name_candidate
-        
-        # Segundo tentar encontrar nomes em maiúscula no início das linhas
-        if 'name' not in info:
-            for line in lines[:10]:
-                line = line.strip()
-                # Nome em maiúscula com 2-4 palavras
-                if re.match(r'^[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\s\.]{5,40}$', line):
-                    # Verificar se não é um título/cargo
-                    if not any(word in line.upper() for word in ['DESENVOLVEDOR', 'ENGENHEIRO', 'ANALISTA', 'CIENTISTA', 'GERENTE']):
-                        words = line.split()
-                        if 2 <= len(words) <= 4:
+                    # Verificar se não é cargo/título
+                    cargo_keywords = ['DESENVOLVEDOR', 'ENGENHEIRO', 'ANALISTA', 'CIENTISTA', 
+                                    'GERENTE', 'BACK-END', 'FRONT-END', 'FULL-STACK', 'DADOS', 
+                                    'JUNIOR', 'PLENO', 'SENIOR', 'ESPECIALISTA']
+                    if not any(keyword in line for keyword in cargo_keywords):
+                        # Verificar se não tem números (exceto pontos de abreviação)
+                        if not any(char.isdigit() for char in line.replace('.', '')):
                             info['name'] = line
                             break
         
-        # Se não encontrou, buscar padrão normal
+        # Se não encontrou, buscar padrão de nome com iniciais
         if 'name' not in info:
-            for line in lines[:5]:
-                line = line.strip()
-                if line and len(line.split()) >= 2 and len(line) < 60:
-                    if not any(char.isdigit() for char in line):
-                        # Verificar se parece com nome (não é cargo ou descrição)
-                        if not any(word in line.upper() for word in ['DESENVOLVEDOR', 'BACK-END', 'CIENTISTA', 'CONTATO']):
-                            info['name'] = line
-                            break
+            # Padrão para nomes como "Eduardo K. Inagaki"
+            name_pattern = r'\b([A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][a-záéíóúâêîôûãõç]+(?:\s+[A-Z]\.)?(?:\s+[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ][a-záéíóúâêîôûãõç]+)+)\b'
+            name_matches = re.findall(name_pattern, text[:500])  # Buscar apenas no início
+            
+            for name_candidate in name_matches:
+                # Verificar se não é cargo
+                if not any(word in name_candidate.upper() for word in ['DESENVOLVEDOR', 'ENGENHEIRO', 'ANALISTA']):
+                    words = name_candidate.split()
+                    if 2 <= len(words) <= 4:
+                        info['name'] = name_candidate
+                        break
         
         # Localização - padrões mais flexíveis
         location_patterns = [
@@ -517,15 +513,39 @@ class SimpleCVAnalyzer:
             'by_category': {}
         }
         
-        # Tecnologias por categoria - busca mais flexível para OCR
+        # Lista de palavras a ignorar (falsos positivos comuns)
+        ignore_words = {'dos', 'os', 'as', 'de', 'da', 'do', 'em', 'com', 'para', 'por', 'na', 'no', 'ou', 'e'}
+        
+        # Tecnologias por categoria - busca mais precisa com word boundaries
         for category, techs in self.tech_categories.items():
             found_techs = []
             for tech in techs:
-                # Busca exata
-                if tech in text_normalized:
+                # Pular tecnologias muito curtas que causam falsos positivos
+                if len(tech) <= 2 and tech in ignore_words:
+                    continue
+                
+                # Usar word boundaries para busca exata
+                # Para tecnologias com caracteres especiais, escapar corretamente
+                tech_escaped = re.escape(tech)
+                
+                # Padrões de busca com word boundaries
+                patterns = [
+                    r'\b' + tech_escaped + r'\b',  # Palavra exata
+                    r'\b' + tech_escaped + r'(?:[\s\-_])',  # Seguido de espaço, hífen ou underscore
+                    r'(?:[\s\-_])' + tech_escaped + r'\b',  # Precedido de espaço, hífen ou underscore
+                ]
+                
+                # Tentar cada padrão
+                found = False
+                for pattern in patterns:
+                    if re.search(pattern, text_normalized, re.IGNORECASE):
+                        found = True
+                        break
+                
+                if found:
                     found_techs.append(tech)
                     skills['technical'].append(tech)
-                # Busca com variações de OCR
+                # Busca com variações de OCR apenas se não encontrou exato
                 elif self._find_tech_variations(tech, text_normalized):
                     found_techs.append(tech)
                     skills['technical'].append(tech)
@@ -533,9 +553,10 @@ class SimpleCVAnalyzer:
             if found_techs:
                 skills['by_category'][category] = found_techs
         
-        # Soft skills
+        # Soft skills - também com word boundaries
         for skill in self.soft_skills:
-            if skill in text_normalized:
+            skill_pattern = r'\b' + re.escape(skill) + r'\b'
+            if re.search(skill_pattern, text_normalized, re.IGNORECASE):
                 skills['soft'].append(skill)
         
         # Remover duplicatas
@@ -546,6 +567,10 @@ class SimpleCVAnalyzer:
     
     def _find_tech_variations(self, tech: str, text: str) -> bool:
         """Encontra variações de tecnologias considerando erros de OCR"""
+        # Pular tecnologias muito curtas para evitar falsos positivos
+        if len(tech) <= 2:
+            return False
+            
         # Variações comuns de OCR
         variations = {
             'python': ['python', 'pythan', 'pyfhon', 'pytlon'],
@@ -560,24 +585,16 @@ class SimpleCVAnalyzer:
             'web scraping': ['web scraping', 'webscraping', 'web scrapping', 'web scrapmg']
         }
         
-        # Se existe variação específica, usar ela
+        # Se existe variação específica, usar ela com word boundaries
         if tech in variations:
-            return any(var in text for var in variations[tech])
+            for var in variations[tech]:
+                var_pattern = r'\b' + re.escape(var) + r'\b'
+                if re.search(var_pattern, text, re.IGNORECASE):
+                    return True
+            return False
         
-        # Senão, busca padrão flexível (permite algumas diferenças)
-        # Remove caracteres especiais e espaços
-        tech_clean = re.sub(r'[^a-z0-9]', '', tech)
-        
-        # Busca versões com espaços
-        tech_spaced = tech.replace('-', ' ').replace('.', ' ')
-        if tech_spaced in text:
-            return True
-        
-        # Busca versão sem caracteres especiais
-        text_clean = re.sub(r'[^a-z0-9\s]', '', text)
-        if tech_clean in text_clean.replace(' ', ''):
-            return True
-        
+        # Para outras tecnologias, não aplicar variações automáticas
+        # Isso evita falsos positivos
         return False
     
     def _extract_experience(self, text: str) -> Dict[str, Union[int, str, List]]:
@@ -589,32 +606,81 @@ class SimpleCVAnalyzer:
             'current_position': ''
         }
         
-        # Anos de experiência
+        # Anos de experiência explícitos
         years_match = self.patterns['years_experience'].search(text)
         if years_match:
             experience['total_years'] = int(years_match.group(1))
         
-        # Empresas e posições (padrões simples)
-        company_patterns = [
-            r'([A-Z][a-z\s&]+(?:S\.?A\.?|LTDA\.?|Inc\.?|Corp\.?))',
-            r'(?:empresa|company):\s*([^,\n]+)'
+        # Buscar datas de experiência para calcular anos
+        date_patterns = [
+            r'(\d{4})\s*[-–]\s*(\d{4}|presente|atual|hoje)',  # 2020 - 2023
+            r'(\d{2}/\d{4})\s*[-–]\s*(\d{2}/\d{4}|presente|atual)',  # 01/2020 - 12/2023
+            r'(\w+\s+\d{4})\s*[-–]\s*(\w+\s+\d{4}|presente|atual)',  # Janeiro 2020 - Dezembro 2023
         ]
         
-        position_patterns = [
-            r'((?:Desenvolvedor|Analista|Gerente|Coordenador|Diretor)[^,\n]*)',
-            r'(?:cargo|position):\s*([^,\n]+)'
-        ]
+        years_calculated = 0
+        current_year = datetime.now().year
         
-        for pattern in company_patterns:
+        for pattern in date_patterns:
             matches = re.findall(pattern, text, re.I)
-            experience['companies'].extend([m.strip() for m in matches])
+            for match in matches:
+                start_str, end_str = match
+                
+                # Extrair ano de início
+                start_year_match = re.search(r'(\d{4})', start_str)
+                if start_year_match:
+                    start_year = int(start_year_match.group(1))
+                    
+                    # Determinar ano final
+                    if any(word in end_str.lower() for word in ['presente', 'atual', 'hoje']):
+                        end_year = current_year
+                    else:
+                        end_year_match = re.search(r'(\d{4})', end_str)
+                        end_year = int(end_year_match.group(1)) if end_year_match else current_year
+                    
+                    # Calcular anos
+                    period_years = end_year - start_year
+                    if period_years > 0:
+                        years_calculated = max(years_calculated, period_years)
+        
+        # Usar o maior valor entre anos explícitos e calculados
+        if years_calculated > experience['total_years']:
+            experience['total_years'] = years_calculated
+        
+        # Posições - padrões melhorados
+        position_patterns = [
+            r'((?:DESENVOLVEDOR|Desenvolvedor|ANALISTA|Analista|CIENTISTA|Cientista|ENGENHEIRO|Engenheiro)(?:\s+[A-ZÁÉÍÓÚÂÊÎÔÛÃÕÇ\-]+)*)',
+            r'(?:cargo atual|posição atual|current position):\s*([^\n]+)',
+            r'^([A-Z][A-Z\s\-&]+)$'  # Linha com apenas maiúsculas (possível cargo)
+        ]
         
         for pattern in position_patterns:
-            matches = re.findall(pattern, text, re.I)
-            experience['positions'].extend([m.strip() for m in matches])
+            matches = re.findall(pattern, text, re.MULTILINE | re.I)
+            for match in matches:
+                position = match.strip()
+                # Filtrar cargos válidos
+                if len(position) > 5 and len(position) < 100:
+                    cargo_keywords = ['DESENVOLVEDOR', 'ANALISTA', 'CIENTISTA', 'ENGENHEIRO', 
+                                    'COORDENADOR', 'GERENTE', 'ESPECIALISTA', 'ARQUITETO']
+                    if any(keyword in position.upper() for keyword in cargo_keywords):
+                        experience['positions'].append(position)
+        
+        # Empresas - evitar falsos positivos
+        # Não extrair empresas genéricas, focar em padrões específicos
+        company_section = re.search(r'(?:EXPERIÊNCIA|EXPERIENCE|Experiência)([\s\S]*?)(?:FORMAÇÃO|EDUCATION|HABILIDADES|SKILLS|$)', text, re.I)
+        if company_section:
+            section_text = company_section.group(1)
+            # Buscar empresas após datas
+            company_after_date = re.findall(r'\d{4}\s*[-–]\s*(?:\d{4}|presente)\s*[-–]?\s*([A-Za-z][A-Za-z\s&\.]+?)(?:\n|$)', section_text)
+            experience['companies'].extend([c.strip() for c in company_after_date if 10 < len(c.strip()) < 50])
+        
+        # Remover duplicatas e limpar
+        experience['companies'] = list(set([c for c in experience['companies'] if c and not c.isdigit()]))
+        experience['positions'] = list(set(experience['positions']))
         
         if experience['positions']:
-            experience['current_position'] = experience['positions'][-1]
+            # Pegar a primeira posição encontrada (geralmente a atual)
+            experience['current_position'] = experience['positions'][0]
         
         return experience
     
@@ -626,29 +692,56 @@ class SimpleCVAnalyzer:
             'courses': []
         }
         
-        # Formação
+        # Buscar seção de formação/educação
+        education_section = re.search(r'(?:FORMAÇÃO|EDUCATION|EDUCAÇÃO|Formação)([\s\S]*?)(?:EXPERIÊNCIA|HABILIDADES|SKILLS|IDIOMAS|$)', text, re.I)
+        
+        search_text = education_section.group(1) if education_section else text
+        
+        # Formação - padrões melhorados
         degree_patterns = [
-            r'(?:graduação em|bacharel em|degree in)\s*([^,\n]+)',
-            r'((?:Engenharia|Ciência|Bacharelado)[^,\n]*)'
+            r'(?:Bacharelado|Licenciatura|Tecnologia|Graduação|Bacharel|Pós-graduação|Mestrado|MBA)\s+(?:em\s+)?([A-Za-záéíóúâêîôûãõç\s]+?)(?:\s*[-–]|\s*\(|\n|$)',
+            r'((?:Engenharia|Ciência|Análise|Tecnologia|Sistemas)\s+(?:de\s+)?[A-Za-záéíóúâêîôûãõç\s]+?)(?:\s*[-–]|\s*\(|\n|$)',
+            r'(?:Curso\s+de\s+|Formado\s+em\s+)([A-Za-záéíóúâêîôûãõç\s]+?)(?:\s*[-–]|\n|$)'
         ]
         
         for pattern in degree_patterns:
-            match = re.search(pattern, text, re.I)
+            match = re.search(pattern, search_text, re.I)
             if match:
-                education['degree'] = match.group(1).strip()
-                break
+                degree = match.group(1).strip()
+                # Limpar e validar
+                if 5 < len(degree) < 100 and not degree.isdigit():
+                    education['degree'] = degree
+                    break
         
-        # Instituição
+        # Instituição - evitar confundir com nome pessoal
         institution_patterns = [
-            r'(?:universidade|faculdade|university)\s*([^,\n]+)',
-            r'([A-Z]{3,}(?:\s+[A-Z]{2,})*)'
+            r'(?:Universidade|Faculdade|Instituto|Centro Universitário|FATEC|SENAI|SENAC)\s+([A-Za-záéíóúâêîôûãõç\s]+?)(?:\s*[-–]|\s*\(|\n|$)',
+            r'\b(USP|UNESP|UNICAMP|PUC|FGV|UFSP|UFRJ|UFMG|UnB|UFSC|UFRGS)\b',
+            r'\b([A-Z]{3,6})\b(?:\s*[-–]\s*[A-Za-záéíóúâêîôûãõç\s]+)?'  # Siglas de universidades
         ]
         
         for pattern in institution_patterns:
-            match = re.search(pattern, text, re.I)
+            match = re.search(pattern, search_text, re.I)
             if match:
-                education['institution'] = match.group(1).strip()
-                break
+                institution = match.group(1).strip()
+                # Validar que não é nome de pessoa
+                if institution.upper() not in ['EDUARDO', 'CARLOS', 'MARIA', 'JOAO', 'JOSE', 'ANA']:
+                    if 2 < len(institution) < 100:
+                        education['institution'] = institution
+                        break
+        
+        # Cursos e certificações
+        course_patterns = [
+            r'(?:Curso|Certificação|Certificado)\s+(?:de\s+|em\s+)?([A-Za-záéíóúâêîôûãõç\s]+?)(?:\s*[-–]|\n|$)',
+            r'(?:Bootcamp|Workshop|Treinamento)\s+(?:de\s+|em\s+)?([A-Za-záéíóúâêîôûãõç\s]+?)(?:\s*[-–]|\n|$)'
+        ]
+        
+        for pattern in course_patterns:
+            matches = re.findall(pattern, search_text, re.I)
+            for match in matches:
+                course = match.strip()
+                if 5 < len(course) < 100:
+                    education['courses'].append(course)
         
         return education
     
@@ -684,14 +777,49 @@ class SimpleCVAnalyzer:
         """Determina nível de senioridade"""
         text_lower = text.lower()
         
-        # Buscar palavras-chave
+        # Primeiro verificar palavras-chave explícitas no cargo
+        current_position = experience.get('current_position', '').lower()
+        positions = [p.lower() for p in experience.get('positions', [])]
+        
+        # Verificar senioridade no cargo atual ou posições
+        for level, keywords in self.seniority_keywords.items():
+            # Verificar no cargo atual
+            if current_position and any(keyword in current_position for keyword in keywords):
+                return level
+            # Verificar em todas as posições
+            for position in positions:
+                if any(keyword in position for keyword in keywords):
+                    return level
+        
+        # Se não encontrou no cargo, buscar no texto geral
         for level, keywords in self.seniority_keywords.items():
             if any(keyword in text_lower for keyword in keywords):
-                return level
+                # Verificar contexto para evitar falsos positivos
+                for keyword in keywords:
+                    if keyword in text_lower:
+                        # Verificar se está em contexto de cargo/posição
+                        context_patterns = [
+                            rf'(?:desenvolvedor|analista|engenheiro|cientista)\s+{keyword}',
+                            rf'{keyword}\s+(?:developer|developer|analyst|engineer)',
+                            rf'nível\s+{keyword}',
+                            rf'vaga\s+{keyword}'
+                        ]
+                        for pattern in context_patterns:
+                            if re.search(pattern, text_lower):
+                                return level
         
-        # Basear em anos de experiência
+        # Basear em anos de experiência se não encontrou palavras-chave
         years = experience.get('total_years', 0)
-        if years <= 2:
+        
+        # Se tem posições mas poucos anos, pode ser que a extração de anos falhou
+        if experience.get('positions') and years == 0:
+            # Se tem posição, assumir pelo menos júnior
+            return 'junior'
+        
+        # Classificação por anos de experiência
+        if years == 0:
+            return 'estagiario'
+        elif years <= 2:
             return 'junior'
         elif years <= 5:
             return 'pleno'

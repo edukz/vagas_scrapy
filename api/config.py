@@ -4,7 +4,23 @@ Configurações da API
 Centraliza todas as configurações usando Pydantic Settings
 """
 
-from pydantic import BaseSettings, Field
+try:
+    # Tentar nova versão do pydantic
+    from pydantic_settings import BaseSettings
+    from pydantic import Field
+except ImportError:
+    try:
+        # Fallback para versão antiga
+        from pydantic import BaseSettings, Field
+    except ImportError:
+        # Fallback manual se pydantic não estiver disponível
+        class BaseSettings:
+            def __init__(self, **kwargs):
+                for key, value in kwargs.items():
+                    setattr(self, key, value)
+        
+        def Field(**kwargs):
+            return kwargs.get('default')
 from typing import List, Optional
 import os
 from dotenv import load_dotenv

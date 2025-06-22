@@ -178,7 +178,10 @@ class FileManager:
                     os.remove(file_path)
                     print(f"🗑️ Arquivo antigo removido: {os.path.basename(file_path)}")
         except Exception as e:
-            pass  # Silencioso para não poluir logs
+            # Log apenas em modo debug para não poluir logs normais
+            import os
+            if os.getenv('DEBUG_CLEANUP', '').lower() in ['1', 'true', 'yes']:
+                print(f"Debug: Erro na limpeza de arquivos antigos: {e}")
     
     def get_latest_filename(self, base_name: str, extension: str, subdir: str) -> str:
         """Gera nome de arquivo inteligente - sobrescreve se for do mesmo dia"""
